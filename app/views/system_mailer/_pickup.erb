@@ -1,0 +1,24 @@
+Pickup Number: <%= @pickup.name ? h(@pickup.name) : 'Not Assigned' %>
+Pickup Link: <%= "#{AppUtils.host}#{pickup_path(@pickup)}" %>
+<% unless @pickup.pickup_type.blank? -%>
+Pickup Type: <%= @pickup.pickup_type %>
+<% end -%>
+<%= SOLUTION_OWNER %> Lead: <%= @solution_owner_user.name %>
+<%= @client.name %> Lead: <%= @client_user.name %>
+<% unless @pickup.client_reference.blank? -%>
+Client Reference: <%=h @pickup.client_reference %>
+<% end -%>
+<% if @pickup.pickup_date %>
+Pickup Date: <%=h @pickup.pickup_date.strftime(DATE_FORMAT) %>
+<% elsif @pickup.pickup_date_range %>
+Requested Pickup Date Range: <%=h @pickup.pickup_date_range %>
+<% end %>
+<% unless @pickup.pickup_time.blank? -%>
+Pickup Time: <%=h @pickup.pickup_time %>
+<% end -%>
+
+<% unless @pickup.site_contact_name.blank? -%>
+Site Contact Name: <%=h @pickup.site_contact_name %>
+<% end -%>
+Location:
+<%=h @pickup_location.address_card %>

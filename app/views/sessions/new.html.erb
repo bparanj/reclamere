@@ -1,0 +1,29 @@
+<% @page_title = 'Log In' -%>
+<p><%= image_tag 'logo.png' %></p>
+<% if logged_in? -%>
+  <p>You are currently logged in as <%= current_user.login %>.</p>
+  <p>Do you want to <%= link_to 'Logout', logout_path %>?</p>
+  <p>Would you like to go back to <%= link_to 'your dashboard', :controller => '/dashboard', :action => 'index' %>?</p>
+<% else -%>
+  <% form_tag session_path, :name => 'loginform' do -%>
+    <table class="axial">
+      <tr>
+        <th>Login</th>
+        <td><%= text_field_tag 'login', @login %></td>
+        <td>User name or email address</td>
+      </tr>
+      <tr>
+        <th>Password</th>
+        <td><%= password_field_tag 'password', nil %></td>
+        <td><%= link_to('Forgot Password', forgot_password_path) %></td>
+      </tr>
+      <tr>
+        <th>Remember Me</th>
+        <td><%= check_box_tag 'remember_me', '1', @remember_me %></td>
+      </tr>
+    </table>
+    <div class="functnbar3">
+      <%= submit_tag 'Log In' %>
+    </div>
+  <% end %>
+<% end -%>

@@ -1,0 +1,103 @@
+<% @page_title = 'Pickup' -%>
+
+<% if solution_owner_user? -%>
+  <%= print_tasks do |t|
+    t << link_to('Edit Pickup', edit_pickup_path(@pickup))
+    t
+  end %>
+  <% if @pickup.status == 'Requested' %>
+    <table>
+      <tr>
+        <td><%= button_to('Acknowledge Pickup', [:acknowledge, @pickup], :confirm => "Are you sure you want to acknowledge this pickup?") %></td>
+        <td><%= button_to('Delete Pickup', @pickup, :confirm => "Are you sure you want to permanently delete this pickup?", :method => :delete) %></td>
+      </tr>
+    </table>
+  <% elsif @pickup.status == 'Acknowledged' -%>
+    <p>
+      <%= button_to('Notify Client', [:notify, @pickup], :confirm => "Are you sure you want to notify the client of this pickup?") %>
+      The system will automatically send out notifications for this pickup on the notification date specified below, but you may manually send out the notification using the button above.
+    </p>
+  <% elsif @pickup.status == 'Feedback' %>
+    <p><%= button_to('Close Feedback', [:close_feedback, @pickup], :confirm => "Are you sure you want to close this pickup from receiving feedback from the client?") %></p>
+  <% end -%>
+<% end -%>
+
+<%= render :partial => 'pickup_header', :locals => { :pickup => @pickup } %>
+<table class="axial">
+  <tr>
+    <th>Client Lead</th>
+    <td><%= @pickup.client_user ? h(@pickup.client_user.name) : '&nbsp;' %></td>
+  </tr>
+  <tr>
+    <th><%= SOLUTION_OWNER %> Lead</th>
+    <td><%= @pickup.solution_owner_user ?  h(@pickup.solution_owner_user.name) : '&nbsp;' %></td>
+  </tr>
+  <tr>
+    <th>Type</th>
+    <td><%=h @pickup.pickup_type %></td>
+  </tr>
+  <% unless @pickup.special_request.blank? -%>
+    <tr>
+      <th>Special Request</th>
+      <td><%= simple_format h(@pickup.special_request) %></td>
+    </tr>
+  <% end -%>
+  <% unless @pickup.quantity.blank? -%>
+    <tr>
+      <th>Quantity</th>
+      <td><%= simple_format h(@pickup.quantity) %></td>
+    </tr>
+  <% end -%>
+  <% if @pickup.pickup_date_range -%>
+    <tr>
+      <th>Requested Pickup Date/Range</th>
+      <td><%= @pickup.pickup_date_range %></td>
+    </tr>
+  <% end -%>
+  <% if @pickup.pickup_date -%>
+  <tr>
+    <th>Pickup Date</th>
+    <td><%= print_date(@pickup.pickup_date) %> <%= dist_time_words(@pickup.pickup_date) %></td>
+  </tr>
+  <% end -%>
+  <% unless @pickup.pickup_time.blank? -%>
+    <tr>
+      <th>Pickup Time</th>
+      <td><%=h @pickup.pickup_time %></td>
+    </tr>
+  <% end -%>
+  <% if @pickup.notification_date -%>
+  <tr>
+    <th>Notification Date</th>
+    <td><%=h print_date(@pickup.notification_date) %>
+  </tr>
+  <% end -%>
+  <tr>
+    <th>Site Contact Name</th>
+    <td><%=h @pickup.site_contact_name %></td>
+  </tr>
+  <tr>
+    <th>Client Reference</th>
+    <td>
+      <%=h @pickup.client_reference %>
+      <p>i.e. Lot number, PO number, etc.</p>
+    </td>
+  </tr>
+  <% if @pickup.status == 'Requested' -%>
+    <% if @pickup.created_by -%>
+      <tr>
+        <th>Requested By</th>
+        <td><%= @pickup.created_by.name %></td>
+      </tr>
+    <% end -%>
+    <% if @pickup.created_at -%>
+      <tr>
+        <th>Requested At</th>
+        <td><%= print_date(@pickup.created_at) %></td>
+      </tr>
+    <% end -%>
+  <% end -%>
+</table>
+<div class="functnbar3">&nbsp;</div>
+
+<p><%= link_to 'Pickups List', pickups_path %></p>

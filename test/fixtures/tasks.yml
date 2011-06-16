@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  pickup_id: 1
+  num: 1
+  name: MyString
+  status: MyString
+  comments: MyString
+  updated_at: 2009-02-02 15:50:29
+  updated_by_id: 1
+
+two:
+  pickup_id: 1
+  num: 1
+  name: MyString
+  status: MyString
+  comments: MyString
+  updated_at: 2009-02-02 15:50:29
+  updated_by_id: 1

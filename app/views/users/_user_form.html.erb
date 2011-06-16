@@ -1,0 +1,53 @@
+<% @user.password = @user.password_confirmation = nil -%>
+<table class="axial">
+  <tr>
+    <th>Company</th>
+    <td>
+      <% if @user.new_record? -%>
+        <%= f.select :client_id, [[SOLUTION_OWNER, nil]] + Client.all.map { |c| [h(c.name), c.id] } %>
+      <% else -%>
+        <%= @user.is_a?(SolutionOwnerUser) ? SOLUTION_OWNER : @user.client.name %>
+      <% end -%>
+    </td>
+  </tr>
+  <tr>
+    <th><%= f.label :login %></th>
+    <td><%= f.text_field :login %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :name %></th>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :email %></th>
+    <td><%= f.text_field :email %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :title %></th>
+    <td><%= f.text_field :title %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :phone %></th>
+    <td><%= f.text_field :phone %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :time_zone %></th>
+    <td><%= f.time_zone_select :time_zone, TZInfo::Timezone.us_zones, :include_blank => true %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :password %></th>
+    <td><%= f.password_field :password %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :password_confirmation %></th>
+    <td><%= f.password_field :password_confirmation %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :admin %></th>
+    <td><%= f.check_box :admin %></td>
+  </tr>
+  <tr>
+    <th>Send Password Ticket?</th>
+    <td><%= f.check_box :send_password_ticket_flag %></td>
+  </tr>
+</table>

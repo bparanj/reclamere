@@ -1,0 +1,7 @@
+<% if !@current_user.blank? -%>
+<% @current_user.attributes.keys.sort.each do |key| -%>
+<% unless ['breadcrumbs', 'crypted_password', 'salt', 'remember_token', 'remeber_token_expires_at'].include?(key.to_s) -%>
+* <%= key.to_s %>: <%= @current_user.send(key.to_sym).inspect %>
+<% end -%>
+<% end -%>
+<% end -%>

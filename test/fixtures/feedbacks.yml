@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  pickup_id: 1
+  client_user_id: 1
+  value: 1
+  complete: 1
+  contacted_promptly: 1
+  complete_audit_timely: 1
+  appropriate_communication: 1
+  customer_service_needs: 1
+  comments: MyText
+  solution_owner_contact: 1
+  references: MyText
+
+two:
+  pickup_id: 1
+  client_user_id: 1
+  value: 1
+  complete: 1
+  contacted_promptly: 1
+  complete_audit_timely: 1
+  appropriate_communication: 1
+  customer_service_needs: 1
+  comments: MyText
+  solution_owner_contact: 1
+  references: MyText

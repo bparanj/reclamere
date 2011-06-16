@@ -1,0 +1,11 @@
+Dear <%= @client_user.name %>
+
+<%= SOLUTION_OWNER %>'s audit process has been completed for your pickup and all documentation has been posted in <%= APPNAME %>.
+
+<%= render :partial => 'pickup' %>
+
+If you have any questions regarding the audit, please do not hesitate to contact us at <%= SOLUTION_OWNER_PHONE %> or <%= SOLUTION_OWNER_EMAIL %>.
+
+Thank you for your business. We look forward to serving you in the future.
+
+<%= render :partial => 'pickup_footer', :locals => { :process_type => 'this audit' } %>

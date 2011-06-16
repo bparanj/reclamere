@@ -1,0 +1,43 @@
+<table class="axial">
+  <tr>
+    <th>Pickup</th>
+    <td><%= pickup.name ? h(pickup.name) : '[pickup]' %></td>
+  </tr>
+  <tr>
+    <th>Status</th>
+    <td><%=h pickup.status %></td>
+  </tr>
+  <tr>
+    <th>Location</th>
+    <td><%= link_to(h(pickup.pickup_location.name), pickup_location_path(pickup.pickup_location)) %></td>
+  </tr>
+  <% if solution_owner_user? -%>
+    <tr>
+      <th>Client</th>
+      <td><%= link_to(h(pickup.client.name), client_path(pickup.client)) %></td>
+    </tr>
+  <% end -%>
+</table>
+
+<div class="tabs" id="client_tabs">
+  <table cellpadding="3" cellspacing="0" border="0">
+    <tr>
+      <% tabs = [
+        ['Pickup', pickup_path(pickup)],
+        ['Address', address_pickup_path(pickup)],
+        ['Documents', polymorphic_path([pickup, pickup.root_folder]), { :if => ['folders', 'documents'].include?(params[:controller]) }],
+        ['Tasks', pickup_tasks_path(pickup), { :if => params[:controller] == 'tasks' }],
+        ['Equipment', pickup_equipment_path(pickup), { :if => params[:controller] == 'equipment' }],
+        ['Emails', pickup_system_emails_path(pickup), { :if => params[:controller] == 'system_emails' }],
+        ['History', polymorphic_path([pickup, :audit_logs]), { :if => params[:controller] == 'audit_logs' }]
+      ]
+      if ['Feedback', 'Closed'].include?(pickup.status)
+        fp = pickup.status == 'Feedback' && client_user? ? edit_pickup_feedback_path(pickup) : pickup_feedback_path(pickup)
+        tabs += [['Feedback', fp, { :if => params[:controller] ==  'feedbacks' }]]
+      end
+      tabs.each do |tab| -%>
+        <%= link_to_tab(*tab) %>
+      <% end -%>
+    </tr>
+  </table>
+</div>

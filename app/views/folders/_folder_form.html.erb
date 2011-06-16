@@ -1,0 +1,17 @@
+<table class="axial">
+  <tr>
+    <th>Name</th>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <th>Description</th>
+    <td><%= f.text_field :description %></td>
+  </tr>
+  <% parent_folders = @folder.folder_tree
+  if parent_folders.length > 1 -%>
+    <tr>
+      <th>Parent Folder</th>
+      <td><%= f.select :parent_id, parent_folders.map { |f| [f.title, f.id] } %>
+    </tr>
+  <% end -%>
+</table>

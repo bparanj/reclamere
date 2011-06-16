@@ -1,0 +1,39 @@
+<% @page_title = 'Clients' -%>
+
+<% if solution_owner_admin? -%>
+<%= print_tasks do |t|
+  t << link_to("New Client", (admin_controller? ? new_admin_client_path : new_client_path))
+  t
+end %>
+<% end -%>
+
+<% form_tag({}, { :method => :get }) do %>
+  <h3>Clients</h3>
+  <%= list_nav_filter([
+    ['Name', 'name'],
+    ['Address', 'address_1'],
+    ['City', 'city'],
+    ['State', 'state'],
+    ['Postal Code', 'postal_code']
+  ]) %>
+  <table width="100%">
+    <tr>
+      <th><%= list_nav_header('Name', 'name') %></th>
+      <th><%= list_nav_header('Address', 'address_1') %></th>
+      <th><%= list_nav_header('City', 'city') %></th>
+      <th><%= list_nav_header('State', 'state') %></th>
+      <th><%= list_nav_header('Postal Code', 'postal_code') %></th>
+    </tr>
+    <% for client in @clients %>
+      <tr class="<%= cycle 'a', 'b' %>">
+        <td><%= link_to(h(client.name), (admin_controller? ? admin_client_path(client) : client_path(client))) %></td>
+        <td><%=h client.address_1 %></td>
+        <td><%=h client.city %></td>
+        <td><%=h client.state %></td>
+        <td><%=h client.postal_code %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="functnbar3">&nbsp;</div>
+<% end -%>
+<%= list_nav_pagination %>

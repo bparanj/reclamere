@@ -1,0 +1,131 @@
+/*  
+ *  Copyright (C) 2008 Avalanche, LLC.
+ */
+
+td#leftcol {
+  width: 15%;
+}
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+.fieldWithErrors {
+  border: 3px solid red;
+  padding: 2px;
+}
+
+.tigra-tree td, .tigra-tree th {
+  padding: 0px;
+}
+
+.tigra-tree a {
+  font-size: x-small;
+  text-decoration: none;
+}
+
+.byline {
+  color: #999999;
+  font-size: 10px;
+  font-style: italic;
+}
+
+.byline a {
+  text-decoration: none;
+}
+
+a img {
+  border: 0px;
+}
+
+.app_nav a {
+  text-decoration: none;
+}
+
+.app_nav {
+  font-size: larger;
+}
+/* Notes */
+div#notes {
+  margin-left: 2px;
+}
+
+div.note {
+  border-left: 3px solid #ddd;
+  border-top: 1px solid #ddd;
+  margin-bottom: 5px;
+  padding-top: 3px;
+  padding-left: 3px;
+}
+
+span.note-subject {
+    padding-top: 3px;
+    font-weight: bold;
+    font-size: large;
+}
+
+/* Small Calendar */
+table.small-calendar {
+    border: 1px solid black;
+}
+
+table.small-calendar tr.calendar-title th {
+  background-color: white;
+  text-align: center;
+}
+
+table.small-calendar tr.dayName th, table.small-calendar td.day, table.small-calendar td.otherMonth {
+    text-align: center;
+}
+
+table.small-calendar td.weekendDay {
+    background-color: #eee;
+}
+
+table.small-calendar td.specialDay {
+    font-weight: bold;
+}
+
+table.small-calendar td.today {
+    color: blue;
+}
+
+table.small-calendar td.otherMonth {
+    color: #ccc;
+}
+
+#banner a:visited {
+    color: blue;
+}

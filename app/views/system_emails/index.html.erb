@@ -1,0 +1,20 @@
+<% @page_title = 'Pickup Email Notifications' %>
+
+<%= render :partial => 'pickups/pickup_header', :locals => { :pickup => @pickup } %>
+<table width="100%">
+  <tr>
+    <th>Subject</th>
+    <th>To</th>
+    <th><span class="sortdown"></span>Sent On</th>
+  </tr>
+  <% for system_email in @system_emails %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= link_to(h(system_email.subject), pickup_system_email_path(@pickup, system_email)) %></td>
+      <td><%=h system_email.user.name %></td>
+      <td><%=h print_date(system_email.created_at) %></td>
+    </tr>
+  <% end %>
+</table>
+<div class="functnbar3">&nbsp;</div>
+
+<p><%= link_to('Pickups List', pickups_path) %></p>

@@ -1,0 +1,10 @@
+<%# Copyright (C) 2008 Avalanche, LLC. -%>
+<div id="apphead">
+  <h2>
+    <%= @page_title %>
+    <small><em><%= APPNAME %></em></small>
+  </h2>
+  <% if flash[:messages].is_a?(Array) %>
+    <%= flash[:messages].collect { |m| m }.join("\n") %>
+  <% end -%>
+</div>

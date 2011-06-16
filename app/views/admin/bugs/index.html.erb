@@ -1,0 +1,65 @@
+<% @page_title = (params[:action] ==  'archive' ? 'Inactive ' : 'Active ') + 'Support Items' -%>
+<% add_javascripts('prototype', 'effects') -%>
+
+<%= print_tasks do |t|
+  t << link_to_function('New Support Item', visual_effect(:toggle_blind, "new-bug"))
+  if params[:action] == 'archive'
+    t << link_to('Active Support Items', admin_bugs_path)
+  else
+    t << link_to('Inactive Support Items', archive_admin_bugs_path)
+  end
+  t
+end %>
+<div id="new-bug" style="display: none;">
+  <% form_tag(admin_bugs_path) do %>
+    <h4>New Support Item</h4>
+    <table class="axial">
+      <tr>
+        <th>Type</th>
+        <td><%= select_tag 'bug[bug_type]', options_for_select([[],['Defect', 'defect'], ['Feature', 'feature']]) %></td>
+      </tr>
+      <tr>
+        <th>Priority</th>
+        <td><%= select_tag 'bug[priority]', options_for_select([[],['Low', 0], ['Medium', 1], ['High', 2]])  %></td>
+      </tr>
+      <tr>
+        <th>Information</th>
+        <td>
+          <%= text_area_tag 'bug[information]', '', :cols => 60, :rows => 6 %>
+          <p>Please make sure to be as specific as possible. Thank you!</p>
+        </td>
+      </tr>
+    </table>
+    <div class="functnbar3">
+      <%= submit_tag 'Create' %>
+    </div>
+  <% end %>
+</div>
+
+<% if @bugs.length > 0 -%>
+  <h3>Support Items</h3>
+  <table width="100%">
+    <tr>
+      <th><%= list_nav_header('ID', 'id') %></th>
+      <th><%= list_nav_header('Status', 'status') %></th>
+      <th><%= list_nav_header('Priority', 'priority') %></th>
+      <th><%= list_nav_header('Reported By', 'reported_by') %></th>
+      <th><%= list_nav_header('Created On', 'created_at') %></th>
+      <th>Info</th>
+    </tr>
+    <% for bug in @bugs -%>
+      <tr class="<%= cycle 'a', 'b' %>">
+        <td><%= link_to(bug.id, admin_bug_path(bug)) %></td>
+        <td><%= bug.status.titlecase %></td>
+        <td><%= bug_priority(bug) %></td>
+        <td><%=h bug.reported_by %></td>
+        <td><%= print_date(bug.created_at) %></td>
+        <td><%= truncate(bug.information) %></td>
+      </tr>
+    <% end -%>
+  </table>
+  <div class="functnbar3">&nbsp;</div>
+  <%= list_nav_pagination %>
+<% else -%>
+  <p>No <%= params[:action] == 'archive' ? 'inactive' : 'active' %> support items!</p>
+<% end -%>

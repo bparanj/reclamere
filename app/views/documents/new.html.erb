@@ -1,0 +1,17 @@
+<% @page_title = "New #{@folderable.class.name} Document" %>
+
+<%= error_messages_for 'document' %>
+
+<%= render :partial => 'folders/folder_header' %>
+
+<% form_for([@folderable, @folder, @document], :html => { :multipart => true }) do |f| -%>
+  <%= render :partial => 'document_form', :locals => { :f => f } %>
+  <div class="functnbar3">
+    <%= submit_tag 'Create' %>
+  </div>
+<% end -%>
+
+<%= folderable_links do |l|
+  l << link_to('Folders List', polymorphic_path([@folderable, @folder]))
+  l
+end %>

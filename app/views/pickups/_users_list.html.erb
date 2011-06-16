@@ -1,0 +1,6 @@
+<%= select_tag attr_method,
+  options_for_select(users.collect { |u| [h(u.name), u.id] },
+  (selected_user ? selected_user.id : nil)) %>
+<% if solution_owner_admin? -%>
+  <%= link_to 'New User', new_admin_user_path %>
+<% end -%>

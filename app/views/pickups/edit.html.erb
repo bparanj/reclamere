@@ -1,0 +1,20 @@
+<% @page_title = 'Edit Pickup' -%>
+
+<% form_for(@pickup) do |f| %>
+  <%= f.error_messages %>
+  <h3>Edit Pickup</h3>
+  <%= render :partial => 'pickup_form', :locals => { :f => f } %>
+  <div class="functnbar3">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<% if solution_owner_user? -%>
+  <%= button_to 'Delete Pickup',
+    pickup_path(@pickup),
+    :method => :delete,
+    :confirm => "Are you sure you want to permanently delete this pickup?" %>
+<% end -%>
+
+<p><%= link_to 'Pickup Details', @pickup %> |
+<%= link_to 'Pickups List', pickups_path %></p>

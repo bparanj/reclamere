@@ -1,0 +1,32 @@
+<table width="100%">
+  <tr>
+    <th>Name</th>
+    <th>Location</th>
+    <% if solution_owner_user? -%>
+      <th>Client</th>
+    <% end -%>
+    <th>Status</th>
+    <th>Type</th>
+    <th><span class="sortup"></span>Pickup Date</th>
+  </tr>
+  <% for pickup in pickups %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= link_to_pickup(pickup) %><%= " (<span style=\"font-size: smaller;\">#{link_to('tasks', pickup_tasks_path(pickup))}</span>)" unless ['Requested', 'Acknowledged'].include?(pickup.status) %></td>
+      <td><%= link_to(h(pickup.pickup_location.name), pickup.pickup_location) %></td>
+      <% if solution_owner_user? -%>
+        <td><%= link_to(h(pickup.client.name), pickup.client) %></td>
+      <% end -%>
+      <td><%=h pickup.status %></td>
+      <td><%=h pickup.pickup_type %></td>
+      <td>
+        <% if pickup.pickup_date -%>
+          <%=h print_date(pickup.pickup_date) %>
+        <% elsif pickup.pickup_date_range -%>
+          <%=h pickup.pickup_date_range %>
+        <% else -%>
+          &nbsp;
+        <% end -%>
+      </td>
+    </tr>
+  <% end %>
+</table>

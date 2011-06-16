@@ -1,0 +1,12 @@
+<% @page_title = 'Edit Pickup Location' %>
+
+<% form_for([(admin_controller? ? :admin : nil), @pickup_location].compact) do |f| %>
+  <%= f.error_messages %>
+  <h3>Edit Pickup Location</h3>
+  <%= render :partial => 'pickup_location_form', :locals => { :f => f } %>
+  <div class="functnbar3">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<p><%= link_to 'Pickup Locations List', (admin_controller? ? admin_pickup_locations_path : pickup_locations_path) %></p>

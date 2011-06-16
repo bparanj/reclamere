@@ -1,0 +1,75 @@
+<% @page_title = 'Upload Equipment List'
+add_javascripts 'prototype' -%>
+<%= render :partial => 'pickups/pickup_header', :locals => { :pickup => @container } %>
+<% form_for(@document, :url => upload_pickup_equipment_path(@container), :html => { :multipart => true }) do |f| %>
+  <%= f.error_messages %>
+  <table class="axial">
+    <tr>
+      <th>Type</th>
+      <td><%= select_tag 'equipment_type', options_for_select(([nil] + EquipmentImport::TYPES).map { |t| [t,t] }), :onchange => 'showEquipmentHeader(this);' %></td>
+    </tr>
+    <tr>
+      <th>CSV File</th>
+      <td><%= f.file_field 'uploaded_data' %></td>
+    </tr>
+  </table>
+  <div class="functnbar3">
+    <%= f.submit 'Upload' %>
+  </div>
+<% end %>
+
+<p><%= link_to('Equipment List', equipment_list_path(@container)) %></p>
+
+<p>
+  Uploaded file MUST be a CSV file. Microsoft Excel or OpenOffice.org Calc will allow
+  you to save spreadsheets as CSV files.
+</p>
+
+<p>
+  The first row of the CSV file should be a header row which describes the type of
+  data contained in each column. If there is no header row, the first row of data will
+  not be imported, and the columns will have to be manually mapped to the equipment
+  attributes.
+</p>
+
+<p>
+  Each equipment import type has special header row column names that can be automatically
+  mapped to the imported equipment attributes. You can manually configure this mapping
+  before each import, but it is often easier to make sure that your import CSV file has
+  the appropriate header row.
+</p>
+
+<p>
+  If the header row is correct, then order of the columns is not important. The system
+  will be able to map the columns to the equipment attributes correctly.
+</p>
+
+<p>
+  Once you select your equipment import type above, you will be shown a list of the special header row column names for that equipment import type below.
+</p>
+
+<% for type in EquipmentImport::TYPES -%>
+  <div id="<%= type_dom_id(type) %>" style="display: none;">
+    <fieldset>
+      <legend><%= type %></legend>
+      <table width="100%">
+        <tr>
+          <% for attr in EquipmentImport.equipment_class(type)::ATTRS -%>
+            <th><%= attr.to_s.titlecase %></th>
+          <% end -%>
+        </tr>
+      </table>
+    </fieldset>
+  </div>
+<% end -%>
+
+<% javascript_tag do %>
+  var showEquipmentHeader = function(equipment_type_field) {
+    var type = equipment_type_field.value.toLowerCase().replace(/[\s]+/g, '_') + '_header_list';
+    var type_ids = ['<%= EquipmentImport::TYPES.map { |et| type_dom_id(et) }.join('\', \'') %>'];
+    for(i=0; i < type_ids.length; i++) {
+        $(type_ids[i]).hide();
+    }
+    $(type).show();
+  }
+<% end %>

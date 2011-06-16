@@ -1,0 +1,7 @@
+<% if @folderable.is_a?(Client) -%>
+  <% if solution_owner_user? -%>
+    <%= render :partial => 'clients/client_header', :locals => { :client => @folderable } %>
+  <% end -%>
+<% elsif @folderable.is_a?(Pickup) -%>
+  <%= render :partial => 'pickups/pickup_header', :locals => { :pickup => @folderable } %>
+<% end -%>

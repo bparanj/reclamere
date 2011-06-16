@@ -1,0 +1,45 @@
+<% @page_title = 'Users' %>
+
+<%= render :partial => 'user_header' %>
+
+<% form_tag({}, { :method => :get }) do %>
+  <h3>Users</h3>
+  <%= list_nav_filter([
+      ['Login', 'users.login'],
+      ['Company', 'clients.name'],
+      ['Name', 'users.name'],
+      ['Email', 'users.email'],
+      ['Title', 'users.title'],
+      ['Phone', 'users.phone']
+    ]) %>
+  <table width="100%">
+    <tr>
+      <th width="15px">&nbsp;</th>
+      <th><%= list_nav_header 'Login', 'users.login' %></th>
+      <th><%= list_nav_header 'Company', 'clients.name' %></th>
+      <th><%= list_nav_header 'Name', 'users.name' %></th>
+      <th><%= list_nav_header 'Email', 'users.email' %></th>
+      <th><%= list_nav_header 'Title', 'users.title' %></th>
+      <th><%= list_nav_header 'Phone', 'users.phone' %></th>
+      <th><%= list_nav_header 'Admin', 'users.admin' %></th>
+      <th><%= list_nav_header 'Inactive', 'users.inactive' %></th>
+    </tr>
+    <% for user in @users %>
+      <tr class="<%= cycle 'a', 'b' %>">
+        <td><%= check_box_tag 'user_ids[]', user.id, false, :disabled => user == current_user %></td>
+        <td><%= link_to(h(user.login), admin_user_path(user)) %></td>
+        <td><%= user.is_a?(SolutionOwnerUser) ? SOLUTION_OWNER : link_to(h(user.client.name), admin_client_path(user.client)) %></td>
+        <td><%=h user.name %></td>
+        <td><%= mail_to(user.email) %></td>
+        <td><%=h user.title %></td>
+        <td><%=h user.phone %></td>
+        <td><%= user.admin? ? 'Yes' : 'No' %></td>
+        <td><%= user.inactive? ? 'Yes' : 'No' %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="functnbar3">
+    <%= submit_tag 'Toggle Inactivity' %>
+  </div>
+<% end %>
+<%= list_nav_pagination %>

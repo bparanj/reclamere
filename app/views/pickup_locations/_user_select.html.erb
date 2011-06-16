@@ -1,0 +1,2 @@
+<%= select 'pickup_location', 'client_user_id', users.collect { |u| [h(u.name), u.id] }, :include_blank => true %>
+<%= link_to 'New User', new_admin_user_path %>

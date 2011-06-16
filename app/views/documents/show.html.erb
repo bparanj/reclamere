@@ -1,0 +1,59 @@
+<% @page_title = "#{@folderable.class.name} Document"  %>
+
+<% if solution_owner_user? -%>
+  <%= print_tasks do |t|
+    t << link_to('Edit Document', edit_polymorphic_path([@folderable, @folder, @document]))
+    t
+  end %>
+<% end -%>
+
+<%= render :partial => 'folders/folder_header' %>
+
+<table class="axial">
+  <tr>
+    <th>Name</th>
+    <td><%= @document.name %></td>
+  </tr>
+  <tr>
+    <th>File Name</th>
+    <td><%= link_to(h(@document.filename), polymorphic_path(['download', @folderable, @folder, @document])) %></td>
+  </tr>
+  <% if !@document.description.blank? -%>
+    <tr>
+      <th>Description</th>
+      <td><%= simple_format(h(@document.description)) %></td>
+    </tr>
+  <% end -%>
+  <tr>
+    <th>In Folder</th>
+    <td><%= link_to(@folder.title, polymorphic_path([@folderable, @folder])) %></td>
+  </tr>
+  <tr>
+    <th>Created By</th>
+    <td><%= @document.created_by.name %></td>
+  </tr>
+  <tr>
+    <th>Created At</th>
+    <td><%= print_datetime @document.created_at %></td>
+  </tr>
+  <tr>
+    <th>Content Type</th>
+    <td><%= @document.content_type %></td>
+  </tr>
+  <tr>
+    <th>Size</th>
+    <td><%= number_to_human_size(@document.size) %></td>
+  </tr>
+  <% if @document.versions.count > 1 -%>
+    <tr>
+      <th>Versions</th>
+      <td><%= link_to(@document.versions.count.to_s, polymorphic_path(['versions', @folderable, @folder, @document])) %></td>
+    </tr>
+  <% end -%>
+</table>
+<div class="functnbar3">&nbsp;</div>
+
+<%= folderable_links do |l|
+  l << link_to('Folders List', polymorphic_path([@folderable, @folder]))
+  l
+end %>

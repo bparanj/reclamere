@@ -1,0 +1,12 @@
+<% @page_title = 'Edit User' %>
+
+<% form_for(:user, @user, :url => admin_user_path(@user), :html => { :method => :put }) do |f| %>
+  <%= f.error_messages %>
+  <h3>Edit User</h3>
+  <%= render :partial => 'user_form', :locals => { :f => f } %>
+  <div class="functnbar3">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<p><%= link_to 'User List', admin_users_path %></p>

@@ -1,0 +1,45 @@
+<% @page_title = 'Request Pickup' %>
+
+<% form_for @pickup, :url => { :controller => 'dashboard', :action => 'pickup_request' }, :html => { :multipart => true } do |f| %>
+  <%= f.error_messages %>
+  <h3>Request Pickup</h3>
+  <table class="axial">
+    <tr>
+      <th><%= f.label :pickup_location_id, "Location" %> (Required)</th>
+      <td><%= f.select :pickup_location_id, @client.pickup_locations.all(:order => 'name ASC').map { |pl| [h(pl.name), pl.id] }, :include_blank => true %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :special_request, "Special Request" %></th>
+      <td><%= f.text_area :special_request, :cols => 40, :rows => 4 %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :quantity %></th>
+      <td><%= f.text_area :quantity, :cols => 40, :rows => 4 %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :pickup_date_range, "Pickup Request Date/Range" %></th>
+      <td><%= f.text_field :pickup_date_range %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :site_contact_name, "Site Contact Name" %></th>
+      <td><%= f.text_field :site_contact_name %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :client_reference, "Client Reference" %></th>
+      <td>
+        <%= f.text_field :client_reference %>
+        <p>i.e. Lot number, PO number, etc.</p>
+      </td>
+    </tr>
+    <tr>
+      <th>Equipment List</th>
+      <td>
+        <%= f.file_field :equipment_list %>
+        <p>Attach file if available.<br /><strong>Important:</strong> If uploading an equipment list, please be patient. Do not press the back button or re-submit the form while the file is uploading.</p>
+      </td>
+    </tr>
+  </table>
+  <div class="functnbar3">
+    <%= f.submit 'Submit Request' %>
+  </div>
+<% end %>

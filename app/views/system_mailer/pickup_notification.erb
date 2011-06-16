@@ -1,0 +1,9 @@
+Dear <%= @client_user.name %>,
+
+This message is to remind you of your upcoming equipment pickup:
+
+<%= render :partial => 'pickup' %>
+
+It is not necessary to reply to this email unless you would like to request a change to your pickup date or time.
+
+<%= render :partial => 'pickup_footer', :locals => { :process_type => 'this pickup' } %>

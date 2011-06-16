@@ -1,0 +1,22 @@
+<% @page_title = "Edit #{@folderable.class.name} Document" %>
+
+<%= error_messages_for 'document' %>
+
+<%= render :partial => 'folders/folder_header' %>
+
+<% form_for([@folderable, @folder, @document], :html => { :multipart => true }) do |f| %>
+  <%= render :partial => 'document_form', :locals => { :f => f } %>
+  <div class="functnbar3">
+    <%= submit_tag 'Update' %>
+  </div>
+<% end -%>
+
+<%= button_to 'Delete Document', polymorphic_path([@folderable, @folder, @document]),
+  :confirm => 'Are you sure you want to delete this document?',
+  :method => :delete %>
+
+<%= folderable_links do |l|
+  l << link_to('Document Details', polymorphic_path([@folderable, @folder, @document]))
+  l << link_to('Folders List', polymorphic_path([@folderable, @folder]))
+  l
+end %>

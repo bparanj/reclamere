@@ -1,0 +1,61 @@
+<p>
+Thank you for recently entrusting <%= SOLUTION_OWNER %> with <%=h @pickup.client.name %>'s end-of-life IT
+Disposition. Current regulations concerning environmental and data disposal
+create complexities at end-of-life, and <%= SOLUTION_OWNER %> appreciates your continued
+confidence as <%=h @pickup.client.name %>'s partner in mitigating the risks associated
+with exiting devices from your organization.
+</p>
+
+<p>
+Your feedback on our services is extremely valuable as we strive for
+exemplary client service. Please rate the following on a scale of 1-5, with:
+<ul>
+  <li>5: greatly exceeded expectations</li>
+  <li>4: somewhat exceeded expectations</li>
+  <li>3: met expectations</li>
+  <li>2: somewhat below expectations</li>
+  <li>1: greatly below expectations</li>
+</ul>
+</p>
+
+<fieldset>
+  <p>Were you contacted promptly following equipment pickup request?</p>
+  <%= feedback_question f, :contacted_promptly %>
+</fieldset>
+<br />
+<fieldset>
+  <p>Did <%= SOLUTION_OWNER %> complete the entire audit process within 30 days?</p>
+  <%= feedback_question f, :complete_audit_timely %>
+</fieldset>
+<br />
+<fieldset>
+  <p>Did you receive appropriate information and communication about the process stages?</p>
+  <%= feedback_question f, :appropriate_communication %>
+</fieldset>
+<br />
+<fieldset>
+  <p>Were your customer service needs met?</p>
+  <%= feedback_question f, :customer_service_needs %>
+</fieldset>
+<br />
+<fieldset>
+  <p>Comments on how <%= SOLUTION_OWNER %> can improve its process or customer service</p>
+  <%= f.text_area :comments, :cols => 75, :rows => 5, :disabled => !can_edit_feedback? %>
+</fieldset>
+<br />
+<fieldset>
+  <p>Should a <%= SOLUTION_OWNER %> representative contact you for more information about our services?</p>
+  <table width="100%">
+    <tr>
+      <th style="text-align: center;"><%= f.radio_button :solution_owner_contact, 1, :disabled => !can_edit_feedback? %> Yes</th>
+      <th style="text-align: center;"><%= f.radio_button :solution_owner_contact, 0, :disabled => !can_edit_feedback? %> No</th>
+    </tr>
+  </table>
+</fieldset>
+<br />
+<fieldset>
+  <p>Do you know of other companies that may be interested in our services?	If so, can you provide their contact information.</p>
+  <%= f.text_area :references, :cols => 75, :rows => 5, :disabled => !can_edit_feedback? %>
+</fieldset>
+
+<p>Thank you for taking the time to complete this information.</p>

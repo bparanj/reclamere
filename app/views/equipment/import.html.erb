@@ -1,0 +1,82 @@
+<% @page_title = "Import #{@import.type} Equipment List" -%>
+<%= render :partial => 'pickups/pickup_header', :locals => { :pickup => @container } %>
+<% if @import.saved? -%>
+  <table class="axial">
+    <tr>
+      <th>Rows Imported</th>
+      <td><%=h @import.num_imported %></td>
+    </tr>
+    <tr>
+      <th>Rows Failed</th>
+      <td><%=h @import.num_unimported %></td>
+    </tr>
+  </table>
+  <div class="functnbar3">&nbsp;</div>
+
+  <p>Back to <%= link_to('equipment list', pickup_equipment_path(@container)) %> for this pickup.</p>
+
+  <% unimported_data = @import.unimported_data -%>
+  <% if unimported_data.is_a?(Array) && unimported_data.length > 0 -%>
+    <h4>Failed Import Rows</h4>
+    <table width="100%">
+      <% unimported_data.each_with_index do |u,i| -%>
+        <% if i == 0 -%>
+          <tr>
+            <%= "<th width=\"15px\"></th>\n<th>" + u.join("</th>\n<th>") + "</th>\n" %>
+          </tr>
+        <% else -%>
+          <tr class="<%= cycle 'a', 'b' %>">
+            <td><%= i %></td>
+            <%= "<td>" + u.join("</td>\n<td>") + "</td>\n" %>
+          </tr>
+        <% end -%>
+      <% end -%>
+    </table>
+    <div class="functnbar3">&nbsp;</div>
+  <% end -%>
+<% else -%>
+  <% form_tag(import_pickup_equipment_path(@container, @import.document, @import.type)) do %>
+    <table width="100%">
+      <tr>
+        <th>Header Row</th>
+        <th>1st Data Row</th>
+        <th>2nd Data Row</th>
+        <th>3rd Data Row</th>
+        <th>Attribute Map</th>
+      </tr>
+      <% i = 0
+      data = [0,1,2,3].map { |row| @import.csv[row].is_a?(Array) ? @import.csv[row][i] : nil } -%>
+      <% while !data.compact.blank? -%>
+        <tr class="<%= cycle 'a', 'b' %>">
+          <td><%= data[0] %></td>
+          <td><%= data[1] %></td>
+          <td><%= data[2] %></td>
+          <td><%= data[3] %></td>
+          <td><%= import_map_select(i, @import.columns, @import.csv[0]) %></td>
+        </tr>
+        <% i += 1
+        data = [0,1,2,3].map { |row| @import.csv[row].is_a?(Array) ? @import.csv[row][i] : nil } -%>
+      <% end -%>
+    </table>
+    <div class="functnbar3">
+      <%= submit_tag 'Import' %>
+    </div>
+  <% end %>
+
+  <p>
+    Now that you've uploaded your equipment list CSV file, the final step is to map
+    the columns of your CSV file to the equipment attributes. Above you will see the
+    first three rows of your CSV file (transposed vertically), along with a drop-down
+    select box that tells the system how to map these columns to equipment attributes.
+  </p>
+
+  <p>
+    Hopefully, if you followed the instructions in the previous setup regarding the header
+    row, this has automatically been done for you, and you will not need to do a thing.
+    If not, you should manually setup or customize the attribute map now.
+  </p>
+
+  <p>
+    Hit 'Import' when you are ready to import the data.
+  </p>
+<% end -%>

@@ -1,0 +1,38 @@
+<%# Copyright (C) 2008 Avalanche, LLC. -%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+   <title><%= APPNAME + " | " + @page_title %></title>
+   <%= render :partial => 'layouts/tigris/head'  %>
+ </head>
+ <body marginwidth="0" marginheight="0" class="composite"<%= ' onunload="GUnload()"' if @javascripts.is_a?(Array) && @javascripts.any? { |j| j.match(/google/) } %>>
+  <%= render :partial => 'layouts/tigris/banner' %>
+  <%= render :partial => "layouts/tigris/toptabs" %>
+  <%= render :partial => 'layouts/tigris/breadcrumbs' %>
+  <table id="main" border="0" cellspacing="0" cellpadding="4" width="100%">
+    <tr valign="top">
+      <td id="leftcol">
+        <div id="navcolumn">
+          <% if admin_controller? -%>
+            <%= render :partial => 'layouts/tigris/admincolumn' %>
+          <% else -%>
+            <%= render :partial => 'layouts/tigris/navcolumn' %>
+          <% end -%>
+        </div>
+        <div class="strut">&nbsp;</div>
+      </td>
+      <td>
+        <%# render :partial => 'shared/topmodule' -%>
+        <div id="bodycol">
+          <%= render :partial => 'layouts/tigris/apphead' %>
+          <div id="projecthome" class="app">
+            <%= yield %>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <%= render :partial => "layouts/tigris/footer" %>
+ </body>
+</html>

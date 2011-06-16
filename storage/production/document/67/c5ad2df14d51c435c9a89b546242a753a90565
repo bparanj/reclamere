@@ -1,0 +1,37 @@
+Tracking,Serial,Mfg,Model,Comments,Grade,Recycling,Value,Processor,Hard Drive,Ram,Asset Tag,Errors
+,,DDD,,,,,,,,,,Tracking can't be blank
+,,,,,,,,,,,,Tracking can't be blank
+,,PDD,,,,,,,,,,Tracking can't be blank
+Units,PHYSICAL HARD DRIVE DESTRUCTION,Comments,Model,,Serial Number,,,HD Serial #,Barcode #,,,Tracking has already been taken
+1,,CAN,GATEWAY (LAPTOP),,0017594720*,,,KSQD780304,,,,Tracking has already been taken
+2,,CAN,HP (SERVER),,USV4140926,,,3HX25RVC,,,,Tracking has already been taken
+3,,,,,,,,,,,,Tracking has already been taken
+,,,,,,,,,,,,Tracking can't be blank
+,,MWOHD,,,,,,,,,,Tracking can't be blank
+Units,,Comments,Model,,Serial Number,,,Barcode#,,,,Tracking has already been taken
+1,MACHINES WITHOUT HARD DRIVES,CAN ,MPC (AIO),,41540730001,,,,,,,Tracking has already been taken
+2,,CAN ,HP,,2UA7121G56,,,,,,,Tracking has already been taken
+3,,CAN ,IBM,,1S814815UKCCX0HG,,,,,,,Tracking has already been taken
+4,,,,,,,,,,,,Tracking has already been taken
+,,,,,,,,,,,,Tracking can't be blank
+,,LHDDD,,,,,,,,,,Tracking can't be blank
+Units,,Comments,Model,,HD Serial Number,,,Barcode #,,,,Tracking has already been taken
+1,LOOSE HARD DRIVES DIGITAL DESTRUCTION,,,,,,,,,,,Tracking has already been taken
+,,,,,,,,,,,,Tracking can't be blank
+,,LHPDD,,,,,,,,,,Tracking can't be blank
+Units,,Comments,Model,,HD Serial Number,,,Barcode #,,,,Tracking has already been taken
+1,LOOSE HARD DRIVES PHYSICAL DESTRUCTION,,,,,,,,,,,Tracking has already been taken
+,,,,,,,,,,,,Tracking can't be blank
+,,Flash Media,,,,,,,,,,Tracking can't be blank
+Units,,Comments,Model,,Serial Number,,,Barcode #,,,,Tracking has already been taken
+1,FLASH MEDIA DIGITAL DESTRUCTION,,,,,,,,,,,Tracking has already been taken
+,,,,,,,,,,,,Tracking can't be blank
+,,Flash Media,,,,,,,,,,Tracking can't be blank
+Units,,Comments,Model,,Serial Number,,,Barcode #,,,,Tracking has already been taken
+1,FLASH PHYSICAL MEDIA DESTRUCTION,,,,,,,,,,,Tracking has already been taken
+,,,,,,,,,,,,Tracking can't be blank
+,,,,,,,,,,,,Tracking can't be blank
+,,,,,,,,,,,,Tracking can't be blank
+,,,MAGNETIC MEDIA,,,,,,,,,Tracking can't be blank
+,,Comments,Item,,Quantity,,,,,,,Tracking can't be blank
+,,,,,,,,,,,,Tracking can't be blank

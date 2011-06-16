@@ -1,0 +1,23 @@
+<% @page_title = 'Pickup Calendar' -%>
+<% add_stylesheets('pickup_calendar') -%>
+
+<%= print_tasks do |t|
+  t << link_to("&laquo; #{@prev.strftime('%B %Y')}", :action => 'calendar', :year => @prev.year, :month => @prev.month)
+  t << link_to("#{@next.strftime('%B %Y')} &raquo;", :action => 'calendar', :year => @next.year, :month => @next.month)
+  t
+end %>
+
+
+
+
+<%= calendar({ :year => @date.year, :month => @date.month, :abbrev => (0..-1), :show_today => true }) do |d|
+  cell_text = d.mday.to_s + "\n"
+  cell_attrs = { :class => 'day' }
+
+  @pickups.each do |p|
+    if p.pickup_date.year == d.year && p.pickup_date.month == d.month && p.pickup_date.day == d.day
+      cell_text += calendar_pickup_link(p)
+    end
+  end
+  [cell_text, cell_attrs]
+end %>

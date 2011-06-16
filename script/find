@@ -1,0 +1,7 @@
+#!/bin/bash
+
+ROOT=`dirname $0`/..
+cd $ROOT
+BASE=`pwd`
+cd $BASE
+grep -rli "$1" app/ config/ db/ lib/ test/ vendor/

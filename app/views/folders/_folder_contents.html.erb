@@ -1,0 +1,74 @@
+<% if solution_owner_user? -%>
+
+  <%= print_tasks do |t|
+    t << link_to_function('New Document', visual_effect(:toggle_blind, "new-document"))
+    t << link_to_function('New Folder', visual_effect(:toggle_blind, "new-folder"))
+    unless @folder.root?
+      t << link_to_function('Edit Folder', visual_effect(:toggle_blind, "edit-folder"))
+    end
+    t
+  end %>
+
+  <div id="new-document" style="display: <%= @show_new_document ? 'block' : 'none' %>;">
+    <%= error_messages_for 'document' %>
+    <% form_for([@folderable, @folder, @document], :html => { :multipart => true }) do |f| -%>
+      <h3>New document in folder <%= @folder.title %></h3>
+      <%= render :partial => 'documents/document_form', :locals => { :f => f } %>
+      <div class="functnbar3">
+        <%= submit_tag('Create') %>
+      </div>
+    <% end -%>
+  </div>
+
+  <div id="new-folder" style="display: <%= @show_new_folder ? 'block' : 'none' %>;">
+    <%= error_messages_for 'new_folder' %>
+    <% form_for :new_folder, @new_folder, :url => polymorphic_path(['create', @folderable, @folder]) do |f| -%>
+      <h3>New folder in <%= @folder.title %></h3>
+      <%= render :partial => 'folder_form', :locals => { :f => f } %>
+      <div class="functnbar3">
+        <%= submit_tag 'Create' %>
+      </div>
+    <% end -%>
+  </div>
+
+  <% unless @folder.root? -%>
+    <div id="edit-folder" style="display: <%= @show_edit_folder ? 'block' : 'none' %>;">
+      <%= error_messages_for 'folder' %>
+      <% form_for([@folderable, @folder]) do |f| -%>
+        <h3>Edit folder <%= @folder.title %></h3>
+        <%= render :partial => 'folder_form', :locals => { :f => f } %>
+        <div class="functnbar3">
+          <%= submit_tag 'Update' %>
+        </div>
+      <% end -%>
+      <%= button_to('Delete This Folder', polymorphic_path([@folderable,@folder]), :confirm => "Are you sure you want to permanently delete this folder, all of its child folders and all of their documents?", :method => :delete) %>
+    </div>
+  <% end -%>
+
+<% end -%>
+
+
+<h3><%= folder_path(@folder) %></h3>
+<% unless @folder.description.blank? -%>
+  <div class="colbar"><%= @folder.description %></div>
+<% end -%>
+<table width="100%">
+  <tr>
+    <th><%= list_nav_header('Name', 'name', :path => [@folderable, @folder]) %></th>
+    <th><%= list_nav_header('File', 'filename', :path => [@folderable, @folder]) %></th>
+    <th><%= list_nav_header('Size', 'size', :path => [@folderable, @folder]) %></th>
+    <th><%= list_nav_header('Created On', 'created_at', :path => [@folderable, @folder]) %></th>
+    <th><%= list_nav_header('Created By', 'users.name', :path => [@folderable, @folder]) %></th>
+  </tr>
+  <% for document in @documents -%>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= link_to(h(document.name), polymorphic_path([@folderable, @folder, document])) %></td>
+      <td><%= link_to(h(document.filename), polymorphic_path(['download', @folderable, @folder, document])) %></td>
+      <td><%= number_to_human_size(document.size) %></td>
+      <td><%= print_date(document.created_at) %></td>
+      <td><%= document.created_by.name %></td>
+    </tr>
+  <% end -%>
+</table>
+<div class="functnbar3">&nbsp;</div>
+<%= list_nav_pagination(:path => [@folderable, @folder]) %>

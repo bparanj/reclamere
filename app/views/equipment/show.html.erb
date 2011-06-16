@@ -1,0 +1,66 @@
+<% @page_title = @equipment.type_name + ' Equipment' %>
+
+<% if @container.is_a?(Pickup) -%>
+  <% if solution_owner_user? -%>
+    <%= print_tasks do |t|
+      t << link_to('Upload Equipment List', upload_pickup_equipment_path(@container))
+    end -%>
+  <% end -%>
+  <%= render :partial => 'pickups/pickup_header', :locals => { :pickup => @container } %>
+<% elsif @container.is_a?(Client) -%>
+  <% if client_user? %>
+    <h3><%= @page_title %></h3>
+  <% else -%>
+    <%= render :partial => 'clients/client_header', :locals => { :client => @container } %>
+  <% end -%>
+<% end -%>
+<table class="axial">
+  <% if @container.is_a?(Client) -%>
+    <tr>
+      <th>Pickup</th>
+      <td><%= link_to(h(@equipment.pickup.name), pickup_path(@equipment.pickup)) %></td>
+    </tr>
+  <% end -%>
+  <tr>
+    <th>Type</th>
+    <td><%= @equipment.type_name %></td>
+  </tr>
+  <% for a in @equipment.class::ATTRS -%>
+    <% val = @equipment.send(a) %>
+    <% unless val.blank? -%>
+      <% unless [:recycling, :value].include?(a) && !solution_owner_user? -%>
+        <tr>
+          <th><%= a.to_s.titlecase %></th>
+          <td>
+            <% if [:recycling, :value].include?(a) -%>
+              <%= number_to_currency(val) %>
+            <% else -%>
+              <%=h val %>
+            <% end -%>
+          </td>
+        </tr>
+      <% end -%>
+    <% end -%>
+  <% end -%>
+  <% if @equipment.created_by -%>
+    <tr>
+      <th>Imported By</th>
+      <td><%=h @equipment.created_by.name -%></td>
+    </tr>
+  <% end -%>
+  <% if @equipment.created_at -%>
+    <tr>
+      <th>Imported At</th>
+      <td><%= print_datetime(@equipment.created_at) %> <%= dist_time_words(@equipment.created_at) %></td>
+    </tr>
+  <% end -%>
+</table>
+<div class="functnbar3">&nbsp;</div>
+
+<% if solution_owner_user? -%>
+  <%= button_to('Delete this ' + @equipment.type_name + ' Equipment', equipment_path(@container, @equipment),
+    :confirm => "Are you sure you permanently delete this #{@equipment.type_name} equipment?",
+    :method => :delete) %>
+<% end -%>
+
+<p><%= link_to('Equipment List', equipment_list_path(@container)) %></p>

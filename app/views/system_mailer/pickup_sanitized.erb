@@ -1,0 +1,11 @@
+Dear <%= @client_user.name %>
+
+The data sanitation stage of <%= SOLUTION_OWNER %>'s audit process has been completed for your pickup. You will be notified again when the audit has been finalized.
+
+<%= render :partial => 'pickup' %>
+
+You will be notified upon the completion of the balance of the audit process.
+
+If you have additional questions about the status of the equipment, please do not hesitate to contact us at <%= SOLUTION_OWNER_PHONE %> or <%= SOLUTION_OWNER_EMAIL %>.
+
+<%= render :partial => 'pickup_footer', :locals => { :process_type => 'data sanitization of this equipment' } %>

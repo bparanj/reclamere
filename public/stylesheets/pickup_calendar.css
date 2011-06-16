@@ -1,0 +1,45 @@
+.calendar {
+  width: 100%;
+  border-right: 1px solid black;
+}
+.calendar-title th {
+  text-align: center;
+  background-color: #D3D3D3;
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+  font-size: larger; 
+}
+tr.calendar-week {
+  height: 100px;
+}
+.day, .otherMonth, .dayName th {
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 14%;
+}
+.day, .otherMonth {
+  text-align: right;
+}
+.dayName th {
+  border-top: 1px solid black;
+  text-align: center;
+}
+.otherMonth {
+  color: gray;
+}
+.today {
+  border-top: 1px solid blue;
+  border-right: 1px solid blue;
+  border-left: 2px solid blue;
+  border-bottom: 2px solid blue;
+}
+.weekendDay {
+  background-color: #DCDCDC;
+}
+.calendar-event {
+  margin: 3px;
+  padding: 3px;
+  border: 1px solid gray;
+  text-align: left;
+  background-color: #FAFAD2;
+}

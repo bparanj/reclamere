@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  request_uri: MyString
+  remote_addr: MyString
+  description: MyString
+  created_at: 2009-01-19 13:57:50
+  auditable_type: MyString
+  auditable_id: 1
+
+two:
+  user_id: 1
+  request_uri: MyString
+  remote_addr: MyString
+  description: MyString
+  created_at: 2009-01-19 13:57:50
+  auditable_type: MyString
+  auditable_id: 1

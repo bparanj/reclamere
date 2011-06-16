@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  folderable_id: 1
+  folderable_type: MyString
+  parent_id: 1
+  name: MyString
+  description: MyString
+
+two:
+  folderable_id: 1
+  folderable_type: MyString
+  parent_id: 1
+  name: MyString
+  description: MyString

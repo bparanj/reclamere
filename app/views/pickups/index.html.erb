@@ -1,0 +1,44 @@
+<% @page_title = 'Pickups' -%>
+
+<% if solution_owner_user? -%>
+  <%= print_tasks do |t|
+    t << link_to("New Pickup", new_pickup_path)
+    t
+  end %>
+<% end -%>
+
+<% form_tag({}, { :method => :get }) do %>
+  <h3>Pickups</h3>
+  <% lnf  = [['Name',     'pickups.name'],
+    ['Location', 'pickup_locations.name']]
+  lnf <<  ['Client',   'clients.name'] if solution_owner_user?
+  lnf += [['Status',   'pickups.status'],
+    ['Type',     'pickups.pickup_type']] -%>
+  <%= list_nav_filter lnf %>
+  <table width="100%">
+    <tr>
+      <th><%= list_nav_header('Name',     'pickups.name') %></th>
+      <th><%= list_nav_header('Location', 'pickup_locations.name') %></th>
+      <% if solution_owner_user? -%>
+        <th><%= list_nav_header('Client', 'clients.name') %></th>
+      <% end -%>
+      <th><%= list_nav_header('Status',   'pickups.status') %></th>
+      <th><%= list_nav_header('Type',     'pickups.pickup_type') %></th>
+      <th><%= list_nav_header('Date',     'pickups.pickup_date') %></th>
+    </tr>
+    <% for pickup in @pickups %>
+      <tr class="<%= cycle 'a', 'b' %>">
+        <td><%= link_to_pickup(pickup) %></td>
+        <td><%= link_to(h(pickup.pickup_location.name), pickup.pickup_location) %></td>
+        <% if solution_owner_user? -%>
+          <td><%= link_to(h(pickup.client.name), pickup.client) %></td>
+        <% end -%>
+        <td><%=h pickup.status %></td>
+        <td><%=h pickup.pickup_type %></td>
+        <td><%= print_date(pickup.pickup_date) %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="functnbar3">&nbsp;</div>
+<% end %>
+<%= list_nav_pagination %>

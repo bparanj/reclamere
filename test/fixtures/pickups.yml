@@ -1,0 +1,33 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  pickup_location_id: 1
+  name: MyString
+  status: MyString
+  pickup_type: MyString
+  special_request: MyString
+  quantity: MyString
+  pickup_date: 2009-01-29
+  pickup_time: MyString
+  site_contact_name: MyString
+  client_reference: MyString
+  solution_owner_user_id: 1
+  client_user_id: 1
+  created_by_id: 1
+  created_at: 2009-01-29 09:10:32
+
+two:
+  pickup_location_id: 1
+  name: MyString
+  status: MyString
+  pickup_type: MyString
+  special_request: MyString
+  quantity: MyString
+  pickup_date: 2009-01-29
+  pickup_time: MyString
+  site_contact_name: MyString
+  client_reference: MyString
+  solution_owner_user_id: 1
+  client_user_id: 1
+  created_by_id: 1
+  created_at: 2009-01-29 09:10:32

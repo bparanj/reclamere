@@ -1,0 +1,6 @@
+<%= print_tasks do |t|
+  t << link_to_selfref("All Users", admin_users_path)
+  t << link_to_selfref("New User", new_admin_user_path)
+  t << link_to_selfref("Recent Logins", recent_admin_users_path)
+  t
+end %>

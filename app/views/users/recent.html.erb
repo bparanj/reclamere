@@ -1,0 +1,30 @@
+<% @page_title = 'Recent Logins' %>
+
+<%= render :partial => 'user_header' %>
+
+<h3>Users</h3>
+<table width="100%">
+  <tr>
+    <th>Login</th>
+    <th>Company</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Title</th>
+    <th>Phone</th>
+    <th>Admin</th>
+    <th>Last Login</th>
+  </tr>
+  <% for user in @users %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= link_to(h(user.login), admin_user_path(user)) %></td>
+      <td><%= user.is_a?(SolutionOwnerUser) ? h(SOLUTION_OWNER) : link_to(h(user.client.name), admin_client_path(user.client)) %></td>
+      <td><%=h user.name %></td>
+      <td><%= mail_to(user.email) %></td>
+      <td><%=h user.title %></td>
+      <td><%=h user.phone %></td>
+      <td><%= user.admin? ? 'Yes' : 'No' %></td>
+      <td><%= print_datetime(user.last_login) %></td>
+    </tr>
+  <% end %>
+</table>
+<div class="functnbar3">&nbsp;</div>

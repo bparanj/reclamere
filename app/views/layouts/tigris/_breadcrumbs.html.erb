@@ -1,0 +1,9 @@
+<%# Copyright (C) 2008 Avalanche, LLC. -%>
+<% if logged_in? -%>
+  <div id="breadcrumbs">
+    <% if current_user.breadcrumbs.length > 0 -%>
+      <strong>Recently Viewed:</strong>
+      <%= current_user.breadcrumbs.collect { |bc| link_to_selfref(*bc) }.compact.join(' | ') %>
+    <% end -%>
+  </div>
+<% end -%>

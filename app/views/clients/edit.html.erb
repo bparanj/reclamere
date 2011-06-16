@@ -1,0 +1,13 @@
+<% @page_title = 'Edit Client' -%>
+
+<% form_for([(admin_controller? ? :admin : nil), @client].compact) do |f| %>
+  <%= f.error_messages %>
+  <h3>Edit Client</h3>
+  <%= render :partial => 'client_form', :locals => { :f => f } %>
+  <div class="functnbar3">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<p><%= link_to 'Client Details', (admin_controller? ? admin_client_path(@client) : client_path(@client)) %> |
+   <%= link_to 'Clients List', (admin_controller? ? admin_clients_path : clients_path) %></p>

@@ -1,0 +1,30 @@
+<% @page_title = 'Client' -%>
+
+<% if solution_owner_admin? -%>
+  <%= print_tasks do |t|
+    t << link_to("Edit Client", (admin_controller? ? edit_admin_client_path(@client) : edit_client_path(@client)))
+    t
+  end %>
+<% end -%>
+
+<% if admin_controller? -%>
+  <h3>Client</h3>
+<% else -%>
+  <%= render :partial => 'client_header', :locals => { :client => @client } %>
+<% end -%>
+
+<table class="axial">
+  <tr>
+    <th>Address</th>
+    <td><%=simple_format(h(@client.address_card)) %></td>
+  </tr>
+  <% if @client.geocoded? -%>
+    <tr>
+      <th>Map</th>
+      <td><%= address_map(@client) %></td>
+    </tr>
+  <% end -%>
+</table>
+<div class="functnbar3">&nbsp;</div>
+
+<p><%= link_to 'Clients List', (admin_controller? ? admin_clients_path : clients_path) %></p>

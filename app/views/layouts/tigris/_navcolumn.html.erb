@@ -1,0 +1,26 @@
+<div class="toolgroup">
+  <div class="label">
+    <strong>Dashboard Tools</strong>
+  </div>
+  <div class="body">
+    <div><%= link_to_selfref('My Dashboard', :controller => '/dashboard', :action => 'index') %></div>
+    <div><%= link_to_selfref('My Profile', :controller => '/dashboard', :action => 'profile') %></div>
+    <div><%= link_to_selfref('Pickup Calendar', { :controller => '/dashboard', :action => 'calendar' }, :if => params[:controller] == 'dashboard' && params[:action] == 'calendar') %></div>
+    <% if client_user? -%>
+      <div><%= link_to_selfref('Request Pickup', { :controller => '/dashboard', :action => 'pickup_request' }, :if => params[:controller] == 'dashboard' && params[:action] == 'pickup_request') %></div>
+    <% end -%>
+  </div>
+</div>
+
+<% if solution_owner_admin? -%>
+<div class="toolgroup">
+  <div class="label">
+    <strong><%= SOLUTION_OWNER %> Admin Tools</strong>
+  </div>
+  <div class="body">
+    <div><%= link_to('New Pickup Location', new_admin_pickup_location_path) %></div>
+    <div><%= link_to('New Client', new_admin_client_path) %></div>
+    <div><%= link_to('New User', new_admin_user_path) %></div>
+  </div>
+</div>
+<% end -%>

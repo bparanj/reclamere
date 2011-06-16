@@ -1,0 +1,13 @@
+Dear <%= @solution_owner_user.name %>,
+
+<%= SOLUTION_OWNER %> has received a new pickup request:
+
+<%= render :partial => 'pickup' %>
+
+<% if @created_by_user -%>
+Requested By: <%= @created_by_user.name %>
+<% end -%>
+Requested On: <%= @pickup.created_at.strftime(DATE_FORMAT) %>
+
+Thank you,
+<%= APPNAME %>

@@ -1,0 +1,20 @@
+<%# Copyright (C) 2008 Avalanche, LLC. -%>
+<div id="admfun" class="toolgroup">
+  <div class="label">
+    <strong>Administration</strong>
+  </div>
+  <div class="body">
+    <div><%= link_to_selfref('Dashboard', { :controller => '/admin/dashboard', :action => 'index' },
+                :if => (params[:controller] == 'admin/dashboard')) %></div>
+    <div><%= link_to_selfref('Clients', admin_clients_path,
+                :if => (params[:controller] == 'clients' && admin_controller?)) %></div>
+    <div><%= link_to_selfref('Pickup Locations', admin_pickup_locations_path,
+                :if => (params[:controller] == 'pickup_locations' && admin_controller?)) %></div>
+    <div><%= link_to_selfref('Users', admin_users_path,
+                :if => (params[:controller] == 'users' && admin_controller?)) %></div>
+    <div><%= link_to_selfref('Audit Log', admin_audit_logs_path,
+                :if => (params[:controller] == 'audit_logs' && admin_controller?)) %></div>
+    <div><%= link_to_selfref('Support', admin_bugs_path,
+                :if => (params[:controller] == 'admin/bugs')) %></div>
+  </div>
+</div>

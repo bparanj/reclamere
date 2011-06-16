@@ -1,0 +1,38 @@
+<table width="100%">
+  <tr>
+    <th>Name</th>
+    <th>Status</th>
+    <th>Comments</th>
+    <th>Updated By</th>
+    <th>Updated On</th>
+  </tr>
+  <% for task in @tasks %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <% if task == @current_task && @can_update -%>
+        <td><strong><%=h task.name %></strong></td>
+        <td>
+          <%= f.submit 'Complete', :confirm => "Are you sure this task is complete?" %>
+          <% unless task.name == 'Invoiced' -%>
+            <%= f.submit 'Not Required', :confirm => "Are you sure this task is not required?" %>
+          <% end -%>
+        </td>
+        <td><%= f.text_field :comments %></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      <% elsif task.status == 'Open' -%>
+        <td><%=h task.name %></td>
+        <td><%=h task.status %></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      <% else -%>
+        <td><%=h task.name %></td>
+        <td><%=h task.status %></td>
+        <td><%= task.comments.blank? ? '&nbsp;' : h(task.comments) %></td>
+        <td><%=h task.solution_owner_user.name %></td>
+        <td><%= print_date(task.updated_at) %></td>
+      <% end -%>
+    </tr>
+  <% end %>
+</table>
+<div class="functnbar3">&nbsp;</div>

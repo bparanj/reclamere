@@ -1,0 +1,40 @@
+<% @page_title = 'Dashboard' %>
+
+<% if @requested_pickups.length > 0 -%>
+  <h3>Requested Pickups</h3>
+  <%= render :partial => 'pickups_list', :locals => { :pickups => @requested_pickups } %>
+  <div class="functnbar3">&nbsp;</div>
+<% end -%>
+
+<% if @upcoming_pickups.length > 0 -%>
+  <h3>Upcoming Pickups</h3>
+  <%= render :partial => 'pickups_list', :locals => { :pickups => @upcoming_pickups } %>
+  <div class="functnbar3">&nbsp;</div>
+<% end -%>
+
+<% if @in_process_pickups.length > 0 -%>
+  <h3>In-Process Pickups</h3>
+  <%= render :partial => 'pickups_list', :locals => { :pickups => @in_process_pickups } %>
+  <div class="functnbar3">&nbsp;</div>
+<% end -%>
+
+<% if solution_owner_user? && @recent_feedback && @recent_feedback.length > 0 -%>
+  <h3>Recent Feedback</h3>
+  <table width="100%">
+    <tr>
+      <th>Pickup</th>
+      <th>Average</th>
+      <th>Submitted By</th>
+      <th><span class="sortdown"></span>Submitted On</th>
+    </tr>
+    <% for feedback in @recent_feedback -%>
+      <tr class="<%= cycle 'a', 'b' %>">
+        <td><%= link_to(h(feedback.pickup.name), pickup_feedback_path(feedback.pickup)) %></td>
+        <td><%= feedback.average_score %></td>
+        <td><%=h feedback.updated_by.name %></td>
+        <td><%= print_date feedback.updated_at %></td>
+      </tr>
+    <% end -%>
+  </table>
+  <div class="functnbar3">&nbsp;</div>
+<% end -%>

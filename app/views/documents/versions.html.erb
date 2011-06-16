@@ -1,0 +1,37 @@
+<% @page_title = "#{@folderable.class.name} Document Versions" %>
+
+<%= render :partial => 'folders/folder_header' %>
+<div class="colbar">Document: <%= link_to(@document.name, polymorphic_path([@folderable, @folder, @document])) %></div>
+<% form_tag do -%>
+  <table width="100%">
+    <tr>
+      <th>Version Number</th>
+      <th>File Name</th>
+      <th>Size</th>
+      <th>Created At</th>
+      <th>Created By</th>
+    </tr>
+    <% for version in @versions -%>
+      <tr class="<%= cycle 'a', 'b' %>">
+        <td><%= version.version %></td>
+        <td>
+          <% if version.current? -%>
+            <%= link_to(version.filename, polymorphic_path(['download', @folderable, @folder, @document])) %>
+          <% else -%>
+            <%= link_to(version.filename, polymorphic_path(['download', @folderable, @folder, @document, version])) %>
+          <% end -%>
+        </td>
+        <td><%= number_to_human_size(version.size) %></td>
+        <td><%= print_datetime(version.created_at) %></td>
+        <td><%= version.created_by.name %></td>
+      </tr>
+    <% end -%>
+  </table>
+  <div class="functnbar3">&nbsp;</div>
+<% end -%>
+
+<%= folderable_links do |l|
+  l << link_to('Document Details', polymorphic_path([@folderable, @folder, @document]))
+  l << link_to('Folders List', polymorphic_path([@folderable, @folder]))
+  l
+end %>

@@ -1,0 +1,20 @@
+<% content_tag(:div, :class => "tabs", :id => "toptabs") do %>
+  <% content_tag(:table, :cellpadding => "4", :cellspacing => "0", :border => "0") do %>
+    <% content_tag(:tr) do %>
+      <%= link_to_tab('Dashboard', { :controller => '/dashboard', :action => 'index' },
+        :if  => current_tab?('dashboard')) %>
+      <%= link_to_tab('Pickups', pickups_path, :if => current_tab?('pickups')) %>
+      <%= link_to_tab('Pickup Locations', pickup_locations_path, :if  => current_tab?('pickup_locations')) %>
+      <% if solution_owner_user? -%>
+        <%= link_to_tab('Clients', clients_path, :if  => current_tab?('clients')) %>
+      <% elsif client_user? -%>
+        <% if client_admin? -%>
+          <%= link_to_tab('Corporate Documents', client_folder_path(@client, @client.root_folder),
+            :if => current_tab?('corporate_documents')) %>
+        <% end -%>
+        <%= link_to_tab('Equipment', client_equipment_path(@client),
+            :if => current_tab?('client_equipment')) %>
+      <% end -%>
+    <% end -%>
+  <% end -%>
+<% end -%>

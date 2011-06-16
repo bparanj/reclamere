@@ -1,0 +1,52 @@
+<% @page_title = 'Pickup Location' -%>
+
+<% if solution_owner_admin? -%>
+  <%= print_tasks do |t|
+    t << link_to('Edit', (admin_controller? ? edit_admin_pickup_location_path(@pickup_location) : edit_pickup_location_path(@pickup_location)))
+    t
+  end %>
+<% end -%>
+
+<h3>Pickup Location</h3>
+<table class="axial">
+  <% unless client_user? -%>
+    <tr>
+      <th>Client</th>
+      <td><%= link_to h(@pickup_location.client.name), (admin_controller? ? admin_client_path(@pickup_location.client) : client_path(@pickup_location.client)) %></td>
+    </tr>
+  <% end -%>
+  <tr>
+    <th>Default Client Lead</th>
+    <td>
+      <% if solution_owner_admin? %>
+        <%= link_to(h(@pickup_location.client_user.name), admin_user_path(@pickup_location.client_user)) %>
+      <% else -%>
+        <%= @pickup_location.client_user.name %>
+      <% end -%>
+    </td>
+  </tr>
+  <tr>
+    <th>Default <%= SOLUTION_OWNER %> Lead</th>
+    <td>
+      <% if solution_owner_admin? %>
+        <%= link_to(h(@pickup_location.solution_owner_user.name), admin_user_path(@pickup_location.solution_owner_user)) %>
+      <% else -%>
+        <%= @pickup_location.solution_owner_user.name %>
+      <% end -%>
+    </td>
+  </tr>
+  <tr>
+    <th>Address</th>
+    <td><%=simple_format(h(@pickup_location.address_card)) %></td>
+  </tr>
+  <% if @pickup_location.geocoded? -%>
+    <tr>
+      <th>Map</th>
+      <td><%= address_map(@pickup_location) %></td>
+    </tr>
+  <% end -%>
+</table>
+<div class="functnbar3">&nbsp;</div>
+
+
+<p><%= link_to 'Pickup Location List', (admin_controller? ? admin_pickup_locations_path : pickup_locations_path) %></p>

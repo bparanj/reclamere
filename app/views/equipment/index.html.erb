@@ -1,0 +1,73 @@
+<% @page_title = 'Equipment' -%>
+
+<% if @container.is_a?(Pickup) -%>
+  <% if solution_owner_user? -%>
+    <%= print_tasks do |t|
+      t << link_to('Upload Equipment List', upload_pickup_equipment_path(@container))
+      t
+    end -%>
+  <% end -%>
+  <%= render :partial => 'pickups/pickup_header', :locals => { :pickup => @container } %>
+<% elsif @container.is_a?(Client) -%>
+  <%= print_tasks do |t|
+    t << link_to('Export Equipment List', export_client_equipment_path(@container))
+    t
+  end -%>
+  <% if client_user? %>
+    <h3>Equipment</h3>
+  <% else -%>
+    <%= render :partial => 'clients/client_header', :locals => { :client => @container } %>
+  <% end -%>
+<% end -%>
+<% form_tag([@container, :equipment], :method => :get) do %>
+  <% lnf = @container.is_a?(Client) ? [['Pickup', 'pickups.name']] : []
+  lnf += [
+    ['Type', 'type_name'],
+    ['Tracking', 'tracking'],
+    ['Serial', 'serial'],
+    ['Mfg', 'mfg'],
+    ['Comments', 'comments'],
+    ['Grade', 'grade'],
+    ['Asset Tag', 'asset_tag']] %>
+  <%= list_nav_filter(lnf) %>
+  <table width="100%">
+    <tr>
+      <% if @container.is_a?(Client) -%>
+        <th><%= list_nav_header('Pickup', 'pickups.name') %></th>
+      <% end -%>
+      <th><%= list_nav_header('Type', 'type_name') %></th>
+      <th><%= list_nav_header('Tracking', 'tracking') %></th>
+      <th><%= list_nav_header('Serial', 'serial') %></th>
+      <th><%= list_nav_header('Mfg', 'mfg') %></th>
+      <th><%= list_nav_header('Model', 'model') %></th>
+      <th>Comments</th>
+      <th><%= list_nav_header('Grade', 'grade') %></th>
+      <% if solution_owner_user? -%>
+        <th><%= list_nav_header('Recycling', 'recycling') %></th>
+        <th><%= list_nav_header('Value', 'value') %></th>
+      <% end -%>
+      <th><%= list_nav_header('Asset Tag', 'asset_tag') %></th>
+    </tr>
+    <% for equipment in @equipment %>
+      <tr class="<%= cycle 'a', 'b' %>">
+        <% if @container.is_a?(Client) -%>
+          <td><%= link_to(h(equipment.pickup.name), pickup_path(equipment.pickup)) %></td>
+        <% end -%>
+        <td><%= equipment.type_name %></td>
+        <td><%= link_to(h(equipment.tracking), equipment_path(@container, equipment)) %></td>
+        <td><%=h equipment.serial %></td>
+        <td><%=h equipment.mfg %></td>
+        <td><%=h equipment.model %></td>
+        <td><%= truncate(h(equipment.comments)) %></td>
+        <td><%=h equipment.grade %></td>
+        <% if solution_owner_user? -%>
+          <td><%= number_to_currency equipment.recycling %></td>
+          <td><%= number_to_currency equipment.value %></td>
+        <% end -%>
+        <td><%=h equipment.asset_tag %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="functnbar3">&nbsp;</div>
+<% end %>
+<%= list_nav_pagination %>

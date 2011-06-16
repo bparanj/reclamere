@@ -1,0 +1,10 @@
+<% @page_title = 'Feedback' -%>
+
+<%= render :partial => 'pickups/pickup_header', :locals => { :pickup => @pickup } %>
+<% form_for(@feedback, :url => pickup_feedback_path(@pickup)) do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => 'feedback_form', :locals => { :f => f } -%>
+  <div class="functnbar3">
+    <%= f.submit 'Submit' %>
+  </div>
+<% end %>

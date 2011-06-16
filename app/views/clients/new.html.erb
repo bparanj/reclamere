@@ -1,0 +1,12 @@
+<% @page_title = 'New Client' %>
+
+<% form_for([(admin_controller? ? :admin : nil), @client].compact) do |f| %>
+  <%= f.error_messages %>
+  <h3>New Client</h3>
+  <%= render :partial => 'client_form', :locals => { :f => f } %>
+  <div class="functnbar3">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>
+
+<p><%= link_to 'Client List', (admin_controller? ? admin_clients_path : clients_path) %></p>

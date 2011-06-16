@@ -1,0 +1,58 @@
+<% @page_title = 'Pickup Locations' -%>
+
+<% if solution_owner_admin? -%>
+  <%= print_tasks do |t|
+    t << link_to('New Pickup Location', (admin_controller? ? new_admin_pickup_location_path : new_pickup_location_path))
+    t
+  end %>
+<% end -%>
+
+<% form_tag({}, :method => :get) do %>
+  <h3>Pickup Locations</h3>
+  <% lnf  = [['Name', 'pickup_locations.name']]
+     lnf <<  ['Client', 'clients.name'] unless client_user?
+     lnf += [['Default Client Lead', 'users.name'],
+             ['Address', 'pickup_locations.address_1'],
+             ['City', 'pickup_locations.city'],
+             ['State', 'pickup_locations.state'],
+             ['Postal Code', 'pickup_locations.postal_code']] -%>
+  <%= list_nav_filter(lnf) %>
+  <table width="100%">
+    <tr>
+      <th><%= list_nav_header('Name', 'pickup_locations.name') %></th>
+      <% unless client_user? -%>
+        <th><%= list_nav_header('Client', 'clients.name') %></th>
+      <% end -%>
+      <th><%= list_nav_header('Default Client Lead', 'users.name') %></th>
+      <th><%= list_nav_header('Address', 'pickup_locations.address_1') %></th>
+      <th><%= list_nav_header('City', 'pickup_locations.city') %></th>
+      <th><%= list_nav_header('State', 'pickup_locations.state') %></th>
+      <th><%= list_nav_header('Postal code', 'pickup_locations.postal_code') %></th>
+    </tr>
+    <% for pickup_location in @pickup_locations %>
+      <tr class="<%= cycle 'a', 'b' %>">
+        <td><%= link_to(h(pickup_location.name), (admin_controller? ? admin_pickup_location_path(pickup_location) : pickup_location_path(pickup_location))) %></td>
+        <% unless client_user? -%>
+          <td><%= link_to(h(pickup_location.client.name), (admin_controller? ? admin_client_path(pickup_location.client) : client_path(pickup_location.client))) %></td>
+        <% end -%>
+        <td>
+          <% if pickup_location.client_user -%>
+            <% if solution_owner_admin? -%>
+              <%= link_to(h(pickup_location.client_user.name), admin_user_path(pickup_location.client_user)) %>
+            <% else -%>
+              <%= pickup_location.client_user.name %>
+            <% end -%>
+          <% else -%>
+            &nbsp;
+          <% end -%>
+        </td>
+        <td><%=h pickup_location.address_1 %></td>
+        <td><%=h pickup_location.city %></td>
+        <td><%=h pickup_location.state %></td>
+        <td><%=h pickup_location.postal_code %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="functnbar3">&nbsp;</div>
+<% end %>
+<%= list_nav_pagination %>

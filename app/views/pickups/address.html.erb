@@ -1,0 +1,19 @@
+<% @page_title = 'Pickup Address' -%>
+
+<%= render :partial => 'pickup_header', :locals => { :pickup => @pickup } %>
+<table class="axial">
+  <tr>
+    <th>Pickup Address</th>
+    <td><%=simple_format(h(@pickup.pickup_location.address_card)) %></td>
+  </tr>
+  <% if @pickup.pickup_location.geocoded? -%>
+    <tr>
+      <th>Map</th>
+      <td><%= address_map(@pickup.pickup_location) %></td>
+    </tr>
+  <% end -%>
+</table>
+<div class="functnbar3">&nbsp;</div>
+
+
+<p><%= link_to 'Pickups List', pickups_path %></p>

@@ -1,0 +1,46 @@
+<% @page_title = (@auditable ? @auditable.class.name + ' ' : '') + 'Audit Log' %>
+
+<% if @auditable -%>
+  <% form_url = [@auditable, :audit_logs] -%>
+  <%= render :partial => "#{@auditable.class.name.downcase.pluralize}/#{@auditable.class.name.downcase}_header", :locals => { @auditable.class.name.downcase.to_sym => @auditable } %>
+<% else -%>
+  <% form_url = {} -%>
+  <h3>Audit Log</h3>
+<% end %>
+<% form_tag(form_url, { :method => :get }) do %>
+  <% lnf = [['Who', 'users.login'],
+    ['What', 'description'],
+    ['Where', 'request_uri']]
+  lnf << ['From', 'remote_addr'] unless @auditable -%>
+  <%= list_nav_filter(lnf) %>
+  <table width="100%">
+    <tr>
+      <th><%= list_nav_header 'Who', 'users.login' %></th>
+      <th><%= list_nav_header 'What', 'description' %></th>
+      <th><%= list_nav_header 'When', 'audit_logs.created_at' %></th>
+      <th><%= list_nav_header 'Where', 'request_uri' %></th>
+      <% unless @auditable -%>
+        <th><%= list_nav_header 'From', 'remote_addr' %></th>
+      <% end -%>
+    </tr>
+    <% for audit_log in @audit_logs %>
+      <tr class="<%= cycle 'a', 'b' %>">
+        <td>
+          <% if solution_owner_admin? -%>
+            <%= link_to audit_log.user.login, admin_user_path(audit_log.user) %>
+          <% else -%>
+            <%= audit_log.user.login %>
+          <% end -%>
+        </td>
+        <td><%=h audit_log.description %></td>
+        <td><%=h print_datetime audit_log.created_at %></td>
+        <td><%=h audit_log.request_uri %></td>
+        <% unless @auditable -%>
+          <td><%= link_to(h(audit_log.remote_addr), "http://whois.domaintools.com/#{audit_log.remote_addr}", { :target => '_BLANK' }) %></td>
+        <% end -%>
+      </tr>
+    <% end %>
+  </table>
+  <div class="functnbar3">&nbsp;</div>
+<% end -%>
+<%= list_nav_pagination %>

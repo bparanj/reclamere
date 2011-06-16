@@ -1,0 +1,16 @@
+<% @page_title = 'Pickup Tasks' -%>
+
+<%= render :partial => 'pickups/pickup_header', :locals => { :pickup => @pickup }  %>
+<% if @can_update -%>
+  <% form_for([@pickup, @current_task]) do |f| %>
+    <%= render :partial => 'tasks_form', :locals => { :f => f } %>
+  <% end %>
+<% else -%>
+  <%= render :partial => 'tasks_form' %>
+<% end -%>
+
+<% if solution_owner_user? && @current_task && !@can_update -%>
+  <p>Task statuses will be updatable once the pickup moves into the "Notified" status.</p>
+<% end -%>
+
+<p><%= link_to "Pickups List", pickups_path %></p>

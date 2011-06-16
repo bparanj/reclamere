@@ -1,0 +1,5 @@
+<% if !@current_company.blank? -%>
+<% @current_company.attributes.keys.sort.each do |key| -%>
+* <%= key.to_s %>: <%= @current_company.send(key.to_sym).inspect %>
+<% end -%>
+<% end -%>

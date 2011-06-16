@@ -1,0 +1,1564 @@
+# Logfile created on Wed Jun 15 08:33:08 -0700 2011DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#index (for 127.0.0.1 at 2011-06-15 08:34:37) [GET]
+  Parameters: {"action"=>"index", "controller"=>"dashboard"}
+Redirected to http://localhost:3000/login
+Filter chain halted as [:check_login] rendered_or_redirected.
+Completed in 0ms (DB: 0) | 302 Found [http://localhost/]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2011-06-15 08:34:37) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to https://www.secureport.reclamere.com/login
+Filter chain halted as [:ensure_proper_protocol] rendered_or_redirected.
+Completed in 3ms (DB: 0) | 302 Found [http://localhost/login]
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("schema_migrations")[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090119191843)
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255) NOT NULL, "client_id" integer, "login" varchar(255) NOT NULL, "email" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "title" varchar(255), "phone" varchar(255), "time_zone" varchar(255), "last_login" datetime, "breadcrumbs" text, "admin" integer(1) DEFAULT 0 NOT NULL, "inactive" integer(1) DEFAULT 0 NOT NULL, "crypted_password" varchar(40), "salt" varchar(40), "created_at" datetime, "updated_at" datetime, "remember_token" varchar(40), "remember_token_expires_at" datetime) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_users_on_type" ON "users" ("type")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_users_on_type')[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE UNIQUE INDEX "index_users_on_login" ON "users" ("login")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("users")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_users_on_login')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_users_on_type')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090119191843')[0m
+Migrating to CreateAuditLogs (20090119195750)
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE TABLE "audit_logs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "request_uri" varchar(255) NOT NULL, "remote_addr" varchar(255) NOT NULL, "description" varchar(255) NOT NULL, "created_at" datetime NOT NULL, "auditable_type" varchar(255), "auditable_id" integer) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("audit_logs")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_audit_logs_on_user_id" ON "audit_logs" ("user_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090119195750')[0m
+Migrating to CreateClients (20090120165725)
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE TABLE "clients" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "address_1" varchar(255) NOT NULL, "address_2" varchar(255), "city" varchar(255) NOT NULL, "state" varchar(2) NOT NULL, "postal_code" varchar(10), "lat" decimal(15,10), "lng" decimal(15,10)) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("clients")[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE UNIQUE INDEX "index_clients_on_name" ON "clients" ("name")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090120165725')[0m
+Migrating to CreatePickupLocations (20090120220539)
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE TABLE "pickup_locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "client_id" integer NOT NULL, "client_user_id" integer, "address_1" varchar(255) NOT NULL, "address_2" varchar(255), "city" varchar(255) NOT NULL, "state" varchar(2) NOT NULL, "postal_code" varchar(10), "lat" decimal(15,10), "lng" decimal(15,10)) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("pickup_locations")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_pickup_locations_on_name" ON "pickup_locations" ("name")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("pickup_locations")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickup_locations_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_pickup_locations_on_client_id" ON "pickup_locations" ("client_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("pickup_locations")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickup_locations_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickup_locations_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_pickup_locations_on_client_user_id" ON "pickup_locations" ("client_user_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090120220539')[0m
+Migrating to CreatePasswordTickets (20090121212353)
+  [4;36;1mSQL (0.3ms)[0m   [0;1mCREATE TABLE "password_tickets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "value" varchar(40) NOT NULL, "expires_at" datetime NOT NULL) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("password_tickets")[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mCREATE UNIQUE INDEX "index_password_tickets_on_user_id" ON "password_tickets" ("user_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("password_tickets")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_password_tickets_on_user_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE UNIQUE INDEX "index_password_tickets_on_value" ON "password_tickets" ("value")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090121212353')[0m
+Migrating to CreateFolders (20090123175319)
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE TABLE "folders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "folderable_id" integer NOT NULL, "folderable_type" varchar(255) NOT NULL, "parent_id" integer, "root_folder_id" integer, "name" varchar(255) NOT NULL, "description" varchar(255)) [0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090119191843)
+Migrating to CreateAuditLogs (20090119195750)
+Migrating to CreateClients (20090120165725)
+Migrating to CreatePickupLocations (20090120220539)
+Migrating to CreatePasswordTickets (20090121212353)
+Migrating to CreateFolders (20090123175319)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCREATE TABLE "folders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "folderable_id" integer NOT NULL, "folderable_type" varchar(255) NOT NULL, "parent_id" integer, "root_folder_id" integer, "name" varchar(255) NOT NULL, "description" varchar(255)) [0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090119191843)
+Migrating to CreateAuditLogs (20090119195750)
+Migrating to CreateClients (20090120165725)
+Migrating to CreatePickupLocations (20090120220539)
+Migrating to CreatePasswordTickets (20090121212353)
+Migrating to CreateFolders (20090123175319)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mCREATE TABLE "folders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "folderable_id" integer NOT NULL, "folderable_type" varchar(255) NOT NULL, "parent_id" integer, "root_folder_id" integer, "name" varchar(255) NOT NULL, "description" varchar(255)) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090123175319')[0m
+Migrating to CreateDocuments (20090123181546)
+  [4;35;1mSQL (0.4ms)[0m   [0mCREATE TABLE "documents" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "folder_id" integer NOT NULL, "root_folder_id" integer NOT NULL, "name" varchar(255) NOT NULL, "description" varchar(255), "version" integer DEFAULT 1 NOT NULL, "filename" varchar(255) NOT NULL, "sha1" varchar(40) NOT NULL, "content_type" varchar(255) NOT NULL, "size" integer NOT NULL, "downloads" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "created_by_id" integer NOT NULL) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("documents")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mCREATE INDEX "index_documents_on_folder_id" ON "documents" ("folder_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("documents")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_documents_on_folder_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_documents_on_root_folder_id" ON "documents" ("root_folder_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090123181546')[0m
+Migrating to CreateDocumentVersions (20090123181631)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCREATE TABLE "document_versions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "document_id" integer NOT NULL, "name" varchar(255) NOT NULL, "description" varchar(255), "version" integer DEFAULT 1 NOT NULL, "filename" varchar(255) NOT NULL, "sha1" varchar(40) NOT NULL, "content_type" varchar(255) NOT NULL, "size" integer NOT NULL, "created_at" datetime NOT NULL, "created_by_id" integer NOT NULL) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("document_versions")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_document_versions_on_document_id" ON "document_versions" ("document_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090123181631')[0m
+Migrating to RemoveDownloadCountFromDocuments (20090126210250)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCREATE TEMPORARY TABLE "altered_documents" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "folder_id" integer NOT NULL, "root_folder_id" integer NOT NULL, "name" varchar(255) NOT NULL, "description" varchar(255), "version" integer DEFAULT 1 NOT NULL, "filename" varchar(255) NOT NULL, "sha1" varchar(40) NOT NULL, "content_type" varchar(255) NOT NULL, "size" integer NOT NULL, "downloads" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "created_by_id" integer NOT NULL) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("documents")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_documents_on_root_folder_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_documents_on_folder_id')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("altered_documents")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "temp_index_altered_documents_on_root_folder_id" ON "altered_documents" ("root_folder_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_documents")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_documents_on_root_folder_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_documents_on_folder_id" ON "altered_documents" ("folder_id")[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mDROP TABLE "documents"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE TABLE "documents" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "folder_id" integer NOT NULL, "root_folder_id" integer NOT NULL, "name" varchar(255) NOT NULL, "description" varchar(255), "version" integer DEFAULT 1 NOT NULL, "filename" varchar(255) NOT NULL, "sha1" varchar(40) NOT NULL, "content_type" varchar(255) NOT NULL, "size" integer NOT NULL, "created_at" datetime NOT NULL, "created_by_id" integer NOT NULL) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_documents")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_documents_on_folder_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_documents_on_root_folder_id')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("documents")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_documents_on_folder_id" ON "documents" ("folder_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("documents")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_documents_on_folder_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_documents_on_root_folder_id" ON "documents" ("root_folder_id")[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mDROP TABLE "altered_documents"[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090126210250')[0m
+Migrating to RemoveDescriptionFromFolders (20090127152956)
+  [4;35;1mSQL (0.2ms)[0m   [0mCREATE TEMPORARY TABLE "altered_folders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "folderable_id" integer NOT NULL, "folderable_type" varchar(255) NOT NULL, "parent_id" integer, "root_folder_id" integer, "name" varchar(255) NOT NULL, "description" varchar(255)) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("folders")[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mDROP TABLE "folders"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE TABLE "folders" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "folderable_id" integer NOT NULL, "folderable_type" varchar(255) NOT NULL, "parent_id" integer, "root_folder_id" integer, "name" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("altered_folders")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mDROP TABLE "altered_folders"[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090127152956')[0m
+Migrating to ReAddDescriptionToFolders (20090128213330)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mALTER TABLE "folders" ADD "description" varchar(255)[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090128213330')[0m
+Migrating to CreatePickups (20090129151032)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCREATE TABLE "pickups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pickup_location_id" integer NOT NULL, "client_id" integer NOT NULL, "name" varchar(255) NOT NULL, "status" varchar(255) NOT NULL, "pickup_type" varchar(255) NOT NULL, "special_request" varchar(255), "quantity" varchar(255), "pickup_date" date NOT NULL, "pickup_time" varchar(255), "site_contact_name" varchar(255), "client_reference" varchar(255), "solution_owner_user_id" integer, "client_user_id" integer, "created_by_id" integer, "created_at" datetime) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_pickups_on_pickup_location_id" ON "pickups" ("pickup_location_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_pickups_on_client_id" ON "pickups" ("client_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_pickups_on_name" ON "pickups" ("name")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_pickups_on_status" ON "pickups" ("status")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_pickups_on_pickup_type" ON "pickups" ("pickup_type")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_type')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_pickups_on_pickup_date" ON "pickups" ("pickup_date")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090129151032')[0m
+Migrating to AddNotificationDateToPickups (20090130195025)
+  [4;35;1mSQL (0.0ms)[0m   [0mSQLite3::SQLException: Cannot add a NOT NULL column with default value NULL: ALTER TABLE "pickups" ADD "notification_date" date NOT NULL[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090119191843)
+Migrating to CreateAuditLogs (20090119195750)
+Migrating to CreateClients (20090120165725)
+Migrating to CreatePickupLocations (20090120220539)
+Migrating to CreatePasswordTickets (20090121212353)
+Migrating to CreateFolders (20090123175319)
+Migrating to CreateDocuments (20090123181546)
+Migrating to CreateDocumentVersions (20090123181631)
+Migrating to RemoveDownloadCountFromDocuments (20090126210250)
+Migrating to RemoveDescriptionFromFolders (20090127152956)
+Migrating to ReAddDescriptionToFolders (20090128213330)
+Migrating to CreatePickups (20090129151032)
+Migrating to AddNotificationDateToPickups (20090130195025)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090130195025')[0m
+Migrating to RemoveUpdatedAtFromUsers (20090202145301)
+  [4;36;1mSQL (48.9ms)[0m   [0;1mCREATE TEMPORARY TABLE "altered_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255) NOT NULL, "client_id" integer, "login" varchar(255) NOT NULL, "email" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "title" varchar(255), "phone" varchar(255), "time_zone" varchar(255), "last_login" datetime, "breadcrumbs" text, "admin" integer(1) DEFAULT 0 NOT NULL, "inactive" integer(1) DEFAULT 0 NOT NULL, "crypted_password" varchar(40), "salt" varchar(40), "created_at" datetime, "updated_at" datetime, "remember_token" varchar(40), "remember_token_expires_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_users_on_email')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_users_on_login')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_users_on_type')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("altered_users")[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mCREATE UNIQUE INDEX "temp_index_altered_users_on_email" ON "altered_users" ("email")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_users")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_users_on_email')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE UNIQUE INDEX "temp_index_altered_users_on_login" ON "altered_users" ("login")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_users")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_users_on_login')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_users_on_email')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "temp_index_altered_users_on_type" ON "altered_users" ("type")[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mDROP TABLE "users"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255) NOT NULL, "client_id" integer, "login" varchar(255) NOT NULL, "email" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "title" varchar(255), "phone" varchar(255), "time_zone" varchar(255), "last_login" datetime, "breadcrumbs" text, "admin" integer(1) DEFAULT 0 NOT NULL, "inactive" integer(1) DEFAULT 0 NOT NULL, "crypted_password" varchar(40), "salt" varchar(40), "created_at" datetime, "remember_token" varchar(40), "remember_token_expires_at" datetime) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_users")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_users_on_type')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_users_on_login')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_users_on_email')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("users")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_users_on_type" ON "users" ("type")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("users")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_users_on_type')[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCREATE UNIQUE INDEX "index_users_on_login" ON "users" ("login")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_users_on_login')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_users_on_type')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mDROP TABLE "altered_users"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE TEMPORARY TABLE "altered_pickups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pickup_location_id" integer NOT NULL, "client_id" integer NOT NULL, "name" varchar(255) NOT NULL, "status" varchar(255) NOT NULL, "pickup_type" varchar(255) NOT NULL, "special_request" varchar(255), "quantity" varchar(255), "pickup_date" date NOT NULL, "pickup_time" varchar(255), "site_contact_name" varchar(255), "client_reference" varchar(255), "solution_owner_user_id" integer, "client_user_id" integer, "created_by_id" integer, "created_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_date')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_type')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("altered_pickups")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mCREATE INDEX "temp_index_altered_pickups_on_pickup_date" ON "altered_pickups" ("pickup_date")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_pickups_on_pickup_type" ON "altered_pickups" ("pickup_type")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_pickup_type')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_pickups_on_status" ON "altered_pickups" ("status")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_type')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "temp_index_altered_pickups_on_name" ON "altered_pickups" ("name")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_type')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "temp_index_altered_pickups_on_client_id" ON "altered_pickups" ("client_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_pickup_type')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_pickups_on_pickup_location_id" ON "altered_pickups" ("pickup_location_id")[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mDROP TABLE "pickups"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE TABLE "pickups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pickup_location_id" integer NOT NULL, "client_id" integer NOT NULL, "name" varchar(255) NOT NULL, "status" varchar(255) NOT NULL, "pickup_type" varchar(255), "special_request" varchar(255), "quantity" varchar(255), "pickup_date" date NOT NULL, "pickup_time" varchar(255), "site_contact_name" varchar(255), "client_reference" varchar(255), "solution_owner_user_id" integer, "client_user_id" integer, "created_by_id" integer, "created_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("altered_pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_pickup_location_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_pickup_type')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_pickups_on_pickup_location_id" ON "pickups" ("pickup_location_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_pickups_on_client_id" ON "pickups" ("client_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_pickups_on_name" ON "pickups" ("name")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_pickups_on_status" ON "pickups" ("status")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_pickups_on_pickup_type" ON "pickups" ("pickup_type")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_type')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_pickups_on_pickup_date" ON "pickups" ("pickup_date")[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mDROP TABLE "altered_pickups"[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mPRAGMA index_list("pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_type')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mDROP INDEX "index_pickups_on_pickup_type"[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090202145301')[0m
+Migrating to MakePickupLocationDefaultClientUserRequired (20090202175342)
+  [4;35;1mSQL (0.2ms)[0m   [0mCREATE TEMPORARY TABLE "altered_pickup_locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "client_id" integer NOT NULL, "client_user_id" integer, "address_1" varchar(255) NOT NULL, "address_2" varchar(255), "city" varchar(255) NOT NULL, "state" varchar(2) NOT NULL, "postal_code" varchar(10), "lat" decimal, "lng" decimal) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("pickup_locations")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickup_locations_on_client_user_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickup_locations_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickup_locations_on_name')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("altered_pickup_locations")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "temp_index_altered_pickup_locations_on_client_user_id" ON "altered_pickup_locations" ("client_user_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_pickup_locations")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickup_locations_on_client_user_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_pickup_locations_on_client_id" ON "altered_pickup_locations" ("client_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_pickup_locations")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickup_locations_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickup_locations_on_client_user_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_pickup_locations_on_name" ON "altered_pickup_locations" ("name")[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mDROP TABLE "pickup_locations"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE TABLE "pickup_locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) NOT NULL, "client_id" integer NOT NULL, "client_user_id" integer NOT NULL, "address_1" varchar(255) NOT NULL, "address_2" varchar(255), "city" varchar(255) NOT NULL, "state" varchar(2) NOT NULL, "postal_code" varchar(10), "lat" decimal, "lng" decimal) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_pickup_locations")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickup_locations_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickup_locations_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickup_locations_on_client_user_id')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("pickup_locations")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE INDEX "index_pickup_locations_on_name" ON "pickup_locations" ("name")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("pickup_locations")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickup_locations_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_pickup_locations_on_client_id" ON "pickup_locations" ("client_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("pickup_locations")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickup_locations_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickup_locations_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_pickup_locations_on_client_user_id" ON "pickup_locations" ("client_user_id")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mDROP TABLE "altered_pickup_locations"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mCREATE TEMPORARY TABLE "altered_pickups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pickup_location_id" integer NOT NULL, "client_id" integer NOT NULL, "name" varchar(255) NOT NULL, "status" varchar(255) NOT NULL, "pickup_type" varchar(255), "special_request" varchar(255), "quantity" varchar(255), "pickup_date" date NOT NULL, "pickup_time" varchar(255), "site_contact_name" varchar(255), "client_reference" varchar(255), "solution_owner_user_id" integer, "client_user_id" integer, "created_by_id" integer, "created_at" datetime) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("altered_pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "temp_index_altered_pickups_on_pickup_date" ON "altered_pickups" ("pickup_date")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_pickups_on_status" ON "altered_pickups" ("status")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_pickups_on_name" ON "altered_pickups" ("name")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "temp_index_altered_pickups_on_client_id" ON "altered_pickups" ("client_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "temp_index_altered_pickups_on_pickup_location_id" ON "altered_pickups" ("pickup_location_id")[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mDROP TABLE "pickups"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mCREATE TABLE "pickups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pickup_location_id" integer NOT NULL, "client_id" integer NOT NULL, "name" varchar(255) NOT NULL, "status" varchar(255) NOT NULL, "pickup_type" varchar(255), "special_request" varchar(255), "quantity" varchar(255), "pickup_date" date NOT NULL, "pickup_time" varchar(255), "site_contact_name" varchar(255), "client_reference" varchar(255), "solution_owner_user_id" integer, "client_user_id" integer NOT NULL, "created_by_id" integer, "created_at" datetime) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("altered_pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_location_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_pickups_on_pickup_location_id" ON "pickups" ("pickup_location_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_pickups_on_client_id" ON "pickups" ("client_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_pickups_on_name" ON "pickups" ("name")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_pickups_on_status" ON "pickups" ("status")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_pickups_on_pickup_date" ON "pickups" ("pickup_date")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mDROP TABLE "altered_pickups"[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090202175342')[0m
+Migrating to AddDefaultPickupLocationSolutionOwnerLead (20090202195137)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSQLite3::SQLException: Cannot add a NOT NULL column with default value NULL: ALTER TABLE "pickup_locations" ADD "solution_owner_user_id" integer NOT NULL[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090119191843)
+Migrating to CreateAuditLogs (20090119195750)
+Migrating to CreateClients (20090120165725)
+Migrating to CreatePickupLocations (20090120220539)
+Migrating to CreatePasswordTickets (20090121212353)
+Migrating to CreateFolders (20090123175319)
+Migrating to CreateDocuments (20090123181546)
+Migrating to CreateDocumentVersions (20090123181631)
+Migrating to RemoveDownloadCountFromDocuments (20090126210250)
+Migrating to RemoveDescriptionFromFolders (20090127152956)
+Migrating to ReAddDescriptionToFolders (20090128213330)
+Migrating to CreatePickups (20090129151032)
+Migrating to AddNotificationDateToPickups (20090130195025)
+Migrating to RemoveUpdatedAtFromUsers (20090202145301)
+Migrating to MakePickupLocationDefaultClientUserRequired (20090202175342)
+Migrating to AddDefaultPickupLocationSolutionOwnerLead (20090202195137)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mALTER TABLE "pickup_locations" ADD "solution_owner_user_id" integer[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090202195137')[0m
+Migrating to CreateTasks (20090202215029)
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE TABLE "tasks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pickup_id" integer NOT NULL, "num" integer(1) NOT NULL, "name" varchar(255) NOT NULL, "status" varchar(255) NOT NULL, "comments" varchar(255), "updated_at" datetime, "solution_owner_user_id" integer) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("tasks")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_tasks_on_pickup_id" ON "tasks" ("pickup_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("tasks")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_tasks_on_pickup_id')[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE INDEX "index_tasks_on_num" ON "tasks" ("num")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("tasks")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_tasks_on_num')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_tasks_on_pickup_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_tasks_on_name" ON "tasks" ("name")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("tasks")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_tasks_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_tasks_on_num')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_tasks_on_pickup_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_tasks_on_status" ON "tasks" ("status")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090202215029')[0m
+Migrating to MakeSolutionOwnerUserIdRequiredForPickups (20090202230253)
+  [4;35;1mSQL (0.5ms)[0m   [0mCREATE TEMPORARY TABLE "altered_pickups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pickup_location_id" integer NOT NULL, "client_id" integer NOT NULL, "name" varchar(255) NOT NULL, "status" varchar(255) NOT NULL, "pickup_type" varchar(255), "special_request" varchar(255), "quantity" varchar(255), "pickup_date" date NOT NULL, "pickup_time" varchar(255), "site_contact_name" varchar(255), "client_reference" varchar(255), "solution_owner_user_id" integer, "client_user_id" integer NOT NULL, "created_by_id" integer, "created_at" datetime) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("altered_pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "temp_index_altered_pickups_on_pickup_date" ON "altered_pickups" ("pickup_date")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_pickups_on_status" ON "altered_pickups" ("status")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_pickups_on_name" ON "altered_pickups" ("name")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "temp_index_altered_pickups_on_client_id" ON "altered_pickups" ("client_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "temp_index_altered_pickups_on_pickup_location_id" ON "altered_pickups" ("pickup_location_id")[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mDROP TABLE "pickups"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mCREATE TABLE "pickups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pickup_location_id" integer NOT NULL, "client_id" integer NOT NULL, "name" varchar(255) NOT NULL, "status" varchar(255) NOT NULL, "pickup_type" varchar(255), "special_request" varchar(255), "quantity" varchar(255), "pickup_date" date NOT NULL, "pickup_time" varchar(255), "site_contact_name" varchar(255), "client_reference" varchar(255), "solution_owner_user_id" integer NOT NULL, "client_user_id" integer NOT NULL, "created_by_id" integer, "created_at" datetime) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("altered_pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_location_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_pickups_on_pickup_location_id" ON "pickups" ("pickup_location_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_pickups_on_client_id" ON "pickups" ("client_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_pickups_on_name" ON "pickups" ("name")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_pickups_on_status" ON "pickups" ("status")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_pickups_on_pickup_date" ON "pickups" ("pickup_date")[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mDROP TABLE "altered_pickups"[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090202230253')[0m
+Migrating to CreateSystemEmails (20090203182312)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCREATE TABLE "system_emails" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pickup_id" integer NOT NULL, "user_id" integer NOT NULL, "subject" varchar(255) NOT NULL, "body" text, "created_at" datetime) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("system_emails")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE INDEX "index_system_emails_on_pickup_id" ON "system_emails" ("pickup_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090203182312')[0m
+Migrating to CreateFeedbacks (20090203191937)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCREATE TABLE "feedbacks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pickup_id" integer NOT NULL, "client_user_id" integer NOT NULL, "value" varchar(40) NOT NULL, "complete" integer(1) DEFAULT 0 NOT NULL, "contacted_promptly" integer(1), "complete_audit_timely" integer(1), "appropriate_communication" integer(1), "customer_service_needs" integer(1), "comments" text, "solution_owner_contact" integer(1), "references" text, "updated_by_id" integer, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("feedbacks")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_feedbacks_on_pickup_id" ON "feedbacks" ("pickup_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("feedbacks")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_feedbacks_on_pickup_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_feedbacks_on_client_user_id" ON "feedbacks" ("client_user_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("feedbacks")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_feedbacks_on_client_user_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_feedbacks_on_pickup_id')[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE UNIQUE INDEX "index_feedbacks_on_value" ON "feedbacks" ("value")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090203191937')[0m
+Migrating to CreateEquipment (20090205142436)
+  [4;35;1mSQL (0.4ms)[0m   [0mCREATE TABLE "equipment" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255) NOT NULL, "type_name" varchar(255) NOT NULL, "pickup_id" integer NOT NULL, "client_id" integer NOT NULL, "tracking" varchar(255) NOT NULL, "serial" varchar(255) NOT NULL, "mfg" varchar(255), "model" varchar(255), "comments" varchar(255), "grade" varchar(255), "recycling" integer, "value" integer, "processor" varchar(255), "hard_drive" varchar(255), "ram" varchar(255), "page_count" integer, "screen_size" varchar(255), "mfg_date" varchar(255)) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("equipment")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_equipment_on_type" ON "equipment" ("type")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("equipment")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_type')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_equipment_on_type_name" ON "equipment" ("type_name")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("equipment")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_type_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_type')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_equipment_on_pickup_id" ON "equipment" ("pickup_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("equipment")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_pickup_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_type_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_type')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_equipment_on_client_id" ON "equipment" ("client_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("equipment")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_pickup_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_type_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_type')[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE UNIQUE INDEX "index_equipment_on_tracking" ON "equipment" ("tracking")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("equipment")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_tracking')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_pickup_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_type_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_type')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE UNIQUE INDEX "index_equipment_on_serial" ON "equipment" ("serial")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090205142436')[0m
+Migrating to UpdatePickupDates (20090217190714)
+  [4;36;1mSQL (0.3ms)[0m   [0;1mCREATE TEMPORARY TABLE "altered_pickups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pickup_location_id" integer NOT NULL, "client_id" integer NOT NULL, "name" varchar(255) NOT NULL, "status" varchar(255) NOT NULL, "pickup_type" varchar(255), "special_request" varchar(255), "quantity" varchar(255), "pickup_date" date NOT NULL, "pickup_time" varchar(255), "site_contact_name" varchar(255), "client_reference" varchar(255), "solution_owner_user_id" integer NOT NULL, "client_user_id" integer NOT NULL, "created_by_id" integer, "created_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_date')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("altered_pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_pickups_on_pickup_date" ON "altered_pickups" ("pickup_date")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "temp_index_altered_pickups_on_status" ON "altered_pickups" ("status")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "temp_index_altered_pickups_on_name" ON "altered_pickups" ("name")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_pickups_on_client_id" ON "altered_pickups" ("client_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_pickups_on_pickup_location_id" ON "altered_pickups" ("pickup_location_id")[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mDROP TABLE "pickups"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE TABLE "pickups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pickup_location_id" integer NOT NULL, "client_id" integer NOT NULL, "name" varchar(255) NOT NULL, "status" varchar(255) NOT NULL, "pickup_type" varchar(255), "special_request" varchar(255), "quantity" varchar(255), "pickup_date" date, "pickup_time" varchar(255), "site_contact_name" varchar(255), "client_reference" varchar(255), "solution_owner_user_id" integer NOT NULL, "client_user_id" integer NOT NULL, "created_by_id" integer, "created_at" datetime) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_pickup_location_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_pickups_on_pickup_location_id" ON "pickups" ("pickup_location_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_pickups_on_client_id" ON "pickups" ("client_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_pickups_on_name" ON "pickups" ("name")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_pickups_on_status" ON "pickups" ("status")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_pickups_on_pickup_date" ON "pickups" ("pickup_date")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mDROP TABLE "altered_pickups"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE TEMPORARY TABLE "altered_pickups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pickup_location_id" integer NOT NULL, "client_id" integer NOT NULL, "name" varchar(255) NOT NULL, "status" varchar(255) NOT NULL, "pickup_type" varchar(255), "special_request" varchar(255), "quantity" varchar(255), "pickup_date" date, "pickup_time" varchar(255), "site_contact_name" varchar(255), "client_reference" varchar(255), "solution_owner_user_id" integer NOT NULL, "client_user_id" integer NOT NULL, "created_by_id" integer, "created_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_date')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("altered_pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_pickups_on_pickup_date" ON "altered_pickups" ("pickup_date")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "temp_index_altered_pickups_on_status" ON "altered_pickups" ("status")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "temp_index_altered_pickups_on_name" ON "altered_pickups" ("name")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_pickups")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_pickups_on_client_id" ON "altered_pickups" ("client_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_pickups_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_pickups_on_pickup_location_id" ON "altered_pickups" ("pickup_location_id")[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mDROP TABLE "pickups"[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090119191843)
+Migrating to CreateAuditLogs (20090119195750)
+Migrating to CreateClients (20090120165725)
+Migrating to CreatePickupLocations (20090120220539)
+Migrating to CreatePasswordTickets (20090121212353)
+Migrating to CreateFolders (20090123175319)
+Migrating to CreateDocuments (20090123181546)
+Migrating to CreateDocumentVersions (20090123181631)
+Migrating to RemoveDownloadCountFromDocuments (20090126210250)
+Migrating to RemoveDescriptionFromFolders (20090127152956)
+Migrating to ReAddDescriptionToFolders (20090128213330)
+Migrating to CreatePickups (20090129151032)
+Migrating to AddNotificationDateToPickups (20090130195025)
+Migrating to RemoveUpdatedAtFromUsers (20090202145301)
+Migrating to MakePickupLocationDefaultClientUserRequired (20090202175342)
+Migrating to AddDefaultPickupLocationSolutionOwnerLead (20090202195137)
+Migrating to CreateTasks (20090202215029)
+Migrating to MakeSolutionOwnerUserIdRequiredForPickups (20090202230253)
+Migrating to CreateSystemEmails (20090203182312)
+Migrating to CreateFeedbacks (20090203191937)
+Migrating to CreateEquipment (20090205142436)
+Migrating to UpdatePickupDates (20090217190714)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090217190714')[0m
+Migrating to UpdateEquipmentSerial (20090326214236)
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCREATE TEMPORARY TABLE "altered_equipment" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255) NOT NULL, "type_name" varchar(255) NOT NULL, "pickup_id" integer NOT NULL, "client_id" integer NOT NULL, "tracking" varchar(255) NOT NULL, "serial" varchar(255) NOT NULL, "mfg" varchar(255), "model" varchar(255), "comments" varchar(255), "grade" varchar(255), "recycling" integer, "value" integer, "processor" varchar(255), "hard_drive" varchar(255), "ram" varchar(255), "page_count" integer, "screen_size" varchar(255), "mfg_date" varchar(255)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("equipment")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_serial')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_tracking')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_pickup_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_type_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_type')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("altered_equipment")[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mCREATE UNIQUE INDEX "temp_index_altered_equipment_on_serial" ON "altered_equipment" ("serial")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_equipment")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_equipment_on_serial')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE UNIQUE INDEX "temp_index_altered_equipment_on_tracking" ON "altered_equipment" ("tracking")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_equipment")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_equipment_on_tracking')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_equipment_on_serial')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_equipment_on_client_id" ON "altered_equipment" ("client_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("altered_equipment")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_equipment_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_equipment_on_tracking')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_equipment_on_serial')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "temp_index_altered_equipment_on_pickup_id" ON "altered_equipment" ("pickup_id")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_equipment")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_equipment_on_pickup_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_equipment_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_equipment_on_tracking')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_equipment_on_serial')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "temp_index_altered_equipment_on_type_name" ON "altered_equipment" ("type_name")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_equipment")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_equipment_on_type_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_equipment_on_pickup_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_equipment_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_equipment_on_tracking')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_equipment_on_serial')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "temp_index_altered_equipment_on_type" ON "altered_equipment" ("type")[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mDROP TABLE "equipment"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE TABLE "equipment" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar(255) NOT NULL, "type_name" varchar(255) NOT NULL, "pickup_id" integer NOT NULL, "client_id" integer NOT NULL, "tracking" varchar(255) NOT NULL, "serial" varchar(255), "mfg" varchar(255), "model" varchar(255), "comments" varchar(255), "grade" varchar(255), "recycling" integer, "value" integer, "processor" varchar(255), "hard_drive" varchar(255), "ram" varchar(255), "page_count" integer, "screen_size" varchar(255), "mfg_date" varchar(255)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("altered_equipment")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_equipment_on_type')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_equipment_on_type_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_equipment_on_pickup_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_equipment_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('temp_index_altered_equipment_on_tracking')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('temp_index_altered_equipment_on_serial')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("equipment")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_equipment_on_type" ON "equipment" ("type")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("equipment")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_type')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_equipment_on_type_name" ON "equipment" ("type_name")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("equipment")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_type_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_type')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_equipment_on_pickup_id" ON "equipment" ("pickup_id")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("equipment")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_pickup_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_type_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_type')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCREATE INDEX "index_equipment_on_client_id" ON "equipment" ("client_id")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("equipment")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_pickup_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_type_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_type')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCREATE UNIQUE INDEX "index_equipment_on_tracking" ON "equipment" ("tracking")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("equipment")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_tracking')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_pickup_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_type_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_type')[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCREATE UNIQUE INDEX "index_equipment_on_serial" ON "equipment" ("serial")[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mDROP TABLE "altered_equipment"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("equipment")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_serial')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_tracking')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_pickup_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_type_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_type')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mDROP INDEX "index_equipment_on_serial"[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("equipment")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_tracking')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_pickup_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_type_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_type')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mCREATE INDEX "index_equipment_on_serial" ON "equipment" ("serial")[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090326214236')[0m
+Migrating to AddAttrsToEquipment (20090903191717)
+  [4;36;1mSQL (0.5ms)[0m   [0;1mALTER TABLE "equipment" ADD "disposition" varchar(255)[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mALTER TABLE "equipment" ADD "customer" varchar(255)[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mALTER TABLE "equipment" ADD "asset_tag" varchar(255)[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090903191717')[0m
+Migrating to AddMoreColumnsToEquipment (20091007150053)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mALTER TABLE "equipment" ADD "country" varchar(255)[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mALTER TABLE "equipment" ADD "location" varchar(255)[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mALTER TABLE "equipment" ADD "piu" varchar(255)[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mALTER TABLE "equipment" ADD "dws_cart" varchar(255)[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mALTER TABLE "equipment" ADD "cpu" varchar(255)[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mALTER TABLE "equipment" ADD "monitors" varchar(255)[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mALTER TABLE "equipment" ADD "bob" varchar(255)[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mALTER TABLE "equipment" ADD "bob_cable" varchar(255)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20091007150053')[0m
+Migrating to AddCreationInfoToEquipment (20091007152448)
+  [4;35;1mSQL (0.6ms)[0m   [0mALTER TABLE "equipment" ADD "created_at" datetime[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mALTER TABLE "equipment" ADD "created_by_id" integer[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091007152448')[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("audit_logs")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_audit_logs_on_user_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("clients")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_clients_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("document_versions")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_document_versions_on_document_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("documents")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_documents_on_root_folder_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_documents_on_folder_id')[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("equipment")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_serial')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_tracking')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_pickup_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_type_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_type')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("feedbacks")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_feedbacks_on_value')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_feedbacks_on_client_user_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_feedbacks_on_pickup_id')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("folders")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("password_tickets")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_password_tickets_on_value')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_password_tickets_on_user_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("pickup_locations")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickup_locations_on_client_user_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickup_locations_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickup_locations_on_name')[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_date')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("system_emails")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_system_emails_on_pickup_id')[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("tasks")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_tasks_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_tasks_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_tasks_on_num')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_tasks_on_pickup_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("users")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_users_on_email')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_users_on_login')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_users_on_type')[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."login" = 'bparanj') LIMIT 1[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."name" = 'Bala') LIMIT 1[0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."email" = 'bparanj@gmail.com') LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."login" = 'bparanj') LIMIT 1[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."name" = 'Bala') LIMIT 1[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."email" = 'bparanj@gmail.com') LIMIT 1[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."login" = 'bparanj') LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."name" = 'Bala') LIMIT 1[0m
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."email" = 'bparanj@gmail.com') LIMIT 1[0m
+  [4;35;1mUser Create (0.5ms)[0m   [0mINSERT INTO "users" ("name", "salt", "created_at", "title", "last_login", "crypted_password", "remember_token_expires_at", "admin", "inactive", "type", "client_id", "phone", "breadcrumbs", "remember_token", "time_zone", "login", "email") VALUES('Bala', 'f9168024d32c9bed4dc2cf031c2b1037bd1c97e3', '2011-06-16 01:59:00', NULL, NULL, '8008f442f0edd0e4ce3bc1905df949231522af23', NULL, 1, 0, 'junk', NULL, NULL, '--- []
+
+', NULL, NULL, 'bparanj', 'bparanj@gmail.com')[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#index (for 127.0.0.1 at 2011-06-15 19:03:04) [GET]
+  Parameters: {"action"=>"index", "controller"=>"dashboard"}
+Redirected to http://localhost:3000/login
+Filter chain halted as [:check_login] rendered_or_redirected.
+Completed in 1ms (DB: 0) | 302 Found [http://localhost/]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2011-06-15 19:03:04) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to https://www.secureport.reclamere.com/login
+Filter chain halted as [:ensure_proper_protocol] rendered_or_redirected.
+Completed in 3ms (DB: 0) | 302 Found [http://localhost/login]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#index (for 127.0.0.1 at 2011-06-15 19:10:58) [GET]
+  Parameters: {"action"=>"index", "controller"=>"dashboard"}
+  [4;36;1mPickup Load (1.2ms)[0m   [0;1mSELECT * FROM "pickups" WHERE (status = 'Requested') ORDER BY pickup_date ASC[0m
+  [4;35;1mPickup Load (0.2ms)[0m   [0mSELECT * FROM "pickups" WHERE (status = 'Acknowledged' OR status = 'Notified') ORDER BY pickup_date ASC[0m
+  [4;36;1mPickup Load (0.2ms)[0m   [0;1mSELECT * FROM "pickups" WHERE (status IN ('Picked Up','Arrived','Sanitized','Audited','Invoiced')) ORDER BY pickup_date ASC[0m
+Rendering template within layouts/tigris
+Rendering dashboard/index
+Rendered layouts/tigris/_head (0.9ms)
+
+ActionView::TemplateError (undefined method `name' for nil:NilClass) on line #13 of app/views/layouts/tigris/_banner.html.erb:
+10:       <td>
+11:         <div id="login" align="right" class="right">
+12:           <%= print_tasks(:class => 'app_nav') do |t|
+13:             t << 'Welcome ' + content_tag(:strong, h(current_user.name)) + ' [' + link_to('Logout', logout_path) + ']'
+14:             t << link_to_selfref('My Profile', :controller => '/dashboard', :action => 'profile')
+15:             if solution_owner_user?
+16:               if solution_owner_admin?
+
+    app/views/layouts/tigris/_banner.html.erb:13
+    app/helpers/application_helper.rb:44:in `print_tasks'
+    app/views/layouts/tigris/_banner.html.erb:12
+    app/views/layouts/tigris.html.erb:10
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (69.9ms)
+Rendered rescues/_request_and_response (1.6ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#index (for 127.0.0.1 at 2011-06-15 19:12:12) [GET]
+  Parameters: {"action"=>"index", "controller"=>"dashboard"}
+  [4;35;1mPickup Load (1.0ms)[0m   [0mSELECT * FROM "pickups" WHERE (status = 'Requested') ORDER BY pickup_date ASC[0m
+  [4;36;1mPickup Load (0.2ms)[0m   [0;1mSELECT * FROM "pickups" WHERE (status = 'Acknowledged' OR status = 'Notified') ORDER BY pickup_date ASC[0m
+  [4;35;1mPickup Load (0.2ms)[0m   [0mSELECT * FROM "pickups" WHERE (status IN ('Picked Up','Arrived','Sanitized','Audited','Invoiced')) ORDER BY pickup_date ASC[0m
+Rendering template within layouts/tigris
+Rendering dashboard/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.9ms)
+Rendered layouts/tigris/_toptabs (3.2ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.3ms)
+Rendered layouts/tigris/_apphead (1.0ms)
+Rendered layouts/tigris/_footer (0.9ms)
+Completed in 129ms (View: 33, DB: 1) | 200 OK [http://localhost/]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#index (for 127.0.0.1 at 2011-06-15 19:12:21) [GET]
+  Parameters: {"action"=>"index", "controller"=>"dashboard"}
+  [4;36;1mPickup Load (1.0ms)[0m   [0;1mSELECT * FROM "pickups" WHERE (status = 'Requested') ORDER BY pickup_date ASC[0m
+  [4;35;1mPickup Load (0.3ms)[0m   [0mSELECT * FROM "pickups" WHERE (status = 'Acknowledged' OR status = 'Notified') ORDER BY pickup_date ASC[0m
+  [4;36;1mPickup Load (0.2ms)[0m   [0;1mSELECT * FROM "pickups" WHERE (status IN ('Picked Up','Arrived','Sanitized','Audited','Invoiced')) ORDER BY pickup_date ASC[0m
+Rendering template within layouts/tigris
+Rendering dashboard/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+Rendered layouts/tigris/_toptabs (1.1ms)
+Rendered layouts/tigris/_breadcrumbs (0.1ms)
+Rendered layouts/tigris/_navcolumn (1.1ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.3ms)
+Completed in 23ms (View: 6, DB: 1) | 200 OK [http://localhost/dashboard]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#profile (for 127.0.0.1 at 2011-06-15 19:12:23) [GET]
+  Parameters: {"action"=>"profile", "controller"=>"dashboard"}
+Rendering template within layouts/tigris
+Rendering dashboard/profile
+
+ActionView::TemplateError (undefined method `password_confirmation=' for nil:NilClass) on line #2 of app/views/dashboard/profile.html.erb:
+1: <% @page_title = 'My Profile' %>
+2: <% @user.password = @user.password_confirmation = nil %>
+3: 
+4: <%= error_messages_for :user %>
+5: <h3>My Profile</h3>
+
+    app/views/dashboard/profile.html.erb:2
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (56.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#index (for 127.0.0.1 at 2011-06-15 19:14:42) [GET]
+  Parameters: {"action"=>"index", "controller"=>"dashboard"}
+  [4;35;1mPickup Load (1.0ms)[0m   [0mSELECT * FROM "pickups" WHERE (status = 'Requested') ORDER BY pickup_date ASC[0m
+  [4;36;1mPickup Load (0.2ms)[0m   [0;1mSELECT * FROM "pickups" WHERE (status = 'Acknowledged' OR status = 'Notified') ORDER BY pickup_date ASC[0m
+  [4;35;1mPickup Load (0.2ms)[0m   [0mSELECT * FROM "pickups" WHERE (status IN ('Picked Up','Arrived','Sanitized','Audited','Invoiced')) ORDER BY pickup_date ASC[0m
+Rendering template within layouts/tigris
+Rendering dashboard/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+Rendered layouts/tigris/_toptabs (1.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.1ms)
+Rendered layouts/tigris/_navcolumn (1.0ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.3ms)
+Completed in 96ms (View: 6, DB: 1) | 200 OK [http://localhost/dashboard]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#calendar (for 127.0.0.1 at 2011-06-15 19:14:45) [GET]
+  Parameters: {"action"=>"calendar", "controller"=>"dashboard"}
+DEPRECATION WARNING: Date#last_month is deprecated and has been removed in Rails 3, please use Date#prev_month instead. (called from calendar at /Users/bparanj/projects/work/SecurePort/releases/latest/app/controllers/dashboard_controller.rb:63)
+  [4;36;1mPickup Load (0.0ms)[0m   [0;1mSQLite3::SQLException: no such function: YEAR: SELECT * FROM "pickups" WHERE (((YEAR(pickup_date) = 2011 AND MONTH(pickup_date) = 6) OR (YEAR(pickup_date) = 2011 AND MONTH(pickup_date) = 5) OR (YEAR(pickup_date) = 2011 AND MONTH(pickup_date) = 7))) ORDER BY pickup_date ASC[0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such function: YEAR: SELECT * FROM "pickups" WHERE (((YEAR(pickup_date) = 2011 AND MONTH(pickup_date) = 6) OR (YEAR(pickup_date) = 2011 AND MONTH(pickup_date) = 5) OR (YEAR(pickup_date) = 2011 AND MONTH(pickup_date) = 7)))  ORDER BY pickup_date ASC):
+  app/controllers/dashboard_controller.rb:77:in `calendar'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (52.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#profile (for 127.0.0.1 at 2011-06-15 19:15:01) [GET]
+  Parameters: {"action"=>"profile", "controller"=>"dashboard"}
+Rendering template within layouts/tigris
+Rendering dashboard/profile
+
+ActionView::TemplateError (uninitialized constant TZInfo::Timezone::Country) on line #29 of app/views/dashboard/profile.html.erb:
+26:     </tr>
+27:     <tr>
+28:       <th><%= f.label :time_zone %></th>
+29:       <td><%= f.time_zone_select :time_zone, TZInfo::Timezone.us_zones, :include_blank => true %></td>
+30:     </tr>
+31:     <tr>
+32:       <th><%= f.label :password %></th>
+
+    app/views/dashboard/profile.html.erb:29
+    app/views/dashboard/profile.html.erb:5
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (56.1ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#index (for 127.0.0.1 at 2011-06-15 19:15:13) [GET]
+  Parameters: {"action"=>"index", "controller"=>"dashboard"}
+  [4;35;1mPickup Load (1.0ms)[0m   [0mSELECT * FROM "pickups" WHERE (status = 'Requested') ORDER BY pickup_date ASC[0m
+  [4;36;1mPickup Load (0.2ms)[0m   [0;1mSELECT * FROM "pickups" WHERE (status = 'Acknowledged' OR status = 'Notified') ORDER BY pickup_date ASC[0m
+  [4;35;1mPickup Load (0.2ms)[0m   [0mSELECT * FROM "pickups" WHERE (status IN ('Picked Up','Arrived','Sanitized','Audited','Invoiced')) ORDER BY pickup_date ASC[0m
+Rendering template within layouts/tigris
+Rendering dashboard/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+Rendered layouts/tigris/_toptabs (1.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.1ms)
+Rendered layouts/tigris/_navcolumn (1.2ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.3ms)
+Completed in 100ms (View: 6, DB: 1) | 200 OK [http://localhost/dashboard]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#index (for 127.0.0.1 at 2011-06-15 19:15:15) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickups"}
+
+RuntimeError (Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id):
+  app/controllers/pickups_controller.rb:13:in `index'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (42.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#index (for 127.0.0.1 at 2011-06-15 19:17:19) [GET]
+  Parameters: {"action"=>"index", "controller"=>"dashboard"}
+  [4;36;1mPickup Load (1.0ms)[0m   [0;1mSELECT * FROM "pickups" WHERE (status = 'Requested') ORDER BY pickup_date ASC[0m
+  [4;35;1mPickup Load (0.2ms)[0m   [0mSELECT * FROM "pickups" WHERE (status = 'Acknowledged' OR status = 'Notified') ORDER BY pickup_date ASC[0m
+  [4;36;1mPickup Load (0.2ms)[0m   [0;1mSELECT * FROM "pickups" WHERE (status IN ('Picked Up','Arrived','Sanitized','Audited','Invoiced')) ORDER BY pickup_date ASC[0m
+Rendering template within layouts/tigris
+Rendering dashboard/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+Rendered layouts/tigris/_toptabs (1.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.1ms)
+Rendered layouts/tigris/_navcolumn (1.0ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.5ms)
+Completed in 108ms (View: 10, DB: 1) | 200 OK [http://localhost/dashboard]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupLocationsController#index (for 127.0.0.1 at 2011-06-15 19:17:28) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickup_locations"}
+
+RuntimeError (Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id):
+  app/controllers/pickup_locations_controller.rb:11:in `index'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (42.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#profile (for 127.0.0.1 at 2011-06-15 19:17:37) [GET]
+  Parameters: {"action"=>"profile", "controller"=>"dashboard"}
+Rendering template within layouts/tigris
+Rendering dashboard/profile
+
+ActionView::TemplateError (uninitialized constant TZInfo::Timezone::Country) on line #29 of app/views/dashboard/profile.html.erb:
+26:     </tr>
+27:     <tr>
+28:       <th><%= f.label :time_zone %></th>
+29:       <td><%= f.time_zone_select :time_zone, TZInfo::Timezone.us_zones, :include_blank => true %></td>
+30:     </tr>
+31:     <tr>
+32:       <th><%= f.label :password %></th>
+
+    app/views/dashboard/profile.html.erb:29
+    app/views/dashboard/profile.html.erb:5
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (56.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#profile (for 127.0.0.1 at 2011-06-15 19:27:55) [GET]
+  Parameters: {"action"=>"profile", "controller"=>"dashboard"}
+Rendering template within layouts/tigris
+Rendering dashboard/profile
+Rendered layouts/tigris/_head (0.9ms)
+Rendered layouts/tigris/_banner (0.8ms)
+Rendered layouts/tigris/_toptabs (3.1ms)
+Rendered layouts/tigris/_breadcrumbs (0.7ms)
+Rendered layouts/tigris/_navcolumn (3.5ms)
+Rendered layouts/tigris/_apphead (0.7ms)
+Rendered layouts/tigris/_footer (0.5ms)
+Completed in 963ms (View: 960, DB: 0) | 200 OK [http://localhost/dashboard/profile]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#calendar (for 127.0.0.1 at 2011-06-15 19:28:06) [GET]
+  Parameters: {"action"=>"calendar", "controller"=>"dashboard"}
+DEPRECATION WARNING: Date#last_month is deprecated and has been removed in Rails 3, please use Date#prev_month instead. (called from calendar at /Users/bparanj/projects/work/SecurePort/releases/latest/app/controllers/dashboard_controller.rb:63)
+  [4;36;1mPickup Load (0.0ms)[0m   [0;1mSQLite3::SQLException: no such function: YEAR: SELECT * FROM "pickups" WHERE (((YEAR(pickup_date) = 2011 AND MONTH(pickup_date) = 6) OR (YEAR(pickup_date) = 2011 AND MONTH(pickup_date) = 5) OR (YEAR(pickup_date) = 2011 AND MONTH(pickup_date) = 7))) ORDER BY pickup_date ASC[0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such function: YEAR: SELECT * FROM "pickups" WHERE (((YEAR(pickup_date) = 2011 AND MONTH(pickup_date) = 6) OR (YEAR(pickup_date) = 2011 AND MONTH(pickup_date) = 5) OR (YEAR(pickup_date) = 2011 AND MONTH(pickup_date) = 7)))  ORDER BY pickup_date ASC):
+  app/controllers/dashboard_controller.rb:77:in `calendar'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (55.2ms)
+Rendered rescues/_request_and_response (1.6ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#calendar (for 127.0.0.1 at 2011-06-15 19:32:03) [GET]
+  Parameters: {"action"=>"calendar", "controller"=>"dashboard"}
+DEPRECATION WARNING: Date#last_month is deprecated and has been removed in Rails 3, please use Date#prev_month instead. (called from calendar at /Users/bparanj/projects/work/SecurePort/releases/latest/app/controllers/dashboard_controller.rb:63)
+  [4;35;1mPickup Load (1.4ms)[0m   [0mSELECT * FROM "pickups" [0m
+Rendering template within layouts/tigris
+Rendering dashboard/calendar
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.each) on line #13 of app/views/dashboard/calendar.html.erb:
+10: <%= calendar({ :year => @date.year, :month => @date.month, :abbrev => (0..-1), :show_today => true }) do |d|
+11:   cell_text = d.mday.to_s + "\n"
+12:   cell_attrs = { :class => 'day' }
+13:   @pickups.each do |p|
+14:     if p.pickup_date.year == d.year && p.pickup_date.month == d.month && p.pickup_date.day == d.day
+15:       cell_text += calendar_pickup_link(p)
+16:     end
+
+    app/views/dashboard/calendar.html.erb:13
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/date.rb:1351:in `step'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/date.rb:1360:in `upto'
+    app/views/dashboard/calendar.html.erb:10
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (75.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#calendar (for 127.0.0.1 at 2011-06-15 19:32:03) [GET]
+  Parameters: {"action"=>"calendar", "controller"=>"dashboard"}
+DEPRECATION WARNING: Date#last_month is deprecated and has been removed in Rails 3, please use Date#prev_month instead. (called from calendar at /Users/bparanj/projects/work/SecurePort/releases/latest/app/controllers/dashboard_controller.rb:63)
+  [4;36;1mPickup Load (1.0ms)[0m   [0;1mSELECT * FROM "pickups" [0m
+Rendering template within layouts/tigris
+Rendering dashboard/calendar
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.each) on line #13 of app/views/dashboard/calendar.html.erb:
+10: <%= calendar({ :year => @date.year, :month => @date.month, :abbrev => (0..-1), :show_today => true }) do |d|
+11:   cell_text = d.mday.to_s + "\n"
+12:   cell_attrs = { :class => 'day' }
+13:   @pickups.each do |p|
+14:     if p.pickup_date.year == d.year && p.pickup_date.month == d.month && p.pickup_date.day == d.day
+15:       cell_text += calendar_pickup_link(p)
+16:     end
+
+    app/views/dashboard/calendar.html.erb:13
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/date.rb:1351:in `step'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/date.rb:1360:in `upto'
+    app/views/dashboard/calendar.html.erb:10
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (64.3ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#calendar (for 127.0.0.1 at 2011-06-15 19:34:14) [GET]
+  Parameters: {"action"=>"calendar", "controller"=>"dashboard"}
+DEPRECATION WARNING: Date#last_month is deprecated and has been removed in Rails 3, please use Date#prev_month instead. (called from calendar at /Users/bparanj/projects/work/SecurePort/releases/latest/app/controllers/dashboard_controller.rb:63)
+  [4;35;1mPickup Load (0.9ms)[0m   [0mSELECT * FROM "pickups" [0m
+Rendering template within layouts/tigris
+Rendering dashboard/calendar
+Rendered layouts/tigris/_head (0.4ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (0.9ms)
+Rendered layouts/tigris/_breadcrumbs (0.1ms)
+Rendered layouts/tigris/_navcolumn (1.1ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 22ms (View: 10, DB: 1) | 200 OK [http://localhost/dashboard/calendar]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#calendar (for 127.0.0.1 at 2011-06-15 19:42:18) [GET]
+  Parameters: {"action"=>"calendar", "controller"=>"dashboard"}
+DEPRECATION WARNING: Date#last_month is deprecated and has been removed in Rails 3, please use Date#prev_month instead. (called from calendar at /Users/bparanj/projects/work/SecurePort/releases/latest/app/controllers/dashboard_controller.rb:63)
+  [4;36;1mPickup Load (0.9ms)[0m   [0;1mSELECT * FROM "pickups" [0m
+Rendering template within layouts/tigris
+Rendering dashboard/calendar
+Rendered layouts/tigris/_head (0.4ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (0.9ms)
+Rendered layouts/tigris/_breadcrumbs (0.1ms)
+Rendered layouts/tigris/_navcolumn (1.0ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 27ms (View: 16, DB: 1) | 200 OK [http://localhost/dashboard/calendar]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#profile (for 127.0.0.1 at 2011-06-15 19:42:24) [GET]
+  Parameters: {"action"=>"profile", "controller"=>"dashboard"}
+Rendering template within layouts/tigris
+Rendering dashboard/profile
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+Rendered layouts/tigris/_toptabs (1.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.1ms)
+Rendered layouts/tigris/_navcolumn (1.0ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 811ms (View: 808, DB: 0) | 200 OK [http://localhost/dashboard/profile]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#index (for 127.0.0.1 at 2011-06-15 19:42:27) [GET]
+  Parameters: {"action"=>"index", "controller"=>"dashboard"}
+  [4;35;1mPickup Load (1.0ms)[0m   [0mSELECT * FROM "pickups" WHERE (status = 'Requested') ORDER BY pickup_date ASC[0m
+  [4;36;1mPickup Load (0.2ms)[0m   [0;1mSELECT * FROM "pickups" WHERE (status = 'Acknowledged' OR status = 'Notified') ORDER BY pickup_date ASC[0m
+  [4;35;1mPickup Load (0.2ms)[0m   [0mSELECT * FROM "pickups" WHERE (status IN ('Picked Up','Arrived','Sanitized','Audited','Invoiced')) ORDER BY pickup_date ASC[0m
+Rendering template within layouts/tigris
+Rendering dashboard/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+Rendered layouts/tigris/_toptabs (1.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.1ms)
+Rendered layouts/tigris/_navcolumn (1.0ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 96ms (View: 11, DB: 1) | 200 OK [http://localhost/dashboard]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#index (for 127.0.0.1 at 2011-06-15 19:42:30) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickups"}
+
+RuntimeError (Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id):
+  app/controllers/pickups_controller.rb:11:in `index'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (41.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#index (for 127.0.0.1 at 2011-06-15 19:42:58) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickups"}
+
+RuntimeError (Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id):
+  app/controllers/pickups_controller.rb:11:in `index'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (119.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#index (for 127.0.0.1 at 2011-06-15 19:43:58) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickups"}
+
+RuntimeError (Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id):
+  app/controllers/pickups_controller.rb:11:in `index'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (50.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#index (for 127.0.0.1 at 2011-06-15 19:44:04) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickups"}
+
+RuntimeError (Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id):
+  app/controllers/pickups_controller.rb:11:in `index'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (118.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#index (for 127.0.0.1 at 2011-06-15 19:44:22) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickups"}
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(DISTINCT "pickups".id) AS count_all FROM "pickups" LEFT OUTER JOIN "pickup_locations" ON "pickup_locations".id = "pickups".pickup_location_id [0m
+  [4;36;1mPickup Load (0.1ms)[0m   [0;1mSELECT * FROM "pickups" ORDER BY pickup_date DESC LIMIT 25 OFFSET 0[0m
+Rendering template within layouts/tigris
+Rendering pickups/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (0.9ms)
+Rendered layouts/tigris/_breadcrumbs (0.1ms)
+Rendered layouts/tigris/_navcolumn (1.0ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 34ms (View: 14, DB: 0) | 200 OK [http://localhost/pickups]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupLocationsController#index (for 127.0.0.1 at 2011-06-15 19:44:33) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickup_locations"}
+
+RuntimeError (Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id):
+  app/controllers/pickup_locations_controller.rb:11:in `index'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (41.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupLocationsController#index (for 127.0.0.1 at 2011-06-15 19:44:51) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickup_locations"}
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(DISTINCT "pickup_locations".id) AS count_all FROM "pickup_locations" LEFT OUTER JOIN "clients" ON "clients".id = "pickup_locations".client_id LEFT OUTER JOIN "users" ON "users".id = "pickup_locations".client_user_id AND ("users"."type" = 'ClientUser' ) [0m
+  [4;35;1mPickupLocation Load (0.1ms)[0m   [0mSELECT * FROM "pickup_locations" ORDER BY pickup_locations.name ASC LIMIT 25 OFFSET 0[0m
+Rendering template within layouts/tigris
+Rendering pickup_locations/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (1.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.1ms)
+Rendered layouts/tigris/_navcolumn (1.0ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 115ms (View: 89, DB: 0) | 200 OK [http://localhost/pickup_locations]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#index (for 127.0.0.1 at 2011-06-15 19:44:58) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickups"}
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(DISTINCT "pickups".id) AS count_all FROM "pickups" LEFT OUTER JOIN "pickup_locations" ON "pickup_locations".id = "pickups".pickup_location_id [0m
+  [4;36;1mPickup Load (0.1ms)[0m   [0;1mSELECT * FROM "pickups" ORDER BY pickup_date DESC LIMIT 25 OFFSET 0[0m
+Rendering template within layouts/tigris
+Rendering pickups/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (0.9ms)
+Rendered layouts/tigris/_breadcrumbs (0.1ms)
+Rendered layouts/tigris/_navcolumn (0.9ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 26ms (View: 7, DB: 0) | 200 OK [http://localhost/pickups]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#index (for 127.0.0.1 at 2011-06-15 19:45:00) [GET]
+  Parameters: {"action"=>"index", "controller"=>"dashboard"}
+  [4;35;1mPickup Load (1.0ms)[0m   [0mSELECT * FROM "pickups" WHERE (status = 'Requested') ORDER BY pickup_date ASC[0m
+  [4;36;1mPickup Load (0.2ms)[0m   [0;1mSELECT * FROM "pickups" WHERE (status = 'Acknowledged' OR status = 'Notified') ORDER BY pickup_date ASC[0m
+  [4;35;1mPickup Load (0.2ms)[0m   [0mSELECT * FROM "pickups" WHERE (status IN ('Picked Up','Arrived','Sanitized','Audited','Invoiced')) ORDER BY pickup_date ASC[0m
+Rendering template within layouts/tigris
+Rendering dashboard/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+Rendered layouts/tigris/_toptabs (1.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.1ms)
+Rendered layouts/tigris/_navcolumn (1.1ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 98ms (View: 5, DB: 1) | 200 OK [http://localhost/dashboard]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#profile (for 127.0.0.1 at 2011-06-15 19:45:03) [GET]
+  Parameters: {"action"=>"profile", "controller"=>"dashboard"}
+Rendering template within layouts/tigris
+Rendering dashboard/profile
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+Rendered layouts/tigris/_toptabs (1.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.1ms)
+Rendered layouts/tigris/_navcolumn (1.0ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 818ms (View: 815, DB: 0) | 200 OK [http://localhost/dashboard/profile]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#calendar (for 127.0.0.1 at 2011-06-15 19:45:05) [GET]
+  Parameters: {"action"=>"calendar", "controller"=>"dashboard"}
+DEPRECATION WARNING: Date#last_month is deprecated and has been removed in Rails 3, please use Date#prev_month instead. (called from calendar at /Users/bparanj/projects/work/SecurePort/releases/latest/app/controllers/dashboard_controller.rb:63)
+  [4;36;1mPickup Load (0.9ms)[0m   [0;1mSELECT * FROM "pickups" [0m
+Rendering template within layouts/tigris
+Rendering dashboard/calendar
+Rendered layouts/tigris/_head (0.4ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (0.9ms)
+Rendered layouts/tigris/_breadcrumbs (0.1ms)
+Rendered layouts/tigris/_navcolumn (1.0ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 23ms (View: 12, DB: 1) | 200 OK [http://localhost/dashboard/calendar]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing DashboardController#index (for 127.0.0.1 at 2011-06-15 19:45:07) [GET]
+  Parameters: {"action"=>"index", "controller"=>"dashboard"}
+  [4;35;1mPickup Load (1.0ms)[0m   [0mSELECT * FROM "pickups" WHERE (status = 'Requested') ORDER BY pickup_date ASC[0m
+  [4;36;1mPickup Load (0.2ms)[0m   [0;1mSELECT * FROM "pickups" WHERE (status = 'Acknowledged' OR status = 'Notified') ORDER BY pickup_date ASC[0m
+  [4;35;1mPickup Load (0.2ms)[0m   [0mSELECT * FROM "pickups" WHERE (status IN ('Picked Up','Arrived','Sanitized','Audited','Invoiced')) ORDER BY pickup_date ASC[0m
+Rendering template within layouts/tigris
+Rendering dashboard/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+Rendered layouts/tigris/_toptabs (1.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.1ms)
+Rendered layouts/tigris/_navcolumn (1.0ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 22ms (View: 5, DB: 1) | 200 OK [http://localhost/dashboard]

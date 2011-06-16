@@ -1,0 +1,19 @@
+<% @page_title = 'Feedback' -%>
+
+<%= render :partial => 'pickups/pickup_header', :locals => { :pickup => @pickup } %>
+<% form_for(@feedback, :url => pickup_feedback_path(@pickup)) do |f| %>
+  <% if @feedback.updated_by -%>
+    <table class="axial">
+      <tr>
+        <th>Updated By</th>
+        <td><%= @feedback.updated_by.name %></td>
+      </tr>
+      <tr>
+        <th>Updated On</th>
+        <td><%= print_date @feedback.updated_at %></td>
+      </tr>
+    </table>
+  <% end -%>
+  <%= render :partial => 'feedback_form', :locals => { :f => f } -%>
+  <div class="functnbar3">&nbsp;</div>
+<% end %>

@@ -1,0 +1,69 @@
+1. -- create_table(:folders) migration
+undefined method `length' for :index_folderable:Symbol
+
+2. Login to AWS server and check the data in the database for users.
+
+u = User.new
+u.login = "bparanj"
+u.email = "bparanj@gmail.com"
+u.type = "junk"
+u.name = "Bala"
+u.admin = 1
+u.crypted_password = ?
+u.salt = ?
+u.inactive = 0
+
+3. Dashboard controller, check if the status makes sense for Reclamere
+
+4. Get the following values from Reclamere:
+
+SOLUTION_OWNER_PHONE = '234-555-1234'
+SOLUTION_OWNER_EMAIL = 'text@example.com'
+
+5. 
+
+Use Cases
+
+1) User Management
+   Login, Logout, Forgot Password, Activate Account
+
+2) Feedback Request
+
+3) Import Pickup Equipment - Is this required ?
+
+4) Audit Logs
+
+5) System Emails
+
+6) Download Certificates
+
+7) Equipment Export - Is this required?
+
+8) Download documents - Is this required?
+
+9) Is edit client required?
+
+
+
+
+
+
+
+_banner.html.erb
+
+<div id="login" align="right" class="right">
+   <%= print_tasks(:class => 'app_nav') do |t|
+     t << 'Welcome ' + content_tag(:strong, h(current_user.name)) + ' [' + link_to('Logout', logout_path) + ']'
+     t << link_to_selfref('My Profile', :controller => '/dashboard', :action => 'profile')
+     if solution_owner_user?
+       if solution_owner_admin?
+         t << link_to_selfref('Administration', { :controller => '/admin/dashboard', :action => 'index' }, :if => admin_controller?)
+       else
+         t << content_tag(:strong, SOLUTION_OWNER)
+       end
+     elsif client_user?
+       t << content_tag(:strong, h(@client.name))
+     end
+     t
+   end %>
+ </div>

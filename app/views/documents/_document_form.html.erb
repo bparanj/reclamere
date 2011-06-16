@@ -1,0 +1,33 @@
+<table class="axial">
+  <tr>
+    <th>Name</th>
+    <td>
+      <%= f.text_field :name %>
+    </td>
+  </tr>
+  <tr>
+    <th>File</th>
+    <td>
+      <%= f.file_field :uploaded_data %>
+      <% unless @document.new_record? -%>
+        <p>Select a new file to upload a new version of this document.<br />
+        Leave this field blank if you only want to edit the document description<br />
+        or move the document to a different folder.</p>
+      <% end -%>
+    </td>
+  </tr>
+  <tr>
+    <th>Description</th>
+    <td>
+      <%= f.text_area :description, { :rows => '5', :cols => '50' } %>
+      <p>255 character maximum.</p>
+    </td>
+  </tr>
+  <% folders = @folder.folder_tree
+  if folders.length > 1 -%>
+    <tr>
+      <th>In Folder</th>
+      <td><%= f.select :folder_id, folders.map { |f| [f.title, f.id] } %></td>
+    </tr>
+  <% end -%>
+</table>

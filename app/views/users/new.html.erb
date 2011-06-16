@@ -1,0 +1,12 @@
+<% @page_title = 'New User' -%>
+
+<%= render :partial => 'user_header' %>
+
+<% form_for(:user, @user, :url => admin_users_path) do |f| %>
+  <%= f.error_messages %>
+  <h3>New User</h3>
+  <%= render :partial => 'user_form', :locals => { :f => f } %>
+  <div class="functnbar3">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>

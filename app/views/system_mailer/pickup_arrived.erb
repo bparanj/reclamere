@@ -1,0 +1,9 @@
+Dear <%= @client_user.name %>
+
+Your equipment pickup has been received at <%= SOLUTION_OWNER %>'s facility. The estimated date of job completion is <%= (Date.today + 30).strftime(DATE_FORMAT) %>. You will receive additional status information as the equipment is processed.
+
+<%= render :partial => 'pickup' %>
+
+If you have additional questions, please do not hesitate to contact us at <%= SOLUTION_OWNER_PHONE %> or <%= SOLUTION_OWNER_EMAIL %>.
+
+<%= render :partial => 'pickup_footer', :locals => { :process_type => 'this shipment\'s arrival' } %>

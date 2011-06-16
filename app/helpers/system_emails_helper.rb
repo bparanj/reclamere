@@ -1,0 +1,2 @@
+module SystemEmailsHelper
+end

@@ -1,0 +1,12 @@
+<% @page_title = 'New Pickup' %>
+
+<% form_for(@pickup) do |f| %>
+  <%= f.error_messages %>
+  <h3>New Pickup</h3>
+  <%= render :partial => 'pickup_form', :locals => { :f => f } %>
+  <div class="functnbar3">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>
+
+<%= link_to 'Pickups List', pickups_path %>

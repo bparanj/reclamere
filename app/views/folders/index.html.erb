@@ -1,0 +1,28 @@
+<% @page_title = "#{@folderable.class.name} Documents" %>
+<% add_javascripts('tigra_tree_menu/tree', 'tigra_tree_menu/folders_tree_tpl', 'prototype', 'effects', 'application') -%>
+
+<%= render :partial => 'folder_header' %>
+
+<table width="100%">
+  <tr>
+    <td width="20%">
+      <div id="folder-tree">
+        <% content_tag :div, :class => 'tigra-tree' do %>
+          <% javascript_tag do %>
+var TREE_ITEMS = [
+<%= folder_tree_items(@root_folder) %>
+];
+new tree (TREE_ITEMS, FOLDERS_TREE_TPL);
+          <% end %>
+        <% end %>
+      </div>
+    </td>
+    <td width="80%">
+      <div id="folder-files">
+        <%= render :partial => 'folder_contents' %>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<%= folderable_links %>

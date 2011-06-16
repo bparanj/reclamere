@@ -1,0 +1,21 @@
+<table class="axial">
+  <tr>
+    <th>Client</th>
+    <td><%= client.name %></td>
+  </tr>
+</table>
+
+<div class="tabs" id="client_tabs">
+  <table cellpadding="3" cellspacing="0" border="0">
+    <tr>
+      <% tabs = [
+        ['Client', client_path(client)],
+        ['Documents', polymorphic_path([client, client.root_folder]), { :if => ['folders', 'documents'].include?(params[:controller]) }],
+        ['Equipment', client_equipment_path(client), { :if => params[:controller] == 'equipment' }]
+      ]
+      tabs.each do |tab| -%>
+        <%= link_to_tab(*tab) %>
+      <% end -%>
+    </tr>
+  </table>
+</div>

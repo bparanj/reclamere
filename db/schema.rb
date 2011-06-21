@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091007152448) do
+ActiveRecord::Schema.define(:version => 20110621012447) do
 
   create_table "audit_logs", :force => true do |t|
     t.integer  "user_id",        :null => false
@@ -168,12 +168,12 @@ ActiveRecord::Schema.define(:version => 20091007152448) do
   create_table "pickups", :force => true do |t|
     t.integer  "pickup_location_id",     :null => false
     t.integer  "client_id",              :null => false
-    t.string   "name",                   :null => false
+    t.string   "name"
     t.string   "status",                 :null => false
     t.string   "pickup_type"
     t.string   "special_request"
     t.string   "quantity"
-    t.date     "pickup_date",            :null => false
+    t.date     "pickup_date"
     t.string   "pickup_time"
     t.string   "site_contact_name"
     t.string   "client_reference"
@@ -181,10 +181,18 @@ ActiveRecord::Schema.define(:version => 20091007152448) do
     t.integer  "client_user_id",         :null => false
     t.integer  "created_by_id"
     t.datetime "created_at"
+    t.date     "notification_date"
+    t.string   "pickup_date_range"
+    t.string   "facility"
+    t.string   "arrival_time"
+    t.string   "departure_time"
+    t.string   "number_of_men"
+    t.text     "crew_members"
   end
 
   add_index "pickups", ["client_id"], :name => "index_pickups_on_client_id"
   add_index "pickups", ["name"], :name => "index_pickups_on_name"
+  add_index "pickups", ["notification_date"], :name => "index_pickups_on_notification_date"
   add_index "pickups", ["pickup_date"], :name => "index_pickups_on_pickup_date"
   add_index "pickups", ["pickup_location_id"], :name => "index_pickups_on_pickup_location_id"
   add_index "pickups", ["status"], :name => "index_pickups_on_status"

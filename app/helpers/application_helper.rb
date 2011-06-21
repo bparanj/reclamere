@@ -199,7 +199,7 @@ module ApplicationHelper
   def display_obj(obj)
     content_tag :pre, simple_format(obj.pretty_inspect).gsub(/\#</, '#&lt;')
   end
-
+  
   # Use this to wrap view elements that the user can't access.
   # !! Note: this is an *interface*, not *security* feature !!
   # You need to do all access control at the controller level.

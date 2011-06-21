@@ -7,9 +7,9 @@ class UpdatePickupDates < ActiveRecord::Migration
   end
 
   def self.down
-    change_column :pickups, :pickup_date, :date, :null => false
-    change_column :pickups, :notification_date, :date, :null => false
-    change_column :pickups, :name, :string, :null => false
-    remove_column :pickups, :pickup_date_range
+    # change_column :pickups, :pickup_date, :date, :null => false
+    #  change_column :pickups, :notification_date, :date, :null => false
+    #  change_column :pickups, :name, :string, :null => false
+    #  remove_column :pickups, :pickup_date_range
   end
 end

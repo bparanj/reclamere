@@ -54,11 +54,19 @@
         } %>
       </div>
     </td>
-
   </tr>
   <tr>
-    <th><%= f.label :pickup_type, "Type" %></th>
-    <td><%= f.select :pickup_type, Pickup::PICKUP_TYPES.map { |t| [t,t] }, :include_blank => true %></td>
+    <th><%= f.label :facility, "#{SOLUTION_OWNER} Facility" %></th>
+    <td>
+		<%= f.select 'facility', [["Tyrone", "Tyrone"], ["Monroeville", "Monroeville"]],{}, {}%>
+    </td>
+  </tr>
+
+  <tr>
+    <th><%= f.label :pickup_type, "Services to Perform" %></th>
+    <td><%= f.select 'pickup_type', Pickup::PICKUP_TYPES,{},
+	                                   { :multiple => true, :size => 7 }
+	                                  %></td>
   </tr>
   <tr>
     <th><%= f.label :special_request, "Special Request" %></th>
@@ -81,6 +89,22 @@
   <tr>
     <th><%= f.label :pickup_time, "Pickup Time" %></th>
     <td><%= f.text_field :pickup_time %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :arrival_time %></th>
+    <td><%= f.text_field :arrival_time %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :departure_time %></th>
+    <td><%= f.text_field :departure_time %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :number_of_men %></th>
+    <td><%= f.text_field :number_of_men %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :crew_members %></th>
+    <td><%= f.text_area :crew_members, :cols => 40, :rows => 4 %></td>
   </tr>
     <tr>
       <th>Notification Date</th>

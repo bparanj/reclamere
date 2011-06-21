@@ -1,7 +1,15 @@
 class Pickup < ActiveRecord::Base
-  STATUSES = ['Requested', 'Acknowledged', 'Notified', 'Picked Up', 'Arrived',
-    'Sanitized', 'Audited', 'Invoiced', 'Feedback', 'Closed']
-  PICKUP_TYPES = ['IT Disposition', 'Transition Management', 'IT Services', 'IT Sales', 'Miscellaneous']
+  STATUSES = ['Requested', 'Acknowledged', 'Notified', 'Picked Up', 'Arrived', 'Invoiced', 'Closed']
+  PICKUP_TYPES = [['Digital Data Destruction', 'Digital Data Destruction' ],
+  ['Physical Data Destruction', 'Physical Data Destruction'],
+  ['Inventory Report', 'Inventory Report'], 
+  ['Certified Asset Tag Removal', 'Certified Asset Tag Removal'],
+  ['Environment Lot Certificate', 'Environment Lot Certificate'], 
+  ['Magnetic Media Incineration', 'Magnetic Media Incineration'],
+  ['Hard Drive Screening Report', 'Hard Drive Screening Report']
+  ]
+  
+  # ['Digital Data Destruction', 'Physical Data Destruction', 'Inventory Report', 'Certified Asset Tag Removal', 'Environment Lot Certificate', 'Magnetic Media Incineration', 'Hard Drive Screening Report']
 
   attr_protected :client_id, :status
 
@@ -14,26 +22,18 @@ class Pickup < ActiveRecord::Base
   belongs_to :client
   belongs_to :solution_owner_user
   belongs_to :client_user
-  belongs_to :created_by,
-    :class_name => 'User',
-    :foreign_key => 'created_by_id'
+  belongs_to :created_by, :class_name => 'User',  :foreign_key => 'created_by_id'
 
   acts_as_folderable
 
   js_date :pickup_date, :notification_date
 
   validates_presence_of :pickup_location_id, :client_id, :status, :client_user_id, :solution_owner_user_id
-  validates_presence_of :name,
-    :unless => Proc.new { |p| p.status == 'Requested' }
-  validates_presence_of :pickup_date,
-    :unless => Proc.new { |p| p.status == 'Requested' }
-  validates_presence_of :notification_date,
-    :unless => Proc.new { |p| p.status == 'Requested' }
-  validates_uniqueness_of :name, 
-    :scope => :pickup_location_id,
-    :allow_blank => true
+  validates_presence_of :name, :unless => Proc.new { |p| p.status == 'Requested' }
+  validates_presence_of :pickup_date, :unless => Proc.new { |p| p.status == 'Requested' }
+  validates_presence_of :notification_date,  :unless => Proc.new { |p| p.status == 'Requested' }
+  validates_uniqueness_of :name, :scope => :pickup_location_id, :allow_blank => true
   validates_inclusion_of :status, :in => STATUSES
-  validates_inclusion_of :pickup_type, :in  => PICKUP_TYPES, :allow_blank => true
 
   def validate
     if client && pickup_location && client != pickup_location.client
@@ -42,8 +42,7 @@ class Pickup < ActiveRecord::Base
     if client && client_user && client != client_user.client
       errors.add(:client_user_id, 'Client lead is not from this client.')
     end
-    if status && ['Requested', 'Acknowledged'].include?(status) &&
-        pickup_date && pickup_date < Date.today
+    if status && ['Requested', 'Acknowledged'].include?(status) && pickup_date && pickup_date < Date.today
       errors.add(:pickup_date, 'must not be in the past.')
     end
     if pickup_date && notification_date && notification_date > pickup_date

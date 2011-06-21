@@ -16,7 +16,8 @@ ActionController::Routing::Routes.draw do |map|
     :address => :get,
     :acknowledge => :post,
     :notify => :post,
-    :close_feedback => :post
+    :close_feedback => :post,
+    :print_work_order => :get
   },
     :collection => { :update_users_list => :post } do |pickup|
     pickup.resources :folders, :member => { :folder_contents => [:get,:post], :create => :post } do |folder|

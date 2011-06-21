@@ -3,16 +3,6 @@ undefined method `length' for :index_folderable:Symbol
 
 2. Login to AWS server and check the data in the database for users.
 
-u = User.new
-u.login = "bparanj"
-u.email = "bparanj@gmail.com"
-u.type = "junk"
-u.name = "Bala"
-u.admin = 1
-u.crypted_password = ?
-u.salt = ?
-u.inactive = 0
-
 3. Dashboard controller, check if the status makes sense for Reclamere
 
 4. Get the following values from Reclamere:
@@ -20,9 +10,7 @@ u.inactive = 0
 SOLUTION_OWNER_PHONE = '234-555-1234'
 SOLUTION_OWNER_EMAIL = 'text@example.com'
 
-5. 
-
-Use Cases
+5. Use Cases
 
 1) User Management
    Login, Logout, Forgot Password, Activate Account
@@ -42,6 +30,89 @@ Use Cases
 8) Download documents - Is this required?
 
 9) Is edit client required?
+
+10) Deploy.rb is missing. Double check.
+
+11) Restrict the client reference to lot number or the PO number.
+
+12) Settings under Admin Tools for PDF, XLS format settings
+
+13) Notifications tab for setting up Email Templates
+
+14) For New Pickup and Edit Pickup, Type drop down box will be changed to Multi-Select box. 
+
+15) For services tab all fields except hard drive for Printers are required.
+
+
+
+1.For Linux users
+===============
+
+Installing HTMLDOC
+==================
+curl -O http://ftp.easysw.com/pub/htmldoc/snapshots/htmldoc-1.9.x-r1521.tar.gz
+
+tar zxvf htmldoc-1.9.x-r1521.tar.gz
+
+cd htmldoc-1.9.x-r1521
+
+./configure --prefix=/usr/local
+
+make
+
+sudo make install
+
+
+
+Certificates
+
+Certificate of Data Destruction       Excel and PDF
+Inventory Report					  Excel and PDF
+General Environmental Lot Certificate PDF
+Magnetic Media Incineration			  PDF
+Hard Drive Screening				  PDF (Use given XLS as sample)
+Asset Tag Removal					  PDF
+
+
+Pending
+
+Deployment Details
+
+
+
+Pallet Check-In Tab
+
+EquipmentCategories
+MONITORS
+PCs 
+LAPTOPS
+PRINTERS
+MISC
+TVS
+
+
+CPUs
+
+CAN
+P4
+PD
+XEON
+G5
+PM
+MAC
+G4
+CD
+C2D
+
+Services Tab
+
+Brand list for each equipment :
+
+Brand Names sheet sent by Chris
+
+
+Tasks
+
 
 
 

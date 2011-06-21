@@ -14,7 +14,6 @@
                 :if => (params[:controller] == 'users' && admin_controller?)) %></div>
     <div><%= link_to_selfref('Audit Log', admin_audit_logs_path,
                 :if => (params[:controller] == 'audit_logs' && admin_controller?)) %></div>
-    <div><%= link_to_selfref('Support', admin_bugs_path,
-                :if => (params[:controller] == 'admin/bugs')) %></div>
+
   </div>
 </div>

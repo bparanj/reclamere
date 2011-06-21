@@ -129,7 +129,7 @@ class PickupsController < ApplicationController
     @pickup = Pickup.new(params[:pickup])
     @pickup.status = 'Acknowledged'
     @pickup.created_by = current_user
-
+    @pickup.pickup_type = @pickup.pickup_type.join(",")
     respond_to do |format|
       if @pickup.save
         donemark 'Pickup was successfully created.'
@@ -148,6 +148,8 @@ class PickupsController < ApplicationController
 
     respond_to do |format|
       if @pickup.update_attributes(params[:pickup])
+        @pickup.pickup_type = @pickup.pickup_type.join(",")
+        @pickup.save
         donemark 'Pickup was successfully updated.'
         audit "Updated pickup \"#{@pickup.name}\"", :auditable => @pickup
         format.html { redirect_to(@pickup) }
@@ -173,6 +175,15 @@ class PickupsController < ApplicationController
     end
   end
 
+  def print_work_order
+    
+    respond_to do |format|
+      format.pdf { 
+        send_data render_to_pdf({ :action => 'print_work_order.rpdf', :layout => 'pdf_report' }), :filename => "work_order.pdf"
+       } 
+    end
+  end
+  
   private
 
   def get_pickup

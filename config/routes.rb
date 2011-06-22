@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   map.password_ticket "/password_ticket/:id", :controller => 'sessions', :action => 'password_ticket'
   map.feedback_request "/feedback_request/:id", :controller => 'sessions', :action => 'feedback_request'
 
-  map.resources :pallets
+  map.resources :pallets, :services
   # Pickup Resources
   map.import_pickup_equipment "/pickups/:pickup_id/equipment/import/:id/:equipment_type",
     :controller => 'equipment', :action => 'import'

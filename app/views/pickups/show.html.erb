@@ -68,6 +68,24 @@
       <td><%=h @pickup.pickup_time %></td>
     </tr>
   <% end -%>
+
+  <tr>
+    <th>Arrival Time</th>
+    <td><%= @pickup.arrival_time %></td>
+  </tr>
+  <tr>
+    <th> Departure Time</th>
+    <td><%= @pickup.departure_time %></td>
+  </tr>
+  <tr>
+    <th>Number of Men</th>
+    <td><%= @pickup.number_of_men %></td>
+  </tr>
+  <tr>
+    <th>Crew Members </th>
+    <td><%= @pickup.crew_members %></td>
+  </tr>
+
   <% if @pickup.notification_date -%>
   <tr>
     <th>Notification Date</th>

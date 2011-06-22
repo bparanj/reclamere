@@ -100,6 +100,6 @@
     <% end -%>
   <% end -%>
 </table>
-<div class="functnbar3"><%= link_to "Print Work Order", formatted_print_work_order_pickup_path(:pdf) %></div>
+<div class="functnbar3"><%= link_to "Print Work Order", formatted_print_work_order_pickup_path(@pickup,:pdf) %></div>
 
 <p><%= link_to 'Pickups List', pickups_path %></p>

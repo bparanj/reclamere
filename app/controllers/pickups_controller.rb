@@ -176,7 +176,7 @@ class PickupsController < ApplicationController
   end
 
   def print_work_order
-    
+    @pickup = Pickup.find(params[:id])
     respond_to do |format|
       format.pdf { 
         send_data render_to_pdf({ :action => 'print_work_order.rpdf', :layout => 'pdf_report' }), :filename => "work_order.pdf"

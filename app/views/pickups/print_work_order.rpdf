@@ -1,17 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-  PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><!--This file was converted to xhtml by OpenOffice.org - see http://xml.openoffice.org/odf2xhtml for more info.--><head profile="http://dublincore.org/documents/dcmi-terms/"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title xml:lang="en-US">- no title specified</title><meta name="DCTERMS.title" content="" xml:lang="en-US"/><meta name="DCTERMS.language" content="en-US" scheme="DCTERMS.RFC4646"/><meta name="DCTERMS.source" content="http://xml.openoffice.org/odf2xhtml"/><meta name="DCTERMS.issued" content="2011-06-20T19:53:58" scheme="DCTERMS.W3CDTF"/><meta name="DCTERMS.modified" content="2011-06-20T20:01:50" scheme="DCTERMS.W3CDTF"/><meta name="DCTERMS.provenance" content="" xml:lang="en-US"/><meta name="DCTERMS.subject" content="," xml:lang="en-US"/><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" hreflang="en"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" hreflang="en"/><link rel="schema.DCTYPE" href="http://purl.org/dc/dcmitype/" hreflang="en"/><link rel="schema.DCAM" href="http://purl.org/dc/dcam/" hreflang="en"/><base href="."/><style type="text/css">
-	@page { size: 8.5in 11in; margin-top: 0.7874in; margin-bottom: 0.7874in; margin-left: 0.7874in; margin-right: 0.7874in }
-	table { border-collapse:collapse; border-spacing:0; empty-cells:show }
-	td, th { vertical-align:top; font-size:12pt;}
-	h1, h2, h3, h4, h5, h6 { clear:both }
-	ol, ul { margin:0; padding:0;}
-	li { list-style: none; margin:0; padding:0;}
-	li span.odfLiEnd { clear: both; line-height:0; width:0; height:0; margin:0; padding:0; }
-	span.footnodeNumber { padding-right:1em; }
-	* { margin:0; }
-	.Standard { font-size:12pt; font-family:Times New Roman; }
-	<!-- ODF styles with no properties representable as CSS -->
-	{ }
-	</style></head><body dir="ltr" style="max-width:8.5in;margin-top:0.7874in; margin-bottom:0.7874in; margin-left:0.7874in; margin-right:0.7874in; "><p class="Standard">Lakfjalskfj</p><p class="Standard"> </p><p class="Standard">lkjljlaskjdflasjkd:______________               Crew Names:______________________________</p><p class="Standard"> </p><p class="Standard"> </p><p class="Standard"> </p></body></html>
+<html> 
+
+<head >
+
+</head>
+
+<body>
+<p>
+Reclamere, Inc
+905 Pennsylvania Ave.
+Tyrone, PA 16686
+Phone (814) 684-5505
+Fax   (814) 684-6044
+</p>
+
+<p>
+Pick-up Address 
+
+<%= @pickup.pickup_location.address_1 %> 
+<%= @pickup.pickup_location.address_2 %> 
+<%= @pickup.pickup_location.city %>,<%= @pickup.pickup_location.state %>
+<%= @pickup.pickup_location.postal_code %>
+</p>
+
+
+<p>
+ Customer Name: <%= @pickup.client.name %>
+ Customer Contact: <%= @pickup.site_contact_name %>
+ Customer Phone: <%= @pickup.client_user.phone  %>
+ Arrival Date: <%= @pickup.pickup_date %>
+ Actual Arrival Time: <%= @pickup.pickup_time %>
+ Crew Names: 
+ Lot Number: 
+ Expected Load: 
+ Scheduled Arrival 
+ Departure Time: 
+</p>
+
+<p>
+	<tr>
+    <th>Services to Perform</th>
+    <td><%=h @pickup.pickup_type %></td>
+  </tr>
+  
+</p>
+</p></body></html>
+

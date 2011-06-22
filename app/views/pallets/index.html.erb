@@ -1,0 +1,30 @@
+<% @page_title = 'Pallets' -%>
+
+<% if solution_owner_user? -%>
+  <%= print_tasks do |t|
+    t << link_to("New Pallet", new_pallet_path)
+    t
+  end %>
+<% end -%>
+
+<% form_tag({}, { :method => :get }) do %>
+  <h3>Pallets</h3>
+
+  <table width="100%">
+    <tr>
+      <th>Number</th>
+      <th>Description</th>
+      <th>Weight</th>
+      <th>Comments</th>
+    </tr>
+    <% for pallet in @pallets %>
+      <tr class="<%= cycle 'a', 'b' %>">
+        <td><%= h pallet.number %></td>
+        <td><%=h pallet.description %></td>
+        <td><%=h pallet.weight %></td>
+        <td><%= h(pallet.comments) %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="functnbar3">&nbsp;</div>
+<% end %>

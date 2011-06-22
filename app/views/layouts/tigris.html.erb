@@ -3,7 +3,7 @@
        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
  <head>
-   <title><%= APPNAME + " | " + @page_title %></title>
+   <title><%= @page_title %></title>
    <%= render :partial => 'layouts/tigris/head'  %>
  </head>
  <body marginwidth="0" marginheight="0" class="composite"<%= ' onunload="GUnload()"' if @javascripts.is_a?(Array) && @javascripts.any? { |j| j.match(/google/) } %>>

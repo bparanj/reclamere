@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110621012447) do
+ActiveRecord::Schema.define(:version => 20110621185510) do
 
   create_table "audit_logs", :force => true do |t|
     t.integer  "user_id",        :null => false
@@ -136,6 +136,15 @@ ActiveRecord::Schema.define(:version => 20110621012447) do
     t.integer "root_folder_id"
     t.string  "name",            :null => false
     t.string  "description"
+  end
+
+  create_table "pallets", :force => true do |t|
+    t.string   "number"
+    t.text     "description"
+    t.string   "weight"
+    t.text     "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "password_tickets", :force => true do |t|

@@ -1,0 +1,13 @@
+<% @page_title = 'Pallet' %>
+
+<% form_for(@pallet) do |f| %>
+  <%= f.error_messages %>
+  <h3>New Pallet</h3>
+  <%= render :partial => 'pallet_form', :locals => { :f => f } %>
+  <div class="functnbar3">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>
+
+<%= link_to 'Pallets List', pallets_path %>
+

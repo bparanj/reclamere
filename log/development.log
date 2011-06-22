@@ -7387,3 +7387,950 @@ Processing PickupsController#print_work_order (for 127.0.0.1 at 2011-06-20 20:38
 Rendering pickups/print_work_order
 Sending data work_order.pdf
 Completed in 68ms (View: 1, DB: 0) | 200 OK [http://localhost/pickups/pdf/print_work_order]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#show (for 127.0.0.1 at 2011-06-21 11:48:07) [GET]
+  Parameters: {"action"=>"show", "id"=>"4", "controller"=>"pickups"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPickup Load (0.3ms)[0m   [0mSELECT * FROM "pickups" WHERE ("pickups"."id" = 4) [0m
+  [4;36;1mSolutionOwnerUser Update (0.3ms)[0m   [0;1mUPDATE "users" SET "breadcrumbs" = '--- 
+- - Test Pickup 4
+ - /pickups/4
+- - Test Pickup 2
+ - /pickups/3
+- - Second Location
+ - /pickup_locations/2
+- - Google
+ - /clients/1
+- - Test Pickup
+ - /pickups/2
+- - 100 Laptops ATL Pickup
+ - /pickups/1
+- - Main Office
+ - /pickup_locations/1
+' WHERE "id" = 1[0m
+Rendering template within layouts/tigris
+Rendering pickups/show
+  [4;35;1mPickupLocation Load (0.3ms)[0m   [0mSELECT * FROM "pickup_locations" WHERE ("pickup_locations"."id" = 2) [0m
+  [4;36;1mClient Load (0.2ms)[0m   [0;1mSELECT * FROM "clients" WHERE ("clients"."id" = 1) [0m
+  [4;35;1mFolder Load (0.2ms)[0m   [0mSELECT * FROM "folders" WHERE ("folders"."parent_id" IS NULL AND "folders"."name" = 'pickup_4') AND ("folders".folderable_id = 4 AND "folders".folderable_type = 'Pickup') LIMIT 1[0m
+Rendered pickups/_pickup_header (29.5ms)
+  [4;36;1mClientUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) AND ( ("users"."type" = 'ClientUser' ) ) [0m
+  [4;35;1mSolutionOwnerUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) AND ( ("users"."type" = 'SolutionOwnerUser' ) ) [0m
+DEPRECATION WARNING: formatted_print_work_order_pickup_path() has been deprecated. Please pass format to the standard print_work_order_pickup_path method instead. (called from _run_erb_app47views47pickups47show46html46erb at /Users/bparanj/projects/work/SecurePort/releases/latest/app/views/pickups/show.html.erb:103)
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+Rendered layouts/tigris/_toptabs (1.4ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (1.2ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.0ms)
+Completed in 176ms (View: 43, DB: 2) | 200 OK [http://localhost/pickups/4]
+  [4;36;1mSQL (1.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090119191843)
+Migrating to CreateAuditLogs (20090119195750)
+Migrating to CreateClients (20090120165725)
+Migrating to CreatePickupLocations (20090120220539)
+Migrating to CreatePasswordTickets (20090121212353)
+Migrating to CreateFolders (20090123175319)
+Migrating to CreateDocuments (20090123181546)
+Migrating to CreateDocumentVersions (20090123181631)
+Migrating to RemoveDownloadCountFromDocuments (20090126210250)
+Migrating to RemoveDescriptionFromFolders (20090127152956)
+Migrating to ReAddDescriptionToFolders (20090128213330)
+Migrating to CreatePickups (20090129151032)
+Migrating to AddNotificationDateToPickups (20090130195025)
+Migrating to RemoveUpdatedAtFromUsers (20090202145301)
+Migrating to MakePickupLocationDefaultClientUserRequired (20090202175342)
+Migrating to AddDefaultPickupLocationSolutionOwnerLead (20090202195137)
+Migrating to CreateTasks (20090202215029)
+Migrating to MakeSolutionOwnerUserIdRequiredForPickups (20090202230253)
+Migrating to CreateSystemEmails (20090203182312)
+Migrating to CreateFeedbacks (20090203191937)
+Migrating to CreateEquipment (20090205142436)
+Migrating to UpdatePickupDates (20090217190714)
+Migrating to UpdateEquipmentSerial (20090326214236)
+Migrating to AddAttrsToEquipment (20090903191717)
+Migrating to AddMoreColumnsToEquipment (20091007150053)
+Migrating to AddCreationInfoToEquipment (20091007152448)
+Migrating to AddTimeOnSiteToPickups (20110621012447)
+Migrating to CreatePallets (20110621185510)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCREATE TABLE "pallets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" varchar(255), "description" text, "weight" varchar(255), "comments" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20110621185510')[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("audit_logs")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_audit_logs_on_user_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("clients")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_clients_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("document_versions")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_document_versions_on_document_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("documents")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_documents_on_root_folder_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_documents_on_folder_id')[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("equipment")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_serial')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_tracking')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_pickup_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_equipment_on_type_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_equipment_on_type')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("feedbacks")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_feedbacks_on_value')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_feedbacks_on_client_user_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_feedbacks_on_pickup_id')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("folders")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("pallets")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("password_tickets")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_password_tickets_on_value')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_password_tickets_on_user_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("pickup_locations")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickup_locations_on_client_user_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickup_locations_on_client_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickup_locations_on_name')[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_list("pickups")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_notification_date')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_date')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_status')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_name')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_pickups_on_client_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_pickups_on_pickup_location_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("system_emails")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_system_emails_on_pickup_id')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("tasks")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_tasks_on_status')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_tasks_on_name')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_tasks_on_num')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_tasks_on_pickup_id')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_users_on_email')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_info('index_users_on_login')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_info('index_users_on_type')[0m
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#show (for 127.0.0.1 at 2011-06-21 12:06:12) [GET]
+  Parameters: {"action"=>"show", "id"=>"4", "controller"=>"pickups"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPickup Load (0.3ms)[0m   [0mSELECT * FROM "pickups" WHERE ("pickups"."id" = 4) [0m
+  [4;36;1mSolutionOwnerUser Update (0.3ms)[0m   [0;1mUPDATE "users" SET "breadcrumbs" = '--- 
+- - Test Pickup 4
+ - /pickups/4
+- - Test Pickup 2
+ - /pickups/3
+- - Second Location
+ - /pickup_locations/2
+- - Google
+ - /clients/1
+- - Test Pickup
+ - /pickups/2
+- - 100 Laptops ATL Pickup
+ - /pickups/1
+- - Main Office
+ - /pickup_locations/1
+' WHERE "id" = 1[0m
+Rendering template within layouts/tigris
+Rendering pickups/show
+  [4;35;1mPickupLocation Load (0.3ms)[0m   [0mSELECT * FROM "pickup_locations" WHERE ("pickup_locations"."id" = 2) [0m
+  [4;36;1mClient Load (0.2ms)[0m   [0;1mSELECT * FROM "clients" WHERE ("clients"."id" = 1) [0m
+  [4;35;1mFolder Load (0.2ms)[0m   [0mSELECT * FROM "folders" WHERE ("folders"."parent_id" IS NULL AND "folders"."name" = 'pickup_4') AND ("folders".folderable_id = 4 AND "folders".folderable_type = 'Pickup') LIMIT 1[0m
+Rendered pickups/_pickup_header (31.3ms)
+  [4;36;1mClientUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) AND ( ("users"."type" = 'ClientUser' ) ) [0m
+  [4;35;1mSolutionOwnerUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) AND ( ("users"."type" = 'SolutionOwnerUser' ) ) [0m
+DEPRECATION WARNING: formatted_print_work_order_pickup_path() has been deprecated. Please pass format to the standard print_work_order_pickup_path method instead. (called from _run_erb_app47views47pickups47show46html46erb at /Users/bparanj/projects/work/SecurePort/releases/latest/app/views/pickups/show.html.erb:103)
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (3.6ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (2.3ms)
+Rendered layouts/tigris/_apphead (0.4ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 151ms (View: 117, DB: 2) | 200 OK [http://localhost/pickups/4]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#index (for 127.0.0.1 at 2011-06-21 12:06:17) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pallets"}
+  [4;36;1mPallet Load (0.9ms)[0m   [0;1mSELECT * FROM "pallets" [0m
+Rendering template within layouts/tigris
+Rendering pallets/index
+
+ActionView::TemplateError (can't convert nil into String) on line #6 of app/views/layouts/tigris.html.erb:
+3:        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+4: <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+5:  <head>
+6:    <title><%= APPNAME + " | " + @page_title %></title>
+7:    <%= render :partial => 'layouts/tigris/head'  %>
+8:  </head>
+9:  <body marginwidth="0" marginheight="0" class="composite"<%= ' onunload="GUnload()"' if @javascripts.is_a?(Array) && @javascripts.any? { |j| j.match(/google/) } %>>
+
+    app/views/layouts/tigris.html.erb:6:in `+'
+    app/views/layouts/tigris.html.erb:6
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (56.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#index (for 127.0.0.1 at 2011-06-21 12:07:09) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pallets"}
+  [4;35;1mPallet Load (1.0ms)[0m   [0mSELECT * FROM "pallets" [0m
+Rendering template within layouts/tigris
+Rendering pallets/index
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+
+ActionView::TemplateError (undefined method `filter_field' for nil:NilClass) on line #17 of app/views/pallets/index.html.erb:
+14:   lnf <<  ['Client',   'clients.name'] if solution_owner_user?
+15:   lnf += [['Status',   'pickups.status'],
+16:     ['Type',     'pickups.pickup_type']] -%>
+17:   <%= list_nav_filter lnf %>
+18:   <table width="100%">
+19:     <tr>
+20:       <th><%= list_nav_header('Name',     'pickups.name') %></th>
+
+    app/views/pallets/index.html.erb:17
+    app/views/pallets/index.html.erb:10
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (59.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#index (for 127.0.0.1 at 2011-06-21 12:07:28) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pallets"}
+  [4;35;1mPallet Load (1.0ms)[0m   [0mSELECT * FROM "pallets" [0m
+Rendering template within layouts/tigris
+Rendering pallets/index
+
+ActionView::TemplateError (can't convert nil into String) on line #6 of app/views/layouts/tigris.html.erb:
+3:        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+4: <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+5:  <head>
+6:    <title><%= APPNAME + " | " + @page_title %></title>
+7:    <%= render :partial => 'layouts/tigris/head'  %>
+8:  </head>
+9:  <body marginwidth="0" marginheight="0" class="composite"<%= ' onunload="GUnload()"' if @javascripts.is_a?(Array) && @javascripts.any? { |j| j.match(/google/) } %>>
+
+    app/views/layouts/tigris.html.erb:6:in `+'
+    app/views/layouts/tigris.html.erb:6
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (53.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#index (for 127.0.0.1 at 2011-06-21 12:09:26) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pallets"}
+  [4;36;1mPallet Load (1.1ms)[0m   [0;1mSELECT * FROM "pallets" [0m
+Rendering template within layouts/tigris
+Rendering pallets/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_toptabs (95.9ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.3ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 117ms (View: 110, DB: 1) | 200 OK [http://localhost/pallets]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#index (for 127.0.0.1 at 2011-06-21 12:09:31) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickups"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(DISTINCT "pickups".id) AS count_all FROM "pickups" LEFT OUTER JOIN "pickup_locations" ON "pickup_locations".id = "pickups".pickup_location_id LEFT OUTER JOIN "clients" ON "clients".id = "pickups".client_id WHERE (1) [0m
+  [4;35;1mPickup Load (0.4ms)[0m   [0mSELECT * FROM "pickups" WHERE (1) ORDER BY pickup_date DESC LIMIT 25 OFFSET 0[0m
+  [4;36;1mPickupLocation Load (0.2ms)[0m   [0;1mSELECT * FROM "pickup_locations" WHERE ("pickup_locations"."id" IN (1,2)) [0m
+  [4;35;1mClient Load (0.1ms)[0m   [0mSELECT * FROM "clients" WHERE ("clients"."id" = 1) [0m
+Rendering template within layouts/tigris
+Rendering pickups/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (72.8ms)
+Rendered layouts/tigris/_breadcrumbs (0.9ms)
+Rendered layouts/tigris/_navcolumn (3.6ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 141ms (View: 97, DB: 1) | 200 OK [http://localhost/pickups]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#index (for 127.0.0.1 at 2011-06-21 12:09:40) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pallets"}
+  [4;36;1mPallet Load (0.9ms)[0m   [0;1mSELECT * FROM "pallets" [0m
+Rendering template within layouts/tigris
+Rendering pallets/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_toptabs (15.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.9ms)
+Rendered layouts/tigris/_navcolumn (3.4ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 29ms (View: 23, DB: 1) | 200 OK [http://localhost/pallets]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#index (for 127.0.0.1 at 2011-06-21 12:10:12) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pallets"}
+  [4;36;1mPallet Load (1.0ms)[0m   [0;1mSELECT * FROM "pallets" [0m
+Rendering template within layouts/tigris
+Rendering pallets/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_toptabs (101.8ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.4ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 121ms (View: 114, DB: 1) | 200 OK [http://localhost/pallets]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#index (for 127.0.0.1 at 2011-06-21 12:10:22) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickups"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(DISTINCT "pickups".id) AS count_all FROM "pickups" LEFT OUTER JOIN "pickup_locations" ON "pickup_locations".id = "pickups".pickup_location_id LEFT OUTER JOIN "clients" ON "clients".id = "pickups".client_id WHERE (1) [0m
+  [4;35;1mPickup Load (0.4ms)[0m   [0mSELECT * FROM "pickups" WHERE (1) ORDER BY pickup_date DESC LIMIT 25 OFFSET 0[0m
+  [4;36;1mPickupLocation Load (0.2ms)[0m   [0;1mSELECT * FROM "pickup_locations" WHERE ("pickup_locations"."id" IN (1,2)) [0m
+  [4;35;1mClient Load (0.1ms)[0m   [0mSELECT * FROM "clients" WHERE ("clients"."id" = 1) [0m
+Rendering template within layouts/tigris
+Rendering pickups/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (1.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.4ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 62ms (View: 18, DB: 1) | 200 OK [http://localhost/pickups]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#index (for 127.0.0.1 at 2011-06-21 12:10:29) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pallets"}
+  [4;36;1mPallet Load (0.9ms)[0m   [0;1mSELECT * FROM "pallets" [0m
+Rendering template within layouts/tigris
+Rendering pallets/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_toptabs (14.5ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.2ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 28ms (View: 22, DB: 1) | 200 OK [http://localhost/pallets]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#index (for 127.0.0.1 at 2011-06-21 12:10:32) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickups"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(DISTINCT "pickups".id) AS count_all FROM "pickups" LEFT OUTER JOIN "pickup_locations" ON "pickup_locations".id = "pickups".pickup_location_id LEFT OUTER JOIN "clients" ON "clients".id = "pickups".client_id WHERE (1) [0m
+  [4;35;1mPickup Load (0.4ms)[0m   [0mSELECT * FROM "pickups" WHERE (1) ORDER BY pickup_date DESC LIMIT 25 OFFSET 0[0m
+  [4;36;1mPickupLocation Load (0.3ms)[0m   [0;1mSELECT * FROM "pickup_locations" WHERE ("pickup_locations"."id" IN (1,2)) [0m
+  [4;35;1mClient Load (0.1ms)[0m   [0mSELECT * FROM "clients" WHERE ("clients"."id" = 1) [0m
+Rendering template within layouts/tigris
+Rendering pickups/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (1.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.4ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 137ms (View: 18, DB: 1) | 200 OK [http://localhost/pickups]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#index (for 127.0.0.1 at 2011-06-21 12:11:21) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pallets"}
+  [4;36;1mPallet Load (0.9ms)[0m   [0;1mSELECT * FROM "pallets" [0m
+Rendering template within layouts/tigris
+Rendering pallets/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_toptabs (15.5ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.2ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 32ms (View: 26, DB: 1) | 200 OK [http://localhost/pallets]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#index (for 127.0.0.1 at 2011-06-21 12:12:24) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pallets"}
+  [4;36;1mPallet Load (1.0ms)[0m   [0;1mSELECT * FROM "pallets" [0m
+Rendering template within layouts/tigris
+Rendering pallets/index
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+Rendered layouts/tigris/_toptabs (1.3ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.3ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 33ms (View: 26, DB: 1) | 200 OK [http://localhost/pallets]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#new (for 127.0.0.1 at 2011-06-21 12:12:51) [GET]
+  Parameters: {"action"=>"new", "controller"=>"pallets"}
+Rendering template within layouts/tigris
+Rendering pallets/new
+Rendered pallets/_pallet_form (6.5ms)
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_toptabs (14.6ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.3ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.2ms)
+Completed in 115ms (View: 109, DB: 0) | 200 OK [http://localhost/pallets/new]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#create (for 127.0.0.1 at 2011-06-21 12:13:29) [POST]
+  Parameters: {"commit"=>"Create", "pallet"=>{"number"=>"1", "comments"=>"just lookin", "weight"=>"100 lbs", "description"=>"contains laptops"}, "action"=>"create", "authenticity_token"=>"GQKKI409PGPtRGUPVm0rUGRD7YX0mivf3vmVesD9oN8=", "controller"=>"pallets"}
+  [4;35;1mPallet Create (0.3ms)[0m   [0mINSERT INTO "pallets" ("number", "created_at", "comments", "updated_at", "weight", "description") VALUES('1', '2011-06-21 19:13:29', 'just lookin', '2011-06-21 19:13:29', '100 lbs', 'contains laptops')[0m
+Redirected to http://localhost:3000/pallets
+Completed in 12ms (DB: 0) | 302 Found [http://localhost/pallets]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#index (for 127.0.0.1 at 2011-06-21 12:13:29) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pallets"}
+  [4;36;1mPallet Load (1.0ms)[0m   [0;1mSELECT * FROM "pallets" [0m
+Rendering template within layouts/tigris
+Rendering pallets/index
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (1.3ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.3ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 28ms (View: 21, DB: 1) | 200 OK [http://localhost/pallets]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#index (for 127.0.0.1 at 2011-06-21 12:15:09) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickups"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(DISTINCT "pickups".id) AS count_all FROM "pickups" LEFT OUTER JOIN "pickup_locations" ON "pickup_locations".id = "pickups".pickup_location_id LEFT OUTER JOIN "clients" ON "clients".id = "pickups".client_id WHERE (1) [0m
+  [4;35;1mPickup Load (0.4ms)[0m   [0mSELECT * FROM "pickups" WHERE (1) ORDER BY pickup_date DESC LIMIT 25 OFFSET 0[0m
+  [4;36;1mPickupLocation Load (0.3ms)[0m   [0;1mSELECT * FROM "pickup_locations" WHERE ("pickup_locations"."id" IN (1,2)) [0m
+  [4;35;1mClient Load (0.1ms)[0m   [0mSELECT * FROM "clients" WHERE ("clients"."id" = 1) [0m
+Rendering template within layouts/tigris
+Rendering pickups/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (1.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.4ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 137ms (View: 18, DB: 1) | 200 OK [http://localhost/pickups]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#show (for 127.0.0.1 at 2011-06-21 12:15:13) [GET]
+  Parameters: {"action"=>"show", "id"=>"4", "controller"=>"pickups"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPickup Load (0.3ms)[0m   [0mSELECT * FROM "pickups" WHERE ("pickups"."id" = 4) [0m
+  [4;36;1mSolutionOwnerUser Update (0.3ms)[0m   [0;1mUPDATE "users" SET "breadcrumbs" = '--- 
+- - Test Pickup 4
+ - /pickups/4
+- - Test Pickup 2
+ - /pickups/3
+- - Second Location
+ - /pickup_locations/2
+- - Google
+ - /clients/1
+- - Test Pickup
+ - /pickups/2
+- - 100 Laptops ATL Pickup
+ - /pickups/1
+- - Main Office
+ - /pickup_locations/1
+' WHERE "id" = 1[0m
+Rendering template within layouts/tigris
+Rendering pickups/show
+  [4;35;1mPickupLocation Load (0.3ms)[0m   [0mSELECT * FROM "pickup_locations" WHERE ("pickup_locations"."id" = 2) [0m
+  [4;36;1mClient Load (0.2ms)[0m   [0;1mSELECT * FROM "clients" WHERE ("clients"."id" = 1) [0m
+  [4;35;1mFolder Load (0.2ms)[0m   [0mSELECT * FROM "folders" WHERE ("folders"."parent_id" IS NULL AND "folders"."name" = 'pickup_4') AND ("folders".folderable_id = 4 AND "folders".folderable_type = 'Pickup') LIMIT 1[0m
+Rendered pickups/_pickup_header (105.4ms)
+  [4;36;1mClientUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) AND ( ("users"."type" = 'ClientUser' ) ) [0m
+  [4;35;1mSolutionOwnerUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) AND ( ("users"."type" = 'SolutionOwnerUser' ) ) [0m
+DEPRECATION WARNING: formatted_print_work_order_pickup_path() has been deprecated. Please pass format to the standard print_work_order_pickup_path method instead. (called from _run_erb_app47views47pickups47show46html46erb at /Users/bparanj/projects/work/SecurePort/releases/latest/app/views/pickups/show.html.erb:103)
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (1.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (1.2ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 153ms (View: 119, DB: 2) | 200 OK [http://localhost/pickups/4]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#index (for 127.0.0.1 at 2011-06-21 12:15:16) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickups"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(DISTINCT "pickups".id) AS count_all FROM "pickups" LEFT OUTER JOIN "pickup_locations" ON "pickup_locations".id = "pickups".pickup_location_id LEFT OUTER JOIN "clients" ON "clients".id = "pickups".client_id WHERE (1) [0m
+  [4;35;1mPickup Load (0.4ms)[0m   [0mSELECT * FROM "pickups" WHERE (1) ORDER BY pickup_date DESC LIMIT 25 OFFSET 0[0m
+  [4;36;1mPickupLocation Load (0.3ms)[0m   [0;1mSELECT * FROM "pickup_locations" WHERE ("pickup_locations"."id" IN (1,2)) [0m
+  [4;35;1mClient Load (0.1ms)[0m   [0mSELECT * FROM "clients" WHERE ("clients"."id" = 1) [0m
+Rendering template within layouts/tigris
+Rendering pickups/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (1.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.4ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 141ms (View: 18, DB: 1) | 200 OK [http://localhost/pickups]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#index (for 127.0.0.1 at 2011-06-21 12:39:44) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pallets"}
+  [4;36;1mPallet Load (1.0ms)[0m   [0;1mSELECT * FROM "pallets" [0m
+Rendering template within layouts/tigris
+Rendering pallets/index
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+
+ActionView::TemplateError (undefined method `num_pages' for nil:NilClass) on line #31 of app/views/pallets/index.html.erb:
+28:   </table>
+29:   <div class="functnbar3">&nbsp;</div>
+30: <% end %>
+31: <%= list_nav_pagination %>
+
+    app/views/pallets/index.html.erb:31
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /Users/bparanj/.rvm/rubies/ruby-1.8.7-p330/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (134.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#index (for 127.0.0.1 at 2011-06-21 12:40:22) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pallets"}
+  [4;36;1mPallet Load (1.8ms)[0m   [0;1mSELECT * FROM "pallets" [0m
+Rendering template within layouts/tigris
+Rendering pallets/index
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_head (0.5ms)
+Rendered layouts/tigris/_banner (0.4ms)
+Rendered layouts/tigris/_toptabs (2.4ms)
+Rendered layouts/tigris/_breadcrumbs (1.1ms)
+Rendered layouts/tigris/_navcolumn (3.7ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 42ms (View: 34, DB: 2) | 200 OK [http://localhost/pallets]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#new (for 127.0.0.1 at 2011-06-21 12:41:24) [GET]
+  Parameters: {"action"=>"new", "controller"=>"pallets"}
+Rendering template within layouts/tigris
+Rendering pallets/new
+Rendered pallets/_pallet_form (4.8ms)
+Rendered layouts/tigris/_head (78.2ms)
+Rendered layouts/tigris/_banner (0.3ms)
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_toptabs (15.1ms)
+Rendered layouts/tigris/_breadcrumbs (0.9ms)
+Rendered layouts/tigris/_navcolumn (3.4ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 114ms (View: 107, DB: 0) | 200 OK [http://localhost/pallets/new]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#create (for 127.0.0.1 at 2011-06-21 12:41:43) [POST]
+  Parameters: {"commit"=>"Create", "pallet"=>{"number"=>"2", "comments"=>"just more items", "weight"=>"40 lbs", "description"=>"30 Printers"}, "action"=>"create", "authenticity_token"=>"GQKKI409PGPtRGUPVm0rUGRD7YX0mivf3vmVesD9oN8=", "controller"=>"pallets"}
+  [4;35;1mPallet Create (0.4ms)[0m   [0mINSERT INTO "pallets" ("number", "created_at", "comments", "updated_at", "weight", "description") VALUES('2', '2011-06-21 19:41:43', 'just more items', '2011-06-21 19:41:43', '40 lbs', '30 Printers')[0m
+Redirected to http://localhost:3000/pallets/new
+Completed in 12ms (DB: 0) | 302 Found [http://localhost/pallets]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#new (for 127.0.0.1 at 2011-06-21 12:41:43) [GET]
+  Parameters: {"action"=>"new", "controller"=>"pallets"}
+Rendering template within layouts/tigris
+Rendering pallets/new
+Rendered pallets/_pallet_form (5.0ms)
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_toptabs (14.5ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.2ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 35ms (View: 29, DB: 0) | 200 OK [http://localhost/pallets/new]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#index (for 127.0.0.1 at 2011-06-21 12:41:49) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pallets"}
+  [4;35;1mPallet Load (1.0ms)[0m   [0mSELECT * FROM "pallets" [0m
+Rendering template within layouts/tigris
+Rendering pallets/index
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+Rendered layouts/tigris/_toptabs (1.2ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.2ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 29ms (View: 23, DB: 1) | 200 OK [http://localhost/pallets]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#new (for 127.0.0.1 at 2011-06-21 12:41:53) [GET]
+  Parameters: {"action"=>"new", "controller"=>"pallets"}
+Rendering template within layouts/tigris
+Rendering pallets/new
+Rendered pallets/_pallet_form (4.7ms)
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_toptabs (14.7ms)
+Rendered layouts/tigris/_breadcrumbs (0.9ms)
+Rendered layouts/tigris/_navcolumn (3.7ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 35ms (View: 29, DB: 0) | 200 OK [http://localhost/pallets/new]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#create (for 127.0.0.1 at 2011-06-21 18:40:49) [POST]
+  Parameters: {"commit"=>"Create", "pallet"=>{"number"=>"3", "comments"=>"fdafa", "weight"=>"2", "description"=>"adfads"}, "action"=>"create", "authenticity_token"=>"GQKKI409PGPtRGUPVm0rUGRD7YX0mivf3vmVesD9oN8=", "controller"=>"pallets"}
+  [4;36;1mPallet Create (0.4ms)[0m   [0;1mINSERT INTO "pallets" ("number", "created_at", "comments", "updated_at", "weight", "description") VALUES('3', '2011-06-22 01:40:49', 'fdafa', '2011-06-22 01:40:49', '2', 'adfads')[0m
+Redirected to http://localhost:3000/pallets/new
+Completed in 13ms (DB: 0) | 302 Found [http://localhost/pallets]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#new (for 127.0.0.1 at 2011-06-21 18:40:49) [GET]
+  Parameters: {"action"=>"new", "controller"=>"pallets"}
+Rendering template within layouts/tigris
+Rendering pallets/new
+Rendered pallets/_pallet_form (5.3ms)
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (1.0ms)
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_toptabs (16.8ms)
+Rendered layouts/tigris/_breadcrumbs (1.1ms)
+Rendered layouts/tigris/_navcolumn (30.8ms)
+Rendered layouts/tigris/_apphead (0.2ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 70ms (View: 63, DB: 0) | 200 OK [http://localhost/pallets/new]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#index (for 127.0.0.1 at 2011-06-21 18:41:03) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pallets"}
+  [4;36;1mPallet Load (1.1ms)[0m   [0;1mSELECT * FROM "pallets" [0m
+Rendering template within layouts/tigris
+Rendering pallets/index
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (1.2ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.4ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 102ms (View: 96, DB: 1) | 200 OK [http://localhost/pallets]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#index (for 127.0.0.1 at 2011-06-21 18:41:17) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickups"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(DISTINCT "pickups".id) AS count_all FROM "pickups" LEFT OUTER JOIN "pickup_locations" ON "pickup_locations".id = "pickups".pickup_location_id LEFT OUTER JOIN "clients" ON "clients".id = "pickups".client_id WHERE (1) [0m
+  [4;35;1mPickup Load (0.4ms)[0m   [0mSELECT * FROM "pickups" WHERE (1) ORDER BY pickup_date DESC LIMIT 25 OFFSET 0[0m
+  [4;36;1mPickupLocation Load (0.3ms)[0m   [0;1mSELECT * FROM "pickup_locations" WHERE ("pickup_locations"."id" IN (1,2)) [0m
+  [4;35;1mClient Load (0.1ms)[0m   [0mSELECT * FROM "clients" WHERE ("clients"."id" = 1) [0m
+Rendering template within layouts/tigris
+Rendering pickups/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (1.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.3ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 62ms (View: 18, DB: 1) | 200 OK [http://localhost/pickups]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#new (for 127.0.0.1 at 2011-06-21 18:41:20) [GET]
+  Parameters: {"action"=>"new", "controller"=>"pickups"}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering template within layouts/tigris
+Rendering pickups/new
+  [4;35;1mClient Load (0.3ms)[0m   [0mSELECT * FROM "clients" ORDER BY name ASC[0m
+  [4;36;1mPickupLocation Load (0.4ms)[0m   [0;1mSELECT * FROM "pickup_locations" WHERE ("pickup_locations".client_id = 1) ORDER BY name ASC[0m
+Rendered pickups/_users_list (1.4ms)
+  [4;35;1mSolutionOwnerUser Load (0.4ms)[0m   [0mSELECT * FROM "users" WHERE ( ("users"."type" = 'SolutionOwnerUser' ) ) ORDER BY name ASC[0m
+Rendered pickups/_users_list (0.4ms)
+Rendered pickups/_pickup_form (115.4ms)
+Rendered layouts/tigris/_head (1.4ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (1.1ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.4ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 159ms (View: 134, DB: 1) | 200 OK [http://localhost/pickups/new]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#index (for 127.0.0.1 at 2011-06-21 18:41:26) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pallets"}
+  [4;36;1mPallet Load (1.0ms)[0m   [0;1mSELECT * FROM "pallets" [0m
+Rendering template within layouts/tigris
+Rendering pallets/index
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (1.2ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.2ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 28ms (View: 22, DB: 1) | 200 OK [http://localhost/pallets]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#new (for 127.0.0.1 at 2011-06-21 18:41:30) [GET]
+  Parameters: {"action"=>"new", "controller"=>"pallets"}
+Rendering template within layouts/tigris
+Rendering pallets/new
+Rendered pallets/_pallet_form (5.0ms)
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_toptabs (14.8ms)
+Rendered layouts/tigris/_breadcrumbs (0.9ms)
+Rendered layouts/tigris/_navcolumn (3.3ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 120ms (View: 29, DB: 0) | 200 OK [http://localhost/pallets/new]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#new (for 127.0.0.1 at 2011-06-21 18:42:35) [GET]
+  Parameters: {"action"=>"new", "controller"=>"pallets"}
+Rendering template within layouts/tigris
+Rendering pallets/new
+Rendered pallets/_pallet_form (10.2ms)
+Rendered layouts/tigris/_head (0.4ms)
+Rendered layouts/tigris/_banner (0.3ms)
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_toptabs (15.7ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.2ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 51ms (View: 42, DB: 0) | 200 OK [http://localhost/pallets/new]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#create (for 127.0.0.1 at 2011-06-21 18:42:47) [POST]
+  Parameters: {"commit"=>"Create", "pallet"=>{"number"=>"4", "comments"=>"adfafa", "weight"=>"4", "description"=>"afasdaf"}, "action"=>"create", "authenticity_token"=>"GQKKI409PGPtRGUPVm0rUGRD7YX0mivf3vmVesD9oN8=", "controller"=>"pallets"}
+  [4;36;1mPallet Create (0.3ms)[0m   [0;1mINSERT INTO "pallets" ("number", "created_at", "comments", "updated_at", "weight", "description") VALUES('4', '2011-06-22 01:42:47', 'adfafa', '2011-06-22 01:42:47', '4', 'afasdaf')[0m
+Redirected to http://localhost:3000/pallets/new
+Completed in 11ms (DB: 0) | 302 Found [http://localhost/pallets]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#new (for 127.0.0.1 at 2011-06-21 18:42:47) [GET]
+  Parameters: {"action"=>"new", "controller"=>"pallets"}
+Rendering template within layouts/tigris
+Rendering pallets/new
+Rendered pallets/_pallet_form (4.9ms)
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_toptabs (14.4ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.2ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 35ms (View: 28, DB: 0) | 200 OK [http://localhost/pallets/new]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#index (for 127.0.0.1 at 2011-06-21 18:42:51) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pallets"}
+  [4;36;1mPallet Load (1.1ms)[0m   [0;1mSELECT * FROM "pallets" [0m
+Rendering template within layouts/tigris
+Rendering pallets/index
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (1.2ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.4ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 104ms (View: 98, DB: 1) | 200 OK [http://localhost/pallets]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupLocationsController#index (for 127.0.0.1 at 2011-06-21 18:43:05) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickup_locations"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(DISTINCT "pickup_locations".id) AS count_all FROM "pickup_locations" LEFT OUTER JOIN "clients" ON "clients".id = "pickup_locations".client_id LEFT OUTER JOIN "users" ON "users".id = "pickup_locations".client_user_id AND ("users"."type" = 'ClientUser' ) WHERE (1) [0m
+  [4;35;1mPickupLocation Load (0.2ms)[0m   [0mSELECT * FROM "pickup_locations" WHERE (1) ORDER BY pickup_locations.name ASC LIMIT 25 OFFSET 0[0m
+  [4;36;1mClient Load (0.2ms)[0m   [0;1mSELECT * FROM "clients" WHERE ("clients"."id" = 1) [0m
+  [4;35;1mClientUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) AND ( ("users"."type" = 'ClientUser' ) ) [0m
+Rendering template within layouts/tigris
+Rendering pickup_locations/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (1.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (1.1ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 67ms (View: 23, DB: 1) | 200 OK [http://localhost/pickup_locations]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#index (for 127.0.0.1 at 2011-06-21 18:43:10) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pickups"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(DISTINCT "pickups".id) AS count_all FROM "pickups" LEFT OUTER JOIN "pickup_locations" ON "pickup_locations".id = "pickups".pickup_location_id LEFT OUTER JOIN "clients" ON "clients".id = "pickups".client_id WHERE (1) [0m
+  [4;35;1mPickup Load (0.4ms)[0m   [0mSELECT * FROM "pickups" WHERE (1) ORDER BY pickup_date DESC LIMIT 25 OFFSET 0[0m
+  [4;36;1mPickupLocation Load (0.2ms)[0m   [0;1mSELECT * FROM "pickup_locations" WHERE ("pickup_locations"."id" IN (1,2)) [0m
+  [4;35;1mClient Load (0.1ms)[0m   [0mSELECT * FROM "clients" WHERE ("clients"."id" = 1) [0m
+Rendering template within layouts/tigris
+Rendering pickups/index
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.3ms)
+Rendered layouts/tigris/_toptabs (1.0ms)
+Rendered layouts/tigris/_breadcrumbs (0.9ms)
+Rendered layouts/tigris/_navcolumn (3.3ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 62ms (View: 18, DB: 1) | 200 OK [http://localhost/pickups]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PickupsController#new (for 127.0.0.1 at 2011-06-21 18:43:18) [GET]
+  Parameters: {"action"=>"new", "controller"=>"pickups"}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering template within layouts/tigris
+Rendering pickups/new
+  [4;35;1mClient Load (0.3ms)[0m   [0mSELECT * FROM "clients" ORDER BY name ASC[0m
+  [4;36;1mPickupLocation Load (0.3ms)[0m   [0;1mSELECT * FROM "pickup_locations" WHERE ("pickup_locations".client_id = 1) ORDER BY name ASC[0m
+Rendered pickups/_users_list (0.4ms)
+  [4;35;1mSolutionOwnerUser Load (0.4ms)[0m   [0mSELECT * FROM "users" WHERE ( ("users"."type" = 'SolutionOwnerUser' ) ) ORDER BY name ASC[0m
+Rendered pickups/_users_list (0.4ms)
+Rendered pickups/_pickup_form (39.0ms)
+Rendered layouts/tigris/_head (1.4ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (1.1ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.3ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 150ms (View: 50, DB: 1) | 200 OK [http://localhost/pickups/new]
+DEPRECATION WARNING: Giving :session_key to SessionStore is deprecated, please use :key instead. (called from new at /Users/bparanj/.rvm/gems/ruby-1.8.7-p330@reclamere/gems/actionpack-2.3.9/lib/action_controller/middleware_stack.rb:72)
+
+
+Processing PalletsController#index (for 127.0.0.1 at 2011-06-21 18:43:45) [GET]
+  Parameters: {"action"=>"index", "controller"=>"pallets"}
+  [4;36;1mPallet Load (1.1ms)[0m   [0;1mSELECT * FROM "pallets" [0m
+Rendering template within layouts/tigris
+Rendering pallets/index
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered layouts/tigris/_head (0.3ms)
+Rendered layouts/tigris/_banner (0.2ms)
+Rendered layouts/tigris/_toptabs (1.2ms)
+Rendered layouts/tigris/_breadcrumbs (0.8ms)
+Rendered layouts/tigris/_navcolumn (3.2ms)
+Rendered layouts/tigris/_apphead (0.1ms)
+Rendered layouts/tigris/_footer (0.1ms)
+Completed in 29ms (View: 23, DB: 1) | 200 OK [http://localhost/pallets]

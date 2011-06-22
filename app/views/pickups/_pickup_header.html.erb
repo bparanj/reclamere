@@ -11,17 +11,17 @@
     <th>Location</th>
     <td><%= link_to(h(pickup.pickup_location.name), pickup_location_path(pickup.pickup_location)) %></td>
   </tr>
-  <tr>
-    <th>Services to Perform</th>
-    <td><%=h @pickup.pickup_type %></td>
-  </tr>
-
   <% if solution_owner_user? -%>
     <tr>
       <th>Client</th>
       <td><%= link_to(h(pickup.client.name), client_path(pickup.client)) %></td>
     </tr>
   <% end -%>
+  <tr>
+    <th>Services to Perform</th>
+    <td><%=h @pickup.pickup_type %></td>
+  </tr>
+
 </table>
 
 <div class="tabs" id="client_tabs">

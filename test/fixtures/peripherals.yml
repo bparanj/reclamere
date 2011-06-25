@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  type: MyString
+  brand: MyString
+  serial: MyString
+
+two:
+  type: MyString
+  brand: MyString
+  serial: MyString

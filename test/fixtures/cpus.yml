@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  type: MyString
+  brand: MyString
+  serial: MyString
+  class: MyString
+  hard_drive_serial: MyString
+
+two:
+  type: MyString
+  brand: MyString
+  serial: MyString
+  class: MyString
+  hard_drive_serial: MyString

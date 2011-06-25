@@ -1,0 +1,216 @@
+<% form_tag(services_path, :method => 'post') do %>
+
+<table class="axial">
+	<tr>
+		<th></th>
+		<td><h3>Monitor</h3></td>
+	</tr>
+  <tr>
+    <th> Type</th>
+	<td>
+		<%= select_tag('monitor_type', options_for_select(["Please select","CRT", "LCD"])) %>		
+	</td>
+  </tr>
+
+  <tr>
+    <th>Size</th>
+    <td>
+		<%= select_tag('monitor_size', options_for_select(@monitor_sizes)) %>
+		<%= link_to "Add", "create_monitor_size_path ajax popup window" %>
+	</td>
+  </tr>
+
+  <tr>
+    <th>Brand</th>
+    <td>
+		<%= select_tag('monitor_brand', options_for_select(@monitor_brands)) %>
+		<%= link_to "Add", "create_monitor_brand_path ajax popup window" %>
+	</td>
+  </tr>
+
+  <tr>
+    <th>Serial</th>
+    <td><%= text_field_tag('monitor_serial', nil, :size => 35 ) %></td>
+  </tr>
+
+	<tr>
+		<th></th>
+		<td><h3>CPUs</h3></td>
+	</tr>
+    <tr>
+      <th> Type</th>
+	  <td> 
+		<%= select_tag('cpu_type', options_for_select(@cpu_types)) %> 
+		<%= link_to "Add", "create_cpu_type_path ajax popup window" %>
+	  </td>
+	</tr>
+    <tr>
+      <th> Brand</th>
+	  <td> 
+		<%= select_tag('cpu_brand', options_for_select(@cpu_brands)) %> 
+		<%= link_to "Add", "create_cpu_brand_path ajax popup window" %>
+	  </td>
+	</tr>
+	<tr>
+    <th>Serial</th>
+    	<td><%= text_field_tag('cpu_serial', nil, :size => 35 ) %></td>
+    </tr>
+    <tr>
+      <th> Class</th>
+	  <td> 
+		<%= select_tag('cpu_class', options_for_select(@cpu_classes)) %> 
+		<%= link_to "Add", "create_cpu_class_path ajax popup window" %>
+	  </td>
+	</tr>
+
+  <tr>
+    <th>Hard Drive Serial</th>
+    <td>
+		<%= text_field_tag('cpu_hard_drive_serial', nil, :size => 35 ) %>
+		<%= link_to "Add Another", "Dyanmically add another field for serial ..." %>
+	</td>
+  </tr>
+  
+	<tr>
+		<th></th>
+		<td><h3>Loose Hard Drive</h3></td>
+	</tr>
+	<tr>
+      <th> Brand</th>
+	  <td> 
+		<%= select_tag('loose_hard_drive_brand', options_for_select(@hard_drive_brands)) %> 
+		<%= link_to "Add", "create_hard_drive_brand_path ajax popup window" %>
+	  </td>
+	</tr>
+	<tr>
+    <th>Serial</th>
+    <td>
+		<%= text_field_tag('loose_hard_drive_serial', nil, :size => 35 ) %>
+	</td>
+  </tr>	
+	
+	<tr>
+		<th></th>
+		<td><h3>Flash Hard Drive</h3></td>
+	</tr>
+	<tr>
+      <th> Brand</th>
+	  <td> 
+		<%= select_tag('flash_hard_drive_brand', options_for_select(@flash_drive_brands)) %> 
+		<%= link_to "Add", "create_flash_drive_brand_path ajax popup window" %>
+	  </td>
+	</tr>
+	<tr>
+    <th>Serial</th>
+    <td>
+		<%= text_field_tag('flash_hard_drive_serial', nil, :size => 35 ) %>
+	</td>
+  </tr>
+
+	
+	<tr>
+		<th></th>
+		<td><h3>Television</h3></td>
+	</tr>
+	<tr>
+      <th> Brand</th>
+	  <td> 
+		<%= select_tag('tv_brand', options_for_select(@tv_brands)) %> 
+		<%= link_to "Add", "create_flash_drive_brand_path ajax popup window" %>
+	  </td>
+	</tr>
+	<tr>
+    <th>Size</th>
+    <td>
+		<%= select_tag('tv_size', options_for_select(@tv_sizes)) %>
+		<%= link_to "Add", "create_tv_size_path ajax popup window" %>
+	</td>
+  </tr>
+	<tr>
+    <th>Serial</th>
+    <td>
+		<%= text_field_tag('flash_hard_drive_serial', nil, :size => 35 ) %>
+	</td>
+  </tr>
+
+	<tr>
+		<th></th>
+		<td><h3>Magnetic Media</h3></td>
+	</tr>
+	
+	<tr>
+ 	   <th> Type</th>
+		<td>
+			<%= select_tag('magnetic_media_type', options_for_select(["Please select","Floppy", "CD", "Media"])) %>					
+		</td>	
+    </tr>
+	<tr>
+ 	   <th>Weight</th>
+	    <td><%= text_field_tag('magnetic_media_weight', nil, :size => 35 ) %></td>
+    </tr>
+
+	<tr>
+		<th></th>
+		<td><h3>Printers / Fax / Scanners</h3></td>
+	</tr>
+	<tr>
+	
+	  <tr>
+	    <th> Type</th>
+		<td>
+			<%= select_tag('peripherals_type', options_for_select(["Please select","Printer", "Fax", "Scanner"])) %>		
+		</td>
+	  </tr>		
+	
+  <tr>
+    <th>Brand</th>
+    <td>
+		<%= select_tag('peripheral_brand', options_for_select(@peripheral_brands)) %>
+		<%= link_to "Add", "create_monitor_brand_path ajax popup window" %>
+	</td>
+  </tr>
+
+  <tr>
+    <th>Serial</th>
+    <td><%= text_field_tag('peripheral_serial', nil, :size => 35 ) %></td>
+  </tr>
+
+  <tr>
+    <th>Hard Drive Serial</th>
+    <td>
+		<%= text_field_tag('peripheral_hard_drive_serial', nil, :size => 35 ) %>
+		<%= link_to "Add Another", "Dyanmically add another field for serial ..." %>
+	</td>
+  </tr>
+
+	<tr>
+		<th></th>
+		<td><h3>Miscellaneous</h3></td>
+	</tr>
+	
+	<tr>
+      <th> Type</th>
+	  <td> 
+		<%= select_tag('misc_type', options_for_select(@misc_types)) %> 
+		<%= link_to "Add", "create_cpu_type_path ajax popup window" %>
+	  </td>
+	</tr>
+    <tr>
+      <th> Brand</th>
+	  <td> 
+		<%= select_tag('misc_brand', options_for_select(@misc_brands)) %> 
+		<%= link_to "Add", "create_cpu_brand_path ajax popup window" %>
+	  </td>
+	</tr>
+	<tr>
+    <th>Serial</th>
+    	<td><%= text_field_tag('misc_serial', nil, :size => 35 ) %></td>
+    </tr>	
+
+</table>
+
+<div class="functnbar3">
+  <%= submit_tag "Save" %>
+</div>
+
+<% end %>

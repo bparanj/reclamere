@@ -1,2 +1,8 @@
-<h1>Services#index</h1>
-<p>Find me in app/views/services/index.html.erb</p>
+<% @page_title = 'Services' -%>
+
+<% if solution_owner_user? -%>
+  <%= print_tasks do |t|
+    t << link_to("New Service", new_service_path)
+    t
+  end %>
+<% end -%>

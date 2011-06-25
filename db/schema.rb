@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110621185510) do
+ActiveRecord::Schema.define(:version => 20110622185209) do
 
   create_table "audit_logs", :force => true do |t|
     t.integer  "user_id",        :null => false
@@ -35,6 +35,40 @@ ActiveRecord::Schema.define(:version => 20110621185510) do
   end
 
   add_index "clients", ["name"], :name => "index_clients_on_name", :unique => true
+
+  create_table "cpu_brands", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cpu_classes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cpu_hard_drive_serials", :force => true do |t|
+    t.string   "name"
+    t.integer  "cpu_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cpu_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cpus", :force => true do |t|
+    t.string   "type"
+    t.string   "brand"
+    t.string   "serial"
+    t.string   "class"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "document_versions", :force => true do |t|
     t.integer  "document_id",                                :null => false
@@ -129,6 +163,19 @@ ActiveRecord::Schema.define(:version => 20110621185510) do
   add_index "feedbacks", ["pickup_id"], :name => "index_feedbacks_on_pickup_id"
   add_index "feedbacks", ["value"], :name => "index_feedbacks_on_value", :unique => true
 
+  create_table "flash_hard_drive_brands", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "flash_hard_drives", :force => true do |t|
+    t.string   "brand"
+    t.string   "serial"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "folders", :force => true do |t|
     t.integer "folderable_id",   :null => false
     t.string  "folderable_type", :null => false
@@ -136,6 +183,73 @@ ActiveRecord::Schema.define(:version => 20110621185510) do
     t.integer "root_folder_id"
     t.string  "name",            :null => false
     t.string  "description"
+  end
+
+  create_table "loose_hard_drive_brands", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "loose_hard_drives", :force => true do |t|
+    t.string   "brand"
+    t.string   "serial"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "magnetic_media_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "magnetic_medias", :force => true do |t|
+    t.string   "type"
+    t.string   "weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "miscellaneous_equipment_brands", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "miscellaneous_equipment_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "miscellaneous_equipments", :force => true do |t|
+    t.string   "serial"
+    t.string   "type"
+    t.string   "brand"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "monitor_brands", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "monitor_sizes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "monitors", :force => true do |t|
+    t.string   "type"
+    t.string   "size"
+    t.string   "brand"
+    t.string   "serial"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "pallets", :force => true do |t|
@@ -155,6 +269,27 @@ ActiveRecord::Schema.define(:version => 20110621185510) do
 
   add_index "password_tickets", ["user_id"], :name => "index_password_tickets_on_user_id", :unique => true
   add_index "password_tickets", ["value"], :name => "index_password_tickets_on_value", :unique => true
+
+  create_table "peripherals", :force => true do |t|
+    t.string   "type"
+    t.string   "brand"
+    t.string   "serial"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "peripherals_brands", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "peripherals_hard_drive_serials", :force => true do |t|
+    t.string   "name"
+    t.integer  "peripherals_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pickup_locations", :force => true do |t|
     t.string  "name",                                 :null => false
@@ -230,6 +365,26 @@ ActiveRecord::Schema.define(:version => 20110621185510) do
   add_index "tasks", ["num"], :name => "index_tasks_on_num"
   add_index "tasks", ["pickup_id"], :name => "index_tasks_on_pickup_id"
   add_index "tasks", ["status"], :name => "index_tasks_on_status"
+
+  create_table "tv_brands", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tv_sizes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tvs", :force => true do |t|
+    t.string   "brand"
+    t.string   "size"
+    t.string   "serial"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "type",                                                   :null => false

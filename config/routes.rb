@@ -2,6 +2,8 @@ ActionController::Routing::Routes.draw do |map|
   # Login/Logout
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
+  map.create_monitor_size '/create_monitor_size', :controller => "services", :action => "create_monitor_size"
+  
   map.resource :session, :only => [ :new, :create, :destroy ]
 
   map.forgot_password "/forgot_password", :controller => 'sessions', :action => 'forgot_password'

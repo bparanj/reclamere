@@ -1,2 +1,7 @@
-<h1>Services#new</h1>
-<p>Find me in app/views/services/new.html.erb</p>
+<% @page_title = 'Service' %>
+
+  <h3>New Service</h3>
+  <%= render :partial => 'service_form' %>
+
+<%= link_to 'Service List', services_path %>
+

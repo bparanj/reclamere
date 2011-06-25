@@ -2,8 +2,6 @@ class EquipmentController < ApplicationController
   before_filter :get_container
   before_filter :solution_owner_user_required, :only => [ :upload, :import, :destroy ]
 
-  # GET /equipment
-  # GET /equipment.xml
   def index
     if @container.is_a?(Client)
       equipment_includes = [:pickup]
@@ -29,13 +27,11 @@ class EquipmentController < ApplicationController
     end
   end
 
-  # GET /equipment/1
-  # GET /equipment/1.xml
   def show
     @equipment = @container.equipment.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html 
       format.xml  { render :xml => @equipment }
     end
   end

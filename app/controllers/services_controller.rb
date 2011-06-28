@@ -1,5 +1,13 @@
 class ServicesController < ApplicationController
   def index
+    @monitors = ComputerMonitor.all
+    @cpus = Cpu.all
+    @lhds = LooseHardDrive.all
+    @fhds = FlashHardDrive.all
+    @tvs = Tv.all
+    @mms = MagneticMedia.all
+    @peripherals = Peripheral.all
+    @miscs = MiscellaneousEquipment.all
   end
 
   def new
@@ -20,19 +28,113 @@ class ServicesController < ApplicationController
 
   def create
     logger.info("Services create...")
+    make_monitor(params)
+    make_cpu(params)
+    make_loose_hard_drive(params)
+    make_flash_hard_drive(params)
+    make_tv(params)
+    make_magnetic_media(params)
+    make_peripheral(params)
+    make_miscellaneous_equipment(params)
+    redirect_to services_path
+  end
+  
+  def make_flash_hard_drive_brand(p)
+    FlashHardDriveBrand.create(:name => p[:name])
   end
 
-  
-end
+  def make_tv_size(p)
+    TvSize.create(:name => p[:name] )
+  end
 
-# {"misc_brand"=>"NETSCREEN", "cpu_class"=>"PD", "tv_brand"=>"PHILIPS", "commit"=>"Save",
-#    "cpu_serial"=>"1234", "misc_type"=>"UPS", "magnetic_media_weight"=>"454545", 
-#    "peripheral_serial"=>"545454", 
-#     "monitor_brand"=>"ACER", "flash_hard_drive_brand"=>"Please select", 
-#     "peripherals_type"=>"Printer", "cpu_hard_drive_serial"=>"12345", 
-#     "peripheral_brand"=>"CANON", "monitor_serial"=>"12345", "flash_hard_drive_serial"=>"242424", 
-#     "controller"=>"services", "cpu_type"=>"CPU 1", "monitor_type"=>"CRT", "cpu_brand"=>"AOPEN",
-#      "loose_hard_drive_brand"=>"CAVIER", "magnetic_media_type"=>"Floppy",
-#       "misc_serial"=>"898989", "monitor_size"=>"17\"", "loose_hard_drive_serial"=>"123456"
-#       , "tv_size"=>"27\"", "peripheral_hard_drive_serial"=>"767676"}
-# 
+  def make_tv_brand(p)
+    TvBrand.create(:name => p[:name])
+  end
+
+  def make_loose_hard_drive_brand(p)
+    LooseHardDriveBrand.create(:name => p[:name] )
+  end
+
+  def make_cpu_type(p)
+    CpuType.create(:name => p[:name] )
+  end
+
+  def make_cpu_brand(p)
+    CpuBrand.create(:name => p[:cpu_brand])
+  end
+
+  def make_cpu_class(p)
+    CpuClass.create(:name => p[:cpu_class])
+  end
+
+  def make_monitor_brand(p)
+    MonitorBrand.create(:name => p[:name] )
+  end
+
+  def make_monitor_size(p)
+    MonitorSize.create(:name => p[:size] )
+  end
+
+  def make_miscellaneous_equipment_brand(p)
+    MiscellaneousEquipmentBrand.create(:name => p[:name] )
+  end
+
+  def make_miscellaneous_equipment_type(p)
+    MiscellaneousEquipmentType.create(:name => p[:name] )
+  end
+
+  def make_peripherals_brand(p)
+    PeripheralsBrand.create(:name => p[:name] )
+  end
+  
+  # def make_magnetic_media_type(p)
+  #   MagneticMediaType.create(:name => p[:] )
+  # end
+
+  def make_cpu_hard_drive_serial(p)
+    # t.string   "name"
+    # t.integer  "cpu_id"
+  end
+
+  def make_peripherals_hard_drive_serial(p)
+    # t.string   "name"
+    # t.integer  "peripherals_id"
+  end
+
+  private
+  
+  def make_monitor(p)
+    ComputerMonitor.create(:cm_type => p[:monitor_type], :size => p[:monitor_size], :brand => p[:monitor_brand], :serial => p[:monitor_serial])
+  end
+
+  def make_cpu(p)
+    cpu = Cpu.create(:cpu_type => p[:cpu_type], :brand => p[:cpu_brand], :serial => p[:cpu_serial], :cpu_class => p[:cpu_class])
+    CpuHardDriveSerial.create(:name => p[:cpu_hard_drive_serial], :cpu_id => cpu.id)
+  end
+
+  def make_loose_hard_drive(p)
+    FlashHardDrive.create(:brand => p[:loose_hard_drive_brand], :serial => p[:loose_hard_drive_serial])
+  end
+
+  def make_flash_hard_drive(p)
+    FlashHardDrive.create(:brand => p[:flash_hard_drive_brand], :serial => p[:flash_hard_drive_serial])
+  end
+
+  def make_tv(p)
+    Tv.create(:brand => p[:tv_brand], :size => p[:tv_size], :serial => p[:tv_serial])
+  end
+
+  def make_magnetic_media(p)
+    MagneticMedia.create(:mm_type => p[:magnetic_media_type], :weight => p[:magnetic_media_weight])
+  end
+
+  def make_peripheral(p)
+    peripheral = Peripheral.create(:ptype => p[:peripheral_type], :brand => p[:peripheral_brand], :serial => p[:peripheral_serial])
+    peripheral.peripherals_hard_drive_serials.create(:name => p[:peripheral_hard_drive_serial])
+  end
+
+  def make_miscellaneous_equipment(p)
+    MiscellaneousEquipment.create(:serial => p[:misc_serial], :me_type => p[:misc_type], :brand => p[:misc_brand])
+  end
+
+end

@@ -1,7 +1,7 @@
 class CreatePeripherals < ActiveRecord::Migration
   def self.up
     create_table :peripherals do |t|
-      t.string :type
+      t.string :ptype
       t.string :brand
       t.string :serial
 

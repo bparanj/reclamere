@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110622185209) do
+ActiveRecord::Schema.define(:version => 20110626010615) do
 
   create_table "audit_logs", :force => true do |t|
     t.integer  "user_id",        :null => false
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(:version => 20110622185209) do
   end
 
   add_index "clients", ["name"], :name => "index_clients_on_name", :unique => true
+
+  create_table "computer_monitors", :force => true do |t|
+    t.string   "cm_type"
+    t.string   "size"
+    t.string   "brand"
+    t.string   "serial"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "cpu_brands", :force => true do |t|
     t.string   "name"
@@ -62,10 +71,10 @@ ActiveRecord::Schema.define(:version => 20110622185209) do
   end
 
   create_table "cpus", :force => true do |t|
-    t.string   "type"
+    t.string   "cpu_type"
     t.string   "brand"
     t.string   "serial"
-    t.string   "class"
+    t.string   "cpu_class"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -205,7 +214,7 @@ ActiveRecord::Schema.define(:version => 20110622185209) do
   end
 
   create_table "magnetic_medias", :force => true do |t|
-    t.string   "type"
+    t.string   "mm_type"
     t.string   "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -225,7 +234,7 @@ ActiveRecord::Schema.define(:version => 20110622185209) do
 
   create_table "miscellaneous_equipments", :force => true do |t|
     t.string   "serial"
-    t.string   "type"
+    t.string   "me_type"
     t.string   "brand"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -239,15 +248,6 @@ ActiveRecord::Schema.define(:version => 20110622185209) do
 
   create_table "monitor_sizes", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "monitors", :force => true do |t|
-    t.string   "type"
-    t.string   "size"
-    t.string   "brand"
-    t.string   "serial"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -271,7 +271,7 @@ ActiveRecord::Schema.define(:version => 20110622185209) do
   add_index "password_tickets", ["value"], :name => "index_password_tickets_on_value", :unique => true
 
   create_table "peripherals", :force => true do |t|
-    t.string   "type"
+    t.string   "ptype"
     t.string   "brand"
     t.string   "serial"
     t.datetime "created_at"
@@ -286,7 +286,7 @@ ActiveRecord::Schema.define(:version => 20110622185209) do
 
   create_table "peripherals_hard_drive_serials", :force => true do |t|
     t.string   "name"
-    t.integer  "peripherals_id"
+    t.integer  "peripheral_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

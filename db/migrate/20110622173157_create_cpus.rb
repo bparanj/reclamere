@@ -1,10 +1,10 @@
 class CreateCpus < ActiveRecord::Migration
   def self.up
     create_table :cpus do |t|
-      t.string :type
+      t.string :cpu_type
       t.string :brand
       t.string :serial
-      t.string :class
+      t.string :cpu_class
 
       t.timestamps
     end

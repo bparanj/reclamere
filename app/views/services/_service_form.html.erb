@@ -16,7 +16,7 @@
     <th>Size</th>
     <td>
 		<%= select_tag('monitor_size', options_for_select(@monitor_sizes)) %>
-		<%= link_to "Add", "create_monitor_size_path ajax popup window" %>
+		<%= link_to "Add", new_monitor_size_path %>
 	</td>
   </tr>
 
@@ -24,7 +24,7 @@
     <th>Brand</th>
     <td>
 		<%= select_tag('monitor_brand', options_for_select(@monitor_brands)) %>
-		<%= link_to "Add", "create_monitor_brand_path ajax popup window" %>
+		<%= link_to "Add", new_monitor_brand_path %>
 	</td>
   </tr>
 
@@ -41,14 +41,14 @@
       <th> Type</th>
 	  <td> 
 		<%= select_tag('cpu_type', options_for_select(@cpu_types)) %> 
-		<%= link_to "Add", "create_cpu_type_path ajax popup window" %>
+		<%= link_to "Add", new_cpu_type_path %>
 	  </td>
 	</tr>
     <tr>
       <th> Brand</th>
 	  <td> 
 		<%= select_tag('cpu_brand', options_for_select(@cpu_brands)) %> 
-		<%= link_to "Add", "create_cpu_brand_path ajax popup window" %>
+		<%= link_to "Add", new_cpu_brand_path %>
 	  </td>
 	</tr>
 	<tr>
@@ -59,7 +59,7 @@
       <th> Class</th>
 	  <td> 
 		<%= select_tag('cpu_class', options_for_select(@cpu_classes)) %> 
-		<%= link_to "Add", "create_cpu_class_path ajax popup window" %>
+		<%= link_to "Add", new_cpu_class_path %>
 	  </td>
 	</tr>
 
@@ -79,7 +79,7 @@
       <th> Brand</th>
 	  <td> 
 		<%= select_tag('loose_hard_drive_brand', options_for_select(@hard_drive_brands)) %> 
-		<%= link_to "Add", "create_hard_drive_brand_path ajax popup window" %>
+		<%= link_to "Add", new_loose_hard_drive_brand_path %>
 	  </td>
 	</tr>
 	<tr>
@@ -129,7 +129,7 @@
 	<tr>
     <th>Serial</th>
     <td>
-		<%= text_field_tag('flash_hard_drive_serial', nil, :size => 35 ) %>
+		<%= text_field_tag('tv_serial', nil, :size => 35 ) %>
 	</td>
   </tr>
 
@@ -158,7 +158,7 @@
 	  <tr>
 	    <th> Type</th>
 		<td>
-			<%= select_tag('peripherals_type', options_for_select(["Please select","Printer", "Fax", "Scanner"])) %>		
+			<%= select_tag('peripheral_type', options_for_select(["Please select","Printer", "Fax", "Scanner"])) %>		
 		</td>
 	  </tr>		
 	

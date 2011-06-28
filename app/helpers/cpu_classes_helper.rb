@@ -1,0 +1,2 @@
+module CpuClassesHelper
+end

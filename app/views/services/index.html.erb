@@ -6,3 +6,143 @@
     t
   end %>
 <% end -%>
+
+<h3>Monitors</h3>
+
+<table width="100%">
+  <tr>
+    <th>Type</th>
+    <th>Size</th>
+    <th>Brand</th>
+    <th>Serial</th>
+  </tr>
+  <% for monitor in @monitors %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= monitor.cm_type %></td>
+      <td><%= monitor.size %></td>
+      <td><%= monitor.brand %></td>
+      <td><%= monitor.serial %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+<h3>CPUs</h3>
+
+<table width="100%">
+  <tr>
+    <th>Type</th>
+    <th>Brand</th>
+    <th>Serial</th>
+    <th>Class</th>
+    <th>Hard Drive Serial</th>
+  </tr>
+  <% for cpu in @cpus %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= cpu.cpu_type %></td>
+      <td><%= cpu.brand %></td>
+      <td><%= cpu.serial %></td>
+      <td><%= cpu.cpu_class %></td>
+      <td><%= cpu.cpu_hard_drive_serials.collect(&:name).join(",") %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+<h3>Loose Hard Drive</h3>
+
+<table width="100%">
+  <tr>
+    <th>Brand</th>
+    <th>Serial</th>
+  </tr>
+  <% for lhd in @lhds %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= lhd.brand %></td>
+      <td><%= lhd.serial %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Flash Hard Drive</h3>
+
+<table width="100%">
+  <tr>
+    <th>Brand</th>
+    <th>Serial</th>
+  </tr>
+  <% for fhd in @fhds %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= fhd.brand %></td>
+      <td><%= fhd.serial %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Television</h3>
+
+<table width="100%">
+  <tr>
+    <th>Brand</th>
+    <th>Size</th>
+    <th>Serial</th>
+  </tr>
+  <% for tv in @tvs %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= tv.brand %></td>
+      <td><%= tv.size %></td>
+      <td><%= tv.serial %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Magnetic Media</h3>
+
+<table width="100%">
+  <tr>
+    <th>Type</th>
+    <th>Weight</th>
+  </tr>
+  <% for mm in @mms %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= mm.mm_type %></td>
+      <td><%= mm.weight %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Printers / Fax / Scanners</h3>
+
+<table width="100%">
+  <tr>
+    <th>Type</th>
+    <th>Brand</th>
+    <th>Serial</th>
+    <th>Hard Drive Serial</th>
+  </tr>
+  <% for peripheral in @peripherals %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= peripheral.ptype %></td>
+      <td><%= peripheral.brand %></td>
+      <td><%= peripheral.serial %></td>
+      <td><%= peripheral.peripherals_hard_drive_serials.collect(&:name).join(",") %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Miscellaneous</h3>
+
+<table width="100%">
+  <tr>
+    <th>Type</th>
+    <th>Brand</th>
+    <th>Serial</th>
+  </tr>
+  <% for misc in @miscs %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= misc.me_type  %></td>
+      <td><%= misc.brand %></td>
+      <td><%= misc.serial %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,2 @@
+module CpuBrandsHelper
+end

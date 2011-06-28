@@ -1,0 +1,10 @@
+<% form_for(@loose_hard_drive_brand) do |f| %>
+  <%= f.error_messages %>
+  <h3>New Loose Hard Drive Brand</h3>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <div class="functnbar3">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>
+
+<%= link_to 'Services List', services_path %>

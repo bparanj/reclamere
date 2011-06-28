@@ -2,7 +2,6 @@ ActionController::Routing::Routes.draw do |map|
   # Login/Logout
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
-  map.create_monitor_size '/create_monitor_size', :controller => "services", :action => "create_monitor_size"
   
   map.resource :session, :only => [ :new, :create, :destroy ]
 
@@ -10,8 +9,8 @@ ActionController::Routing::Routes.draw do |map|
   map.password_ticket "/password_ticket/:id", :controller => 'sessions', :action => 'password_ticket'
   map.feedback_request "/feedback_request/:id", :controller => 'sessions', :action => 'feedback_request'
 
-  map.resources :pallets, :services
-  # Pickup Resources
+  map.resources :pallets, :services, :monitor_sizes, :monitor_brands, :cpu_types, :cpu_brands, :cpu_classes, :loose_hard_drive_brands
+  
   map.import_pickup_equipment "/pickups/:pickup_id/equipment/import/:id/:equipment_type",
     :controller => 'equipment', :action => 'import'
   map.resources :pickups,

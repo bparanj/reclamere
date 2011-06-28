@@ -1,0 +1,2 @@
+module MonitorBrandsHelper
+end

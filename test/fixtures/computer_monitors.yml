@@ -1,13 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  type: false
+  type: MyString
   size: MyString
   brand: MyString
   serial: MyString
 
 two:
-  type: false
+  type: MyString
   size: MyString
   brand: MyString
   serial: MyString

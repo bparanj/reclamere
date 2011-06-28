@@ -1,0 +1,2 @@
+module FlashHardDriveBrandsHelper
+end

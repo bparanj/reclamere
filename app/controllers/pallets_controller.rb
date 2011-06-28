@@ -12,6 +12,8 @@ class PalletsController < ApplicationController
     
     if @pallet.save
       donemark 'Pallet was successfully created.'
+      audit "Created new Pallet: #{params[:pallet][:number]}"
+      
       redirect_to new_pallet_path
     else
       render :action => "new"

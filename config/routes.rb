@@ -8,8 +8,14 @@ ActionController::Routing::Routes.draw do |map|
   map.forgot_password "/forgot_password", :controller => 'sessions', :action => 'forgot_password'
   map.password_ticket "/password_ticket/:id", :controller => 'sessions', :action => 'password_ticket'
   map.feedback_request "/feedback_request/:id", :controller => 'sessions', :action => 'feedback_request'
-
+  
+  # map.with_options :controller => "services" do |page|
+  #   page.new_cpu_hard_drive_serial "new_cpu_hard_drive_serial/:cpu_id", :action => "new_cpu_hard_drive_serial"
+  #   page.create_cpu_hard_drive_serial "create_cpu_hard_drive_serial/:cpu_id", :action => "create_cpu_hard_drive_serial"    
+  # end
+  
   map.resources :pallets, :services, :monitor_sizes, :monitor_brands, :cpu_types, :cpu_brands, :cpu_classes, :loose_hard_drive_brands
+  map.resources :flash_hard_drive_brands, :tv_brands, :tv_sizes, :peripherals_brands, :miscellaneous_equipment_types, :miscellaneous_equipment_brands
   
   map.import_pickup_equipment "/pickups/:pickup_id/equipment/import/:id/:equipment_type",
     :controller => 'equipment', :action => 'import'

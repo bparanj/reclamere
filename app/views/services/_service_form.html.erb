@@ -67,7 +67,7 @@
     <th>Hard Drive Serial</th>
     <td>
 		<%= text_field_tag('cpu_hard_drive_serial', nil, :size => 35 ) %>
-		<%= link_to "Add Another", "Dyanmically add another field for serial ..." %>
+		<cite>Use comma to separate multiple Serial Numbers</cite>
 	</td>
   </tr>
   
@@ -97,7 +97,7 @@
       <th> Brand</th>
 	  <td> 
 		<%= select_tag('flash_hard_drive_brand', options_for_select(@flash_drive_brands)) %> 
-		<%= link_to "Add", "create_flash_drive_brand_path ajax popup window" %>
+		<%= link_to "Add", new_flash_hard_drive_brand_path %>
 	  </td>
 	</tr>
 	<tr>
@@ -116,14 +116,14 @@
       <th> Brand</th>
 	  <td> 
 		<%= select_tag('tv_brand', options_for_select(@tv_brands)) %> 
-		<%= link_to "Add", "create_flash_drive_brand_path ajax popup window" %>
+		<%= link_to "Add", new_tv_brand_path %>
 	  </td>
 	</tr>
 	<tr>
     <th>Size</th>
     <td>
 		<%= select_tag('tv_size', options_for_select(@tv_sizes)) %>
-		<%= link_to "Add", "create_tv_size_path ajax popup window" %>
+		<%= link_to "Add", new_tv_size_path %>
 	</td>
   </tr>
 	<tr>
@@ -166,7 +166,7 @@
     <th>Brand</th>
     <td>
 		<%= select_tag('peripheral_brand', options_for_select(@peripheral_brands)) %>
-		<%= link_to "Add", "create_monitor_brand_path ajax popup window" %>
+		<%= link_to "Add", new_peripherals_brand_path %>
 	</td>
   </tr>
 
@@ -179,7 +179,7 @@
     <th>Hard Drive Serial</th>
     <td>
 		<%= text_field_tag('peripheral_hard_drive_serial', nil, :size => 35 ) %>
-		<%= link_to "Add Another", "Dyanmically add another field for serial ..." %>
+		<cite>Use comma to separate multiple Serial Numbers</cite>
 	</td>
   </tr>
 
@@ -192,14 +192,14 @@
       <th> Type</th>
 	  <td> 
 		<%= select_tag('misc_type', options_for_select(@misc_types)) %> 
-		<%= link_to "Add", "create_cpu_type_path ajax popup window" %>
+		<%= link_to "Add", new_miscellaneous_equipment_type_path %>
 	  </td>
 	</tr>
     <tr>
       <th> Brand</th>
 	  <td> 
 		<%= select_tag('misc_brand', options_for_select(@misc_brands)) %> 
-		<%= link_to "Add", "create_cpu_brand_path ajax popup window" %>
+		<%= link_to "Add", new_miscellaneous_equipment_brand_path %>
 	  </td>
 	</tr>
 	<tr>

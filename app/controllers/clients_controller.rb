@@ -3,8 +3,6 @@ class ClientsController < ApplicationController
   before_filter :solution_owner_admin_required, :only => [ :new, :edit, :create, :update ]
   helper :google_maps
 
-  # GET /clients
-  # GET /clients.xml
   def index
     @list_nav = ListNav.new(params, list_nav,
       { :default_sort_field => 'name',
@@ -24,8 +22,6 @@ class ClientsController < ApplicationController
     end
   end
 
-  # GET /clients/1
-  # GET /clients/1.xml
   def show
     @client = Client.find(params[:id])
     current_user.add_breadcrumb(@client.name, (admin_controller? ? admin_client_path(@client) : client_path(@client)))
@@ -35,8 +31,6 @@ class ClientsController < ApplicationController
     end
   end
 
-  # GET /clients/new
-  # GET /clients/new.xml
   def new
     @client = Client.new
     respond_to do |format|
@@ -45,13 +39,10 @@ class ClientsController < ApplicationController
     end
   end
 
-  # GET /clients/1/edit
   def edit
     @client = Client.find(params[:id])
   end
 
-  # POST /clients
-  # POST /clients.xml
   def create
     @client = Client.new(params[:client])
     respond_to do |format|
@@ -69,8 +60,6 @@ class ClientsController < ApplicationController
     end
   end
 
-  # PUT /clients/1
-  # PUT /clients/1.xml
   def update
     @client = Client.find(params[:id])
     respond_to do |format|

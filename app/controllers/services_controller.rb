@@ -27,7 +27,6 @@ class ServicesController < ApplicationController
   end
 
   def create
-    logger.info("Services create...")
     make_monitor(params)
     make_cpu(params)
     make_loose_hard_drive(params)
@@ -36,6 +35,8 @@ class ServicesController < ApplicationController
     make_magnetic_media(params)
     make_peripheral(params)
     make_miscellaneous_equipment(params)
+    audit "Created new Services at #{Time.now}"
+    
     redirect_to services_path
   end
   
@@ -87,19 +88,6 @@ class ServicesController < ApplicationController
     PeripheralsBrand.create(:name => p[:name] )
   end
   
-  # def make_magnetic_media_type(p)
-  #   MagneticMediaType.create(:name => p[:] )
-  # end
-
-  def make_cpu_hard_drive_serial(p)
-    # t.string   "name"
-    # t.integer  "cpu_id"
-  end
-
-  def make_peripherals_hard_drive_serial(p)
-    # t.string   "name"
-    # t.integer  "peripherals_id"
-  end
 
   private
   

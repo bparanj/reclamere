@@ -24,7 +24,7 @@ class PickupLocationsController < ApplicationController
     self.list_nav = @list_nav.to_hash
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
       format.xml  { render :xml => @pickup_locations }
     end
   end
@@ -36,7 +36,7 @@ class PickupLocationsController < ApplicationController
     else
       current_user.add_breadcrumb(@pickup_location.name, (admin_controller? ? admin_pickup_location_path(@pickup_location) : pickup_location_path(@pickup_location)))
       respond_to do |format|
-        format.html # show.html.erb
+        format.html 
         format.xml  { render :xml => @pickup_location }
       end
     end
@@ -46,7 +46,7 @@ class PickupLocationsController < ApplicationController
     @pickup_location = PickupLocation.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html 
       format.xml  { render :xml => @pickup_location }
     end
   end

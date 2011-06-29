@@ -1,4 +1,6 @@
 class ServicesController < ApplicationController
+  NOT_SELECTED = "Please select"
+  
   def index
     @monitors = ComputerMonitor.all
     @cpus = Cpu.all
@@ -34,95 +36,94 @@ class ServicesController < ApplicationController
     make_tv(params)
     make_magnetic_media(params)
     make_peripheral(params)
-    make_miscellaneous_equipment(params)
+    make_miscellaneous_equipment(params)      
+     
     audit "Created new Services at #{Time.now}"
     
-    redirect_to services_path
-  end
-  
-  def make_flash_hard_drive_brand(p)
-    FlashHardDriveBrand.create(:name => p[:name])
-  end
-
-  def make_tv_size(p)
-    TvSize.create(:name => p[:name] )
-  end
-
-  def make_tv_brand(p)
-    TvBrand.create(:name => p[:name])
-  end
-
-  def make_loose_hard_drive_brand(p)
-    LooseHardDriveBrand.create(:name => p[:name] )
-  end
-
-  def make_cpu_type(p)
-    CpuType.create(:name => p[:name] )
-  end
-
-  def make_cpu_brand(p)
-    CpuBrand.create(:name => p[:cpu_brand])
-  end
-
-  def make_cpu_class(p)
-    CpuClass.create(:name => p[:cpu_class])
-  end
-
-  def make_monitor_brand(p)
-    MonitorBrand.create(:name => p[:name] )
-  end
-
-  def make_monitor_size(p)
-    MonitorSize.create(:name => p[:size] )
-  end
-
-  def make_miscellaneous_equipment_brand(p)
-    MiscellaneousEquipmentBrand.create(:name => p[:name] )
-  end
-
-  def make_miscellaneous_equipment_type(p)
-    MiscellaneousEquipmentType.create(:name => p[:name] )
-  end
-
-  def make_peripherals_brand(p)
-    PeripheralsBrand.create(:name => p[:name] )
-  end
-  
+    redirect_to services_path    
+  end  
 
   private
   
   def make_monitor(p)
-    ComputerMonitor.create(:cm_type => p[:monitor_type], :size => p[:monitor_size], :brand => p[:monitor_brand], :serial => p[:monitor_serial])
+    unless data_was_not_entered_for_monitor
+      ComputerMonitor.create(:cm_type => p[:monitor_type], :size => p[:monitor_size], :brand => p[:monitor_brand], :serial => p[:monitor_serial])      
+    end
   end
 
   def make_cpu(p)
-    cpu = Cpu.create(:cpu_type => p[:cpu_type], :brand => p[:cpu_brand], :serial => p[:cpu_serial], :cpu_class => p[:cpu_class])
-    CpuHardDriveSerial.create(:name => p[:cpu_hard_drive_serial], :cpu_id => cpu.id)
+    unless data_was_not_entered_for_cpu
+      cpu = Cpu.create(:cpu_type => p[:cpu_type], :brand => p[:cpu_brand], :serial => p[:cpu_serial], :cpu_class => p[:cpu_class])
+      CpuHardDriveSerial.create(:name => p[:cpu_hard_drive_serial], :cpu_id => cpu.id)      
+    end
   end
 
   def make_loose_hard_drive(p)
-    FlashHardDrive.create(:brand => p[:loose_hard_drive_brand], :serial => p[:loose_hard_drive_serial])
+    unless data_was_not_entered_for_loose_hard_drive
+      LooseHardDrive.create(:brand => p[:loose_hard_drive_brand], :serial => p[:loose_hard_drive_serial])
+    end
   end
 
   def make_flash_hard_drive(p)
-    FlashHardDrive.create(:brand => p[:flash_hard_drive_brand], :serial => p[:flash_hard_drive_serial])
+    unless data_was_not_entered_for_flash_hard_drive
+      FlashHardDrive.create(:brand => p[:flash_hard_drive_brand], :serial => p[:flash_hard_drive_serial])      
+    end
   end
 
   def make_tv(p)
-    Tv.create(:brand => p[:tv_brand], :size => p[:tv_size], :serial => p[:tv_serial])
+    unless data_was_not_entered_for_tv
+      Tv.create(:brand => p[:tv_brand], :size => p[:tv_size], :serial => p[:tv_serial])
+    end
   end
 
   def make_magnetic_media(p)
-    MagneticMedia.create(:mm_type => p[:magnetic_media_type], :weight => p[:magnetic_media_weight])
+    unless data_was_not_entered_for_magnetic_media
+      MagneticMedia.create(:mm_type => p[:magnetic_media_type], :weight => p[:magnetic_media_weight])
+    end
   end
 
   def make_peripheral(p)
-    peripheral = Peripheral.create(:ptype => p[:peripheral_type], :brand => p[:peripheral_brand], :serial => p[:peripheral_serial])
-    peripheral.peripherals_hard_drive_serials.create(:name => p[:peripheral_hard_drive_serial])
+    unless data_was_not_entered_for_peripherals
+      peripheral = Peripheral.create(:ptype => p[:peripheral_type], :brand => p[:peripheral_brand], :serial => p[:peripheral_serial])
+      peripheral.peripherals_hard_drive_serials.create(:name => p[:peripheral_hard_drive_serial])
+    end
   end
 
   def make_miscellaneous_equipment(p)
-    MiscellaneousEquipment.create(:serial => p[:misc_serial], :me_type => p[:misc_type], :brand => p[:misc_brand])
+    unless data_was_not_entered_for_misc_equipment
+      MiscellaneousEquipment.create(:serial => p[:misc_serial], :me_type => p[:misc_type], :brand => p[:misc_brand])
+    end
+  end
+    
+  def data_was_not_entered_for_monitor
+     params[:monitor_type] == NOT_SELECTED && params[:monitor_size] == NOT_SELECTED && params[:monitor_brand] == NOT_SELECTED && params[:monitor_serial].blank?
+  end
+  
+  def data_was_not_entered_for_cpu
+    params[:cpu_type] == NOT_SELECTED && params[:cpu_brand] == NOT_SELECTED && params[:cpu_class] == NOT_SELECTED && params[:cpu_serial].blank? && params[:cpu_hard_drive_serial].blank?
+  end
+  
+  def data_was_not_entered_for_loose_hard_drive
+    params[:loose_hard_drive_brand] == NOT_SELECTED && params[:loose_hard_drive_serial].blank?
   end
 
+  def data_was_not_entered_for_flash_hard_drive
+    params[:flash_hard_drive_brand] == NOT_SELECTED && params[:flash_hard_drive_serial].blank?
+  end
+  
+  def data_was_not_entered_for_tv
+    params[:tv_brand] == NOT_SELECTED && params[:tv_size] == NOT_SELECTED
+  end
+
+  def data_was_not_entered_for_magnetic_media
+    params[:magnetic_media_type] == NOT_SELECTED && params[:magnetic_media_weight].blank? 
+  end
+
+  def data_was_not_entered_for_peripherals
+    params[:peripheral_type] == NOT_SELECTED && params[:peripheral_brand] == NOT_SELECTED && params[:peripheral_serial].blank? && params[:peripheral_hard_drive_serial].blank?
+  end
+
+  def data_was_not_entered_for_misc_equipment
+    params[:misc_type] == NOT_SELECTED && params[:misc_brand] == NOT_SELECTED && params[:misc_serial].blank?
+  end
 end

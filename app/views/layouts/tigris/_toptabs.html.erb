@@ -11,6 +11,9 @@
 
       <% if solution_owner_user? -%>
         <%= link_to_tab('Clients', clients_path, :if  => current_tab?('clients')) %>
+        <%= link_to_tab('Pallet Checkin', pallets_path, :if => current_tab?('pallets')) %>
+        <%= link_to_tab('Services', services_path, :if => current_tab?('services')) %>
+
       <% elsif client_user? -%>
         <% if client_admin? -%>
           <%= link_to_tab('Corporate Documents', client_folder_path(@client, @client.root_folder),
@@ -20,8 +23,6 @@
             :if => current_tab?('client_equipment')) %>
       <% end -%>
 
-      <%= link_to_tab('Pallet Checkin', pallets_path, :if => current_tab?('pallets')) %>
-      <%= link_to_tab('Services', services_path, :if => current_tab?('services')) %>
 
     <% end -%>
   <% end -%>

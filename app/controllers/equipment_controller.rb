@@ -22,7 +22,7 @@ class EquipmentController < ApplicationController
     self.list_nav = @list_nav.to_hash
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
       format.xml  { render :xml => @equipment }
     end
   end

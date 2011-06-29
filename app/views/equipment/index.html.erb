@@ -1,12 +1,7 @@
 <% @page_title = 'Equipment' -%>
 
 <% if @container.is_a?(Pickup) -%>
-  <% if solution_owner_user? -%>
-    <%= print_tasks do |t|
-      t << link_to('Upload Equipment List', upload_pickup_equipment_path(@container))
-      t
-    end -%>
-  <% end -%>
+
   <%= render :partial => 'pickups/pickup_header', :locals => { :pickup => @container } %>
 <% elsif @container.is_a?(Client) -%>
   <%= print_tasks do |t|

@@ -1,8 +1,6 @@
 class AuditLogsController < ApplicationController
   before_filter :get_auditable
 
-  # GET /audit_logs
-  # GET /audit_logs.xml
   def index
     if @auditable
       conditions = ['auditable_type = ? AND auditable_id = ?', @auditable.class.name, @auditable.id]
@@ -24,7 +22,7 @@ class AuditLogsController < ApplicationController
     self.list_nav = @list_nav.to_hash
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
       format.xml  { render :xml => @audit_logs }
     end
   end

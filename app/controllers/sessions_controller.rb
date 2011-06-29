@@ -119,7 +119,9 @@ class SessionsController < ApplicationController
   protected
   # Track failed login attempts
   def note_failed_signin
+    message = "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now}"
     errormark "Couldn't log you in as '#{params[:login]}'"
-    warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now}"
+    warn message
+    audit message
   end
 end

@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
       handle_remember_cookie! new_cookie_flag
       redirect_back_or_default('/')
       donemark "Logged in successfully"
+      audit "User #{params[:login]} logged in at #{Time.now}"
     else
       note_failed_signin
       @login       = params[:login]

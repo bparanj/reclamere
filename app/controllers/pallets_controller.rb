@@ -1,23 +1,31 @@
 class PalletsController < ApplicationController
+  before_filter :get_pickup
+  
   def index
-    @pallets = Pallet.all
+    get_pallets
   end
 
   def new
+    get_pallets
     @pallet = Pallet.new
   end
 
   def create
-    @pallet = Pallet.new(params[:pallet])
+    @pallet = @pickup.pallets.create(params[:pallet])
     
-    if @pallet.save
-      donemark 'Pallet was successfully created.'
-      audit "Created new Pallet: #{params[:pallet][:number]}"
+    donemark 'Pallet was successfully created.'
+    audit "Created new Pallet: #{params[:pallet][:number]}"
       
-      redirect_to new_pallet_path
-    else
-      render :action => "new"
-    end
+    redirect_to new_pickup_pallet_path(@pickup)
   end
 
+  private
+
+  def get_pickup
+    @pickup = Pickup.find(params[:pickup_id])
+  end
+  
+  def get_pallets
+    @pallets = @pickup.pallets.all(:order => 'number ASC')
+  end
 end

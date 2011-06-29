@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110626010615) do
+ActiveRecord::Schema.define(:version => 20110629015229) do
 
   create_table "audit_logs", :force => true do |t|
     t.integer  "user_id",        :null => false
@@ -259,6 +259,7 @@ ActiveRecord::Schema.define(:version => 20110626010615) do
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pickup_id"
   end
 
   create_table "password_tickets", :force => true do |t|

@@ -3,11 +3,10 @@ class FeedbacksController < ApplicationController
   before_filter :feedback_editor_required, :only => [ :edit, :update ]
   before_filter :feedback_viewer_required, :only => [ :show ]
 
-  # GET /pickups/:pickup_id/feedback
   # GET /pickups/:pickup_id/feedback.xml
   def show
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
       format.xml  { render :xml => @feedback }
     end
   end

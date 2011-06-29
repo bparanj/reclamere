@@ -1,5 +1,7 @@
 class Pickup < ActiveRecord::Base
+  # TODO: The status list must be updated - check email response
   STATUSES = ['Requested', 'Acknowledged', 'Notified', 'Picked Up', 'Arrived', 'Invoiced', 'Closed']
+  
   PICKUP_TYPES = [['Digital Data Destruction', 'Digital Data Destruction' ],
   ['Physical Data Destruction', 'Physical Data Destruction'],
   ['Inventory Report', 'Inventory Report'], 
@@ -8,8 +10,6 @@ class Pickup < ActiveRecord::Base
   ['Magnetic Media Incineration', 'Magnetic Media Incineration'],
   ['Hard Drive Screening Report', 'Hard Drive Screening Report']
   ]
-  
-  # ['Digital Data Destruction', 'Physical Data Destruction', 'Inventory Report', 'Certified Asset Tag Removal', 'Environment Lot Certificate', 'Magnetic Media Incineration', 'Hard Drive Screening Report']
 
   attr_protected :client_id, :status
 
@@ -17,6 +17,7 @@ class Pickup < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :system_emails, :dependent => :destroy
   has_one :feedback, :dependent => :destroy
+  has_many :pallets
   
   belongs_to :pickup_location
   belongs_to :client

@@ -1,6 +1,30 @@
 <% @page_title = 'Pallet' %>
 
-<% form_for(@pallet) do |f| %>
+<%= render :partial => 'pickups/pickup_header', :locals => { :pickup => @pickup } %>
+
+<% if @pallets.size > 0 %>
+	<h3>Pallets</h3>
+
+	<table width="100%">
+	  <tr>
+	    <th>Number</th>
+	    <th>Description</th>
+	    <th>Weight</th>
+	    <th>Comments</th>
+	  </tr>
+	  <% for pallet in @pallets %>
+	    <tr class="<%= cycle 'a', 'b' %>">
+	      <td><%= h pallet.number %></td>
+	      <td><%=h pallet.description %></td>
+	      <td><%=h pallet.weight %></td>
+	      <td><%= h pallet.comments %></td>
+	    </tr>
+	  <% end %>
+	</table>
+	<div class="functnbar3">&nbsp;</div>
+<% end %>
+
+<% form_for([@pickup, @pallet]) do |f| %>
   <%= f.error_messages %>
   <h3>New Pallet</h3>
   <%= render :partial => 'pallet_form', :locals => { :f => f } %>
@@ -9,5 +33,5 @@
   </div>
 <% end %>
 
-<%= link_to 'Pallets List', pallets_path %>
+<%= link_to 'Pallets List', pickup_pallets_path(@pickup) %>
 

@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   #   page.create_cpu_hard_drive_serial "create_cpu_hard_drive_serial/:cpu_id", :action => "create_cpu_hard_drive_serial"    
   # end
   
-  map.resources :pallets, :services, :monitor_sizes, :monitor_brands, :cpu_types, :cpu_brands, :cpu_classes, :loose_hard_drive_brands
+  map.resources :services, :monitor_sizes, :monitor_brands, :cpu_types, :cpu_brands, :cpu_classes, :loose_hard_drive_brands
   map.resources :flash_hard_drive_brands, :tv_brands, :tv_sizes, :peripherals_brands, :miscellaneous_equipment_types, :miscellaneous_equipment_brands
   
   map.import_pickup_equipment "/pickups/:pickup_id/equipment/import/:id/:equipment_type",
@@ -26,20 +26,23 @@ ActionController::Routing::Routes.draw do |map|
     :notify => :post,
     :close_feedback => :post,
     :print_work_order => :get
-  },
+    },
     :collection => { :update_users_list => :post } do |pickup|
-    pickup.resources :folders, :member => { :folder_contents => [:get,:post], :create => :post } do |folder|
-      folder.resources :documents, :member => { :download => :get, :versions => :get }
-    end
-    pickup.resources :equipment,
-      :singular => 'equip',
-      :only => [ :index, :show, :destroy ],
-      :collection => { :upload => [ :get, :post ] }
-    pickup.resources :tasks, :only => [ :index, :update ]
-    pickup.resources :system_emails, :only => [ :index, :show ]
-    pickup.resource  :feedback, :only => [ :show, :edit, :update ]
-    pickup.resources :audit_logs, :only => :index
+    
+      pickup.resources :folders, :member => { :folder_contents => [:get,:post], :create => :post } do |folder|
+        folder.resources :documents, :member => { :download => :get, :versions => :get }
+      end
+      pickup.resources :equipment,
+        :singular => 'equip',
+        :only => [ :index, :show, :destroy ],
+        :collection => { :upload => [ :get, :post ] }
+      pickup.resources :tasks, :only => [ :index, :update ]
+      pickup.resources :system_emails, :only => [ :index, :show ]
+      pickup.resource  :feedback, :only => [ :show, :edit, :update ]
+      pickup.resources :audit_logs, :only => :index
+      pickup.resources :pallets
   end
+  
   map.download_pickup_folder_document_document_version "/pickups/:pickup_id/folders/:folder_id/documents/:id/download/:version",
     :controller => 'documents', :action => 'download'
 

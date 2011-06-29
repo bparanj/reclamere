@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
   NOT_SELECTED = "Please select"
-  
+  # TODO: Move services tab under Pickup tab next to Pallet Checkin tab
   def index
     @monitors = ComputerMonitor.all
     @cpus = Cpu.all

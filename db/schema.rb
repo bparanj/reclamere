@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110629015229) do
+ActiveRecord::Schema.define(:version => 20110630050901) do
 
   create_table "audit_logs", :force => true do |t|
     t.integer  "user_id",        :null => false
@@ -333,6 +333,7 @@ ActiveRecord::Schema.define(:version => 20110629015229) do
     t.string   "departure_time"
     t.string   "number_of_men"
     t.text     "crew_members"
+    t.string   "lot_number"
   end
 
   add_index "pickups", ["client_id"], :name => "index_pickups_on_client_id"

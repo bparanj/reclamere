@@ -11,7 +11,6 @@
 
       <% if solution_owner_user? -%>
         <%= link_to_tab('Clients', clients_path, :if  => current_tab?('clients')) %>
-        <%= link_to_tab('Services', services_path, :if => current_tab?('services')) %>
 
       <% elsif client_user? -%>
         <% if client_admin? -%>

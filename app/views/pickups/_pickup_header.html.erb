@@ -31,7 +31,8 @@
         ['Equipment', pickup_equipment_path(pickup), { :if => params[:controller] == 'equipment' }],
         ['Emails', pickup_system_emails_path(pickup), { :if => params[:controller] == 'system_emails' }],
         ['History', polymorphic_path([pickup, :audit_logs]), { :if => params[:controller] == 'audit_logs' }],
-		['Pallet Checkin', new_pickup_pallet_path(pickup)]
+		['Pallet Checkin', new_pickup_pallet_path(pickup)],
+		['Services', new_pickup_service_path(pickup)]
       ]
       if ['Feedback', 'Closed'].include?(pickup.status)
         fp = pickup.status == 'Feedback' && client_user? ? edit_pickup_feedback_path(pickup) : pickup_feedback_path(pickup)

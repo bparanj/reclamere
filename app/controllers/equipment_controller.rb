@@ -3,23 +3,16 @@ class EquipmentController < ApplicationController
   before_filter :solution_owner_user_required, :only => [ :upload, :import, :destroy ]
 
   def index
-    if @container.is_a?(Client)
-      equipment_includes = [:pickup]
-    else
-      equipment_includes = []
-    end
-    @list_nav = ListNav.new(params, list_nav,
-      { :default_sort_field => 'type_name',
-        :default_sort_direction => 'ASC',
-        :limit => PER_PAGE })
-    @list_nav.count = @container.equipment.count(:conditions => @list_nav.conditions, :include => equipment_includes)
-    @equipment = @container.equipment.all(
-      :include => equipment_includes,
-      :conditions => @list_nav.conditions,
-      :order      => @list_nav.order,
-      :limit      => @list_nav.limit,
-      :offset     => @list_nav.offset)
-    self.list_nav = @list_nav.to_hash
+    # TODO: All equipment below belongs to a particular pickup, add a foreign key to pickup record
+    # TODO: Retrieve equipment that belongs to a particular pickup only
+    @monitors = ComputerMonitor.all
+    @cpus = Cpu.all
+    @lhds = LooseHardDrive.all
+    @fhds = FlashHardDrive.all
+    @tvs = Tv.all
+    @mms = MagneticMedia.all
+    @peripherals = Peripheral.all
+    @miscs = MiscellaneousEquipment.all
 
     respond_to do |format|
       format.html 

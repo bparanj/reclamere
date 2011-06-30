@@ -14,11 +14,12 @@ ActionController::Routing::Routes.draw do |map|
   #   page.create_cpu_hard_drive_serial "create_cpu_hard_drive_serial/:cpu_id", :action => "create_cpu_hard_drive_serial"    
   # end
   
-  map.resources :services, :monitor_sizes, :monitor_brands, :cpu_types, :cpu_brands, :cpu_classes, :loose_hard_drive_brands
+  map.resources :monitor_sizes, :monitor_brands, :cpu_types, :cpu_brands, :cpu_classes, :loose_hard_drive_brands
   map.resources :flash_hard_drive_brands, :tv_brands, :tv_sizes, :peripherals_brands, :miscellaneous_equipment_types, :miscellaneous_equipment_brands
   
-  map.import_pickup_equipment "/pickups/:pickup_id/equipment/import/:id/:equipment_type",
-    :controller => 'equipment', :action => 'import'
+  # map.import_pickup_equipment "/pickups/:pickup_id/equipment/import/:id/:equipment_type",
+  #   :controller => 'equipment', :action => 'import'
+    
   map.resources :pickups,
     :member => { 
     :address => :get,
@@ -41,6 +42,7 @@ ActionController::Routing::Routes.draw do |map|
       pickup.resource  :feedback, :only => [ :show, :edit, :update ]
       pickup.resources :audit_logs, :only => :index
       pickup.resources :pallets
+      pickup.resources :services
   end
   
   map.download_pickup_folder_document_document_version "/pickups/:pickup_id/folders/:folder_id/documents/:id/download/:version",

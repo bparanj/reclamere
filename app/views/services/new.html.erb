@@ -1,7 +1,13 @@
 <% @page_title = 'Service' %>
 
+<%= render :partial => 'pickups/pickup_header', :locals => { :pickup => @pickup } %>
+<% if solution_owner_user? -%>
+  <%= print_tasks do |t|
+    t << link_to("New Service", new_pickup_service_path(@pickup))
+    t
+  end %>
+<% end -%>
+
   <h3>New Service</h3>
   <%= render :partial => 'service_form' %>
-
-<%= link_to 'Service List', services_path %>
 

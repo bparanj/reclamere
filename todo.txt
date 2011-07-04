@@ -1,15 +1,7 @@
-1. Dashboard controller, the statuses are:
 
-Picked Up
-Arrived
-IR
-DDD
-Invoiced
-
-2. Scope all equipment to pickup. Create migration and modify equipment controller
-3. Get the Work Order html from Elance within the next two days
-4. Add edit capability to all items in equipment tab
-5. Consolidate all reply from recent questions and keep the notes here for quick reference
+1. 
+2. Add edit capability to all items in equipment tab
+3. Consolidate all reply from recent questions and keep the notes here for quick reference
 
 
 

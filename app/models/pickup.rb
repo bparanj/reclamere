@@ -19,15 +19,6 @@ class Pickup < ActiveRecord::Base
   has_many :system_emails, :dependent => :destroy
   has_one :feedback, :dependent => :destroy
   
-  
-  
-  
-  # p.flash_hard_drives
-  # p.tvs
-  # p.magnetic_medias
-  # p.peripherals
-  # p.miscellaneous_equipments
-  # 
   has_many :pallets
   has_many :computer_monitors
   has_many :cpus

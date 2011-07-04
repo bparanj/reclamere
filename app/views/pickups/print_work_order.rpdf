@@ -1,42 +1,244 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<html> 
-
-<head >
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Work Order</title>
+<style type="text/css">
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+</style>
 </head>
 
 <body>
-<p>
-Reclamere, Inc
-905 Pennsylvania Ave.
-Tyrone, PA 16686
-Phone (814) 684-5505
-Fax   (814) 684-6044
-</p>
+<table  width="750" align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top"><hr /><table width="750px" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td  valign="top"><table width="750px" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="35%" valign="top"><table width="95%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td valign="top"><font color="#0000CC" face="Garamond,serif" size="6"><strong>Reclamere, Inc.</strong></font><strong><br />
+                  905 Pennsylvania Ave.</strong><strong></strong><br />
+                  <strong>Tyrone</strong><strong>, PA    16686</strong><strong></strong><br />
+                  <strong>Phone (814)  684-5505</strong><br />
+                  <strong>Fax (814) 684-6044</strong></td>
+              </tr>
+            </table></td>
 
-<p>
-Pick-up Address 
-
-<%= @pickup.pickup_location.address_1 %> 
-<%= @pickup.pickup_location.address_2 %> 
-<%= @pickup.pickup_location.city %>,<%= @pickup.pickup_location.state %>
-<%= @pickup.pickup_location.postal_code %>
-</p>
-
-
-<p>
- Customer Name: <%= @pickup.client.name %>
- Customer Contact: <%= @pickup.site_contact_name %>
- Customer Phone: <%= @pickup.client_user.phone  %>
- Arrival Date: <%= @pickup.pickup_date %>
- Actual Arrival Time: <%= @pickup.pickup_time %>
- Crew Names: 
- Lot Number: 
- Expected Load: 
- Scheduled Arrival 
- Departure Time: 
-</p>
-
+            <td width="29%" valign="top"><font face="tahoma" size="2">Pick-up Address:</font><br />
+              <table width="66%"  border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td valign="top" align="center"><strong><%= @pickup.pickup_location.address_1 %> <br />
+						<%= @pickup.pickup_location.address_2 %> <br/>
+                    <%= @pickup.pickup_location.city %>,<%= @pickup.pickup_location.state %> <br />
+                    <%= @pickup.pickup_location.postal_code %></strong></td>
+                </tr>
+              </table></td>
+            <td width="36%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td valign="top"><font color="#000000" face="Garamond,serif" size="6"><strong>Work Order</strong></font><font color="#000000" face="Garamond,serif" size="6"><strong><br />
+                
+                  </strong></font></td>
+              </tr>
+            </table>
+              <form id="form1" name="form1" method="post" action="">
+                <table width="100%" border="0" cellspacing="2" cellpadding="0">
+                  <tr>
+                    <td width="11%"><input type="checkbox" name="checkbox" id="checkbox" />
+                      <label for="checkbox"></label></td>
+                    <td width="89%"><strong>Reclamere Pick-Up</strong></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" name="checkbox2" id="checkbox2" />
+                      <label for="checkbox2"></label></td>
+                    <td><strong>Customer Delivery</strong></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" name="checkbox3" id="checkbox3" />
+                      <label for="checkbox3"></label></td>
+                    <td><strong>Other  Services</strong></td>
+                  </tr>
+                </table>
+              </form></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table>
+      <br />
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr></tr>
+      <tr>
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="20%"><font face="tahoma" size="-1"><strong>Customer Name:</strong></font></td>
+            <td width="25%"><strong><u><%= @pickup.client.name %>     </u></strong></td>
+            <td width="27%"><font face="tahoma" size="-1"><strong>Crew Names:</strong></font></td>
+            <td width="28%"valign="bottom"></td>
+          </tr>
+          <tr>
+            <td><font face="tahoma" size="-1"><strong>Customer Contact:</strong></font></td>
+            <td><font face="Tahoma" size="-1"><u><%= @pickup.site_contact_name %></u></font></td>
+            <td><font face="tahoma" size="-1"><strong>Lot  Number:</strong></font></td>
+            <td><font face="Tahoma" size="-1"><u><%= @pickup.lot_number  %></u></font></td>
+          </tr>
+          <tr>
+            <td><font face="tahoma" size="-1"><strong>Customer Phone:</strong></font></td>
+            <td><font face="Tahoma" size="-1"><u><%= @pickup.client_user.phone  %></u></font></td>
+            <td><font face="tahoma" size="-1"><strong>Expected Load:</strong></font></td>
+            <td><font face="Tahoma" size="-1"><u> </u></font></td>
+          </tr>
+          <tr>
+            <td><font face="tahoma" size="-1"><strong>Arrival Date:</strong></font></td>
+            <td><font face="Tahoma" size="-1"><u><%= @pickup.pickup_date %></u></font></td>
+            <td><font face="tahoma" size="-1"><strong>Scheduled Arrival:</strong></font></td>
+            <td><font face="Tahoma" size="-1"><u><%= @pickup.pickup_time %> </u></font></td>
+          </tr>
+          <tr>
+            <td><font face="tahoma" size="-1"><strong>Actual Arrival Time:</strong></font></td>
+            <td>&nbsp;</td>
+            <td><font face="tahoma" size="-1"><strong>Departure Time:</strong></font></td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+          <br /></td>
+      </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td height="98" valign="top"><form id="form2" name="form2" method="post" action="">
+            <table border="1" bordercolor="#cccccc" cellspacing="0" cellpadding="1" align="center" width="100%">
+              <tr>
+                <td width="176" valign="top"><font face="tahoma" size="2"><strong>&nbsp;&nbsp;Digital data destruction</strong></font></td>
+                <td width="65" align="center" valign="middle"><strong>
+                  <input type="checkbox" border="0" name="checkbox7" id="checkbox7" />
+                  <label for="checkbox7"></label>
+                </strong></td>
+                <td width="137" valign="top"><font face="tahoma" size="2"><strong>&nbsp;&nbsp;Inventory report</strong></font></td>
+                <td width="60" align="center" valign="middle"><input type="checkbox" border="0" name="checkbox8" id="checkbox8" />
+                  <label for="checkbox8"></label></td>
+                <td width="235" align="left" valign="middle"><font face="tahoma" size="2"><strong> &nbsp; &nbsp;North american recycling on    crt’s</strong></font></td>
+                <td width="51" align="center" valign="middle"><input type="checkbox" border="0" name="checkbox82" id="checkbox82" /></td>
+              </tr>
+              <tr>
+                <td valign="top">&nbsp;&nbsp;<font face="tahoma" size="2">CPUs</font></td>
+                <td align="center" valign="middle"><strong>
+                  <input type="checkbox" border="0" name="checkbox72" id="checkbox72" />
+                </strong></td>
+                <td valign="top">&nbsp;&nbsp;<font face="tahoma" size="2">All Items</font></td>
+                <td align="center" valign="middle"><strong>
+                  <input type="checkbox" border="0" name="checkbox75" id="checkbox75" />
+                </strong></td>
+                <td align="left" valign="middle"><font face="tahoma" size="2"><strong> &nbsp; &nbsp;Asset Tag Removal</strong></font></td>
+                <td align="center" valign="middle"><strong>
+                  <input type="checkbox" border="0" name="checkbox78" id="checkbox78" />
+                </strong></td>
+              </tr>
+              <tr>
+                <td valign="top">&nbsp;&nbsp;<font face="tahoma" size="2">Loose Hard Drives</font></td>
+                <td align="center" valign="middle"><strong>
+                  <input type="checkbox" border="0" name="checkbox73" id="checkbox73" />
+                </strong></td>
+                <td valign="top">&nbsp;&nbsp;<font face="tahoma" size="2">Exclude Mice/KB</font></td>
+                <td align="center" valign="middle"><strong>
+                  <input type="checkbox" border="0" name="checkbox76" id="checkbox76" />
+                </strong></td>
+                <td align="left" valign="middle"><font face="tahoma" size="2"><strong> &nbsp; &nbsp;Seg. per Estimate/Contract</strong></font></td>
+                <td align="center" valign="middle"><strong>
+                  <input type="checkbox" border="0" name="checkbox79" id="checkbox79" />
+                </strong></td>
+              </tr>
+              <tr>
+                <td valign="top">&nbsp;&nbsp;<font face="tahoma" size="2">Magnetic Media  Incineration</font></td>
+                <td align="center" valign="middle"><strong>
+                  <input type="checkbox" border="0" name="checkbox74" id="checkbox74" />
+                </strong></td>
+                <td valign="top">&nbsp;&nbsp;<font face="tahoma" size="2">Special Request</font></td>
+                <td align="center" valign="middle"><strong>
+                  <input type="checkbox" border="0" name="checkbox77" id="checkbox77" />
+                </strong></td>
+                <td align="left" valign="middle"><font face="tahoma" size="2"><strong> &nbsp; &nbsp;Waived Services</strong></font></td>
+                <td align="center" valign="middle"><strong>
+                  <input type="checkbox" border="0" name="checkbox710" id="checkbox710" />
+                </strong></td>
+              </tr>
+            </table>
+          </form></td>
+        </tr>
+      </table>
+      <table width="750" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><table width="750" border="1" cellpadding="0" cellspacing="0" bordercolor="#cccccc">
+            <tr>
+              <td><font face="tahoma" size="3"><strong> &nbsp;Service Code#:</strong></font></td>
+              <td width="601"><table width="50%" border="0" cellpadding="0" cellspacing="0" bordercolor="#cccccc">
+                <tr>
+                  <td width="20"><strong>
+                    <input type="checkbox" border="0" name="checkbox711" id="checkbox711" />
+                  </strong></td>
+                  <td width="16">#1</td>
+                  <td width="20"><strong>
+                    <input type="checkbox" border="0" name="checkbox712" id="checkbox712" />
+                  </strong></td>
+                  <td width="16">#2</td>
+                  <td width="20"><strong>
+                    <input type="checkbox" border="0" name="checkbox713" id="checkbox713" />
+                  </strong></td>
+                  <td width="16">#3</td>
+                  <td width="20"><strong>
+                    <input type="checkbox" border="0" name="checkbox714" id="checkbox714" />
+                  </strong></td>
+                  <td width="434">#4</td>
+                </tr>
+              </table></td>
+              </tr>
+            <tr>
+              <td><font face="tahoma" size="3"><strong>&nbsp;Project Notes:</strong></font></td>
+              <td><font face="tahoma" size="4"><strong>&nbsp; </strong></font></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td valign="top"><p><font face="tahoma" size="2">&nbsp;<u>Note any discrepancy from estimate &amp; pick-up:</u></font> </p>
+                <p>&nbsp;</p>
+                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td colspan="7" valign="top" bordercolor="#cccccc"><font face="tahoma" size="4"><strong>&nbsp;<u>Material Type:</u></strong></font></td>
+                      <td width="41%" valign="top" bordercolor="#cccccc"><font face="tahoma" size="4"><strong>Mixed Electronics</strong></font></td>
+                      <td width="4%">&nbsp;</td>
+                    </tr>
+                  </table>                
+                <p>&nbsp;</p>
+                <p><font face="tahoma" size="4"><strong>&nbsp;<u>Number of Pallets:</u></strong></font></p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p></td>
+            </tr>
+            
+            <tr>
+              <td align="left" valign="middle"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td width="79" align="left" valign="middle" bordercolor="#cccccc"><strong>&nbsp;Customer <br />
+                    &nbsp;Signature:</strong></td>
+                  <td width="62" align="center" valign="middle" bordercolor="#cccccc"><font face="tahoma" size="+3">X</font></td>
+                  <td align="center" valign="middle">&nbsp;</td>
+                  </tr>
+              </table></td>
+              <td>&nbsp;</td>
+            </tr>
+          </table>
+            <p align="center"><font face="tahoma" size="-1"><strong><i>Be sure to inform customer if actual amount or condition of product varies   significantly from expected quantity or condition. Also inform Joe Harford @   814.684.5505 ext. 305</i>
+          </strong></font></p></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
 <p>
 	<tr>
     <th>Services to Perform</th>
@@ -45,4 +247,3 @@ Pick-up Address
   
 </p>
 </p></body></html>
-

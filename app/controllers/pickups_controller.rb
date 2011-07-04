@@ -36,7 +36,7 @@ class PickupsController < ApplicationController
     current_user.add_breadcrumb(@pickup.name, pickup_path(@pickup))
     
     respond_to do |format|
-      format.html # show.html.erb
+      format.html 
       format.xml  { render :xml => @pickup }
     end
   end
@@ -49,7 +49,7 @@ class PickupsController < ApplicationController
     @pickup = Pickup.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html 
       format.xml  { render :xml => @pickup }
     end
   end
@@ -127,7 +127,7 @@ class PickupsController < ApplicationController
 
   def create
     @pickup = Pickup.new(params[:pickup])
-    @pickup.status = 'Acknowledged'
+    @pickup.status = 'Picked Up'
     @pickup.created_by = current_user
     @pickup.pickup_type = @pickup.pickup_type.join(",")
     respond_to do |format|

@@ -1,16 +1,33 @@
+1. Dashboard controller, the statuses are:
+
+Picked Up
+Arrived
+IR
+DDD
+Invoiced
+
+2. Scope all equipment to pickup. Create migration and modify equipment controller
+3. Get the Work Order html from Elance within the next two days
+4. Add edit capability to all items in equipment tab
+5. Consolidate all reply from recent questions and keep the notes here for quick reference
+
+
+
+
 1. -- create_table(:folders) migration
 undefined method `length' for :index_folderable:Symbol
 
 2. Login to AWS server and check the data in the database for users.
 
-3. Dashboard controller, check if the status makes sense for Reclamere
-
-4. Get the following values from Reclamere:
+3. Get the following values from Reclamere:
 
 SOLUTION_OWNER_PHONE = '234-555-1234'
 SOLUTION_OWNER_EMAIL = 'text@example.com'
 
-5. Use Cases
+
+
+
+Use Cases
 
 1) User Management
    Login, Logout, Forgot Password, Activate Account

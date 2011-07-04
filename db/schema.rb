@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110630050901) do
+ActiveRecord::Schema.define(:version => 20110704050605) do
 
   create_table "audit_logs", :force => true do |t|
     t.integer  "user_id",        :null => false
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20110630050901) do
     t.string   "serial"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pickup_id"
   end
 
   create_table "cpu_brands", :force => true do |t|
@@ -77,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20110630050901) do
     t.string   "cpu_class"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pickup_id"
   end
 
   create_table "document_versions", :force => true do |t|
@@ -183,6 +185,7 @@ ActiveRecord::Schema.define(:version => 20110630050901) do
     t.string   "serial"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pickup_id"
   end
 
   create_table "folders", :force => true do |t|
@@ -205,6 +208,7 @@ ActiveRecord::Schema.define(:version => 20110630050901) do
     t.string   "serial"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pickup_id"
   end
 
   create_table "magnetic_media_types", :force => true do |t|
@@ -218,6 +222,7 @@ ActiveRecord::Schema.define(:version => 20110630050901) do
     t.string   "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pickup_id"
   end
 
   create_table "miscellaneous_equipment_brands", :force => true do |t|
@@ -238,6 +243,7 @@ ActiveRecord::Schema.define(:version => 20110630050901) do
     t.string   "brand"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pickup_id"
   end
 
   create_table "monitor_brands", :force => true do |t|
@@ -277,6 +283,7 @@ ActiveRecord::Schema.define(:version => 20110630050901) do
     t.string   "serial"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pickup_id"
   end
 
   create_table "peripherals_brands", :force => true do |t|
@@ -386,6 +393,7 @@ ActiveRecord::Schema.define(:version => 20110630050901) do
     t.string   "serial"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pickup_id"
   end
 
   create_table "users", :force => true do |t|

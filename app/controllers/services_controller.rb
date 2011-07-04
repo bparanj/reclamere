@@ -43,51 +43,60 @@ class ServicesController < ApplicationController
   def make_monitor
     unless data_was_not_entered_for_monitor
       ComputerMonitor.create(:cm_type => params[:monitor_type], :size => params[:monitor_size], 
-                             :brand => params[:monitor_brand], :serial => params[:monitor_serial])      
+                             :brand => params[:monitor_brand], :serial => params[:monitor_serial],
+                             :pickup_id => params[:pickup_id])      
     end
   end
 
-  def make_cpu(p)
+  def make_cpu
     unless data_was_not_entered_for_cpu
-      cpu = Cpu.create(:cpu_type => params[:cpu_type], :brand => params[:cpu_brand], :serial => params[:cpu_serial], :cpu_class => params[:cpu_class])
+      cpu = Cpu.create(:cpu_type => params[:cpu_type], :brand => params[:cpu_brand], :serial => params[:cpu_serial], 
+                       :cpu_class => params[:cpu_class],
+                       :pickup_id => params[:pickup_id])
       CpuHardDriveSerial.create(:name => params[:cpu_hard_drive_serial], :cpu_id => cpu.id)      
     end
   end
 
-  def make_loose_hard_drive(p)
+  def make_loose_hard_drive
     unless data_was_not_entered_for_loose_hard_drive
-      LooseHardDrive.create(:brand => params[:loose_hard_drive_brand], :serial => params[:loose_hard_drive_serial])
+      LooseHardDrive.create(:brand => params[:loose_hard_drive_brand], :serial => params[:loose_hard_drive_serial],
+                            :pickup_id => params[:pickup_id])
     end
   end
 
-  def make_flash_hard_drive(p)
+  def make_flash_hard_drive
     unless data_was_not_entered_for_flash_hard_drive
-      FlashHardDrive.create(:brand => params[:flash_hard_drive_brand], :serial => params[:flash_hard_drive_serial])      
+      FlashHardDrive.create(:brand => params[:flash_hard_drive_brand], :serial => params[:flash_hard_drive_serial],
+                            :pickup_id => params[:pickup_id])      
     end
   end
 
-  def make_tv(p)
+  def make_tv
     unless data_was_not_entered_for_tv
-      Tv.create(:brand => params[:tv_brand], :size => params[:tv_size], :serial => params[:tv_serial])
+      Tv.create(:brand => params[:tv_brand], :size => params[:tv_size], :serial => params[:tv_serial],
+                :pickup_id => params[:pickup_id])
     end
   end
 
-  def make_magnetic_media(p)
+  def make_magnetic_media
     unless data_was_not_entered_for_magnetic_media
-      MagneticMedia.create(:mm_type => params[:magnetic_media_type], :weight => params[:magnetic_media_weight])
+      MagneticMedia.create(:mm_type => params[:magnetic_media_type], :weight => params[:magnetic_media_weight],
+                           :pickup_id => params[:pickup_id])
     end
   end
 
-  def make_peripheral(p)
+  def make_peripheral
     unless data_was_not_entered_for_peripherals
-      peripheral = Peripheral.create(:ptype => params[:peripheral_type], :brand => params[:peripheral_brand], :serial => params[:peripheral_serial])
+      peripheral = Peripheral.create(:ptype => params[:peripheral_type], :brand => params[:peripheral_brand], 
+                                     :serial => params[:peripheral_serial], :pickup_id => params[:pickup_id])
       peripheral.peripherals_hard_drive_serials.create(:name => params[:peripheral_hard_drive_serial])
     end
   end
 
-  def make_miscellaneous_equipment(p)
+  def make_miscellaneous_equipment
     unless data_was_not_entered_for_misc_equipment
-      MiscellaneousEquipment.create(:serial => params[:misc_serial], :me_type => params[:misc_type], :brand => params[:misc_brand])
+      MiscellaneousEquipment.create(:serial => params[:misc_serial], :me_type => params[:misc_type], 
+                                    :brand => params[:misc_brand], :pickup_id => params[:pickup_id])
     end
   end
     

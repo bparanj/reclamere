@@ -7,7 +7,7 @@ class SystemEmailsController < ApplicationController
     @system_emails = @pickup.system_emails.find(:all, :order => 'created_at DESC')
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
       format.xml  { render :xml => @system_emails }
     end
   end
@@ -18,7 +18,7 @@ class SystemEmailsController < ApplicationController
     @system_email = @pickup.system_emails.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html 
       format.xml  { render :xml => @system_email }
     end
   end

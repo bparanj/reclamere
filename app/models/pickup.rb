@@ -1,6 +1,7 @@
 class Pickup < ActiveRecord::Base
-  # TODO: The status list must be updated - check email response
-  STATUSES = ['Requested', 'Acknowledged', 'Notified', 'Picked Up', 'Arrived', 'Invoiced', 'Closed']
+  
+  # old STATUSES = ['Requested', 'Acknowledged', 'Notified', 'Picked Up', 'Arrived', 'Invoiced', 'Closed']
+  STATUSES = ['Picked Up', 'Arrived', 'IR', 'DDD', 'Invoiced']
   
   PICKUP_TYPES = [['Digital Data Destruction', 'Digital Data Destruction' ],
   ['Physical Data Destruction', 'Physical Data Destruction'],
@@ -17,7 +18,25 @@ class Pickup < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :system_emails, :dependent => :destroy
   has_one :feedback, :dependent => :destroy
+  
+  
+  
+  
+  # p.flash_hard_drives
+  # p.tvs
+  # p.magnetic_medias
+  # p.peripherals
+  # p.miscellaneous_equipments
+  # 
   has_many :pallets
+  has_many :computer_monitors
+  has_many :cpus
+  has_many :loose_hard_drive
+  has_many :flash_hard_drive
+  has_many :tvs
+  has_many :magnetic_medias
+  has_many :peripherals
+  has_many :miscellaneous_equipments
   
   belongs_to :pickup_location
   belongs_to :client
@@ -30,9 +49,9 @@ class Pickup < ActiveRecord::Base
   js_date :pickup_date, :notification_date
 
   validates_presence_of :pickup_location_id, :client_id, :status, :client_user_id, :solution_owner_user_id
-  validates_presence_of :name, :unless => Proc.new { |p| p.status == 'Requested' }
-  validates_presence_of :pickup_date, :unless => Proc.new { |p| p.status == 'Requested' }
-  validates_presence_of :notification_date,  :unless => Proc.new { |p| p.status == 'Requested' }
+  validates_presence_of :name
+  validates_presence_of :pickup_date
+  validates_presence_of :notification_date
   validates_uniqueness_of :name, :scope => :pickup_location_id, :allow_blank => true
   validates_inclusion_of :status, :in => STATUSES
 
@@ -43,7 +62,7 @@ class Pickup < ActiveRecord::Base
     if client && client_user && client != client_user.client
       errors.add(:client_user_id, 'Client lead is not from this client.')
     end
-    if status && ['Requested', 'Acknowledged'].include?(status) && pickup_date && pickup_date < Date.today
+    if status &&  pickup_date && pickup_date < Date.today
       errors.add(:pickup_date, 'must not be in the past.')
     end
     if pickup_date && notification_date && notification_date > pickup_date
@@ -84,7 +103,7 @@ class Pickup < ActiveRecord::Base
       true
     end
   end
-
+  # TODO : This needs to be updated based on required status 
   def send_system_email
     mail = case status
     when 'Requested'

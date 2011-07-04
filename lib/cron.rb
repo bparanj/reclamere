@@ -3,7 +3,7 @@
 module Cron
 
   SEND_NOTIFICATIONS = false
-  RECIPIENT = 'jay@avalanche.coop'
+  RECIPIENT = 'bparanj@gmail.com'
   #RECIPIENT = '9522004969@tmomail.net'
   #RECIPIENT = 'andrew@avalanche.coop'
 

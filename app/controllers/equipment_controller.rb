@@ -3,30 +3,18 @@ class EquipmentController < ApplicationController
   before_filter :solution_owner_user_required, :only => [ :upload, :import, :destroy ]
 
   def index
-    # TODO: All equipment below belongs to a particular pickup, add a foreign key to pickup record
-    # TODO: Retrieve equipment that belongs to a particular pickup only
-    @monitors = ComputerMonitor.all
-    @cpus = Cpu.all
-    @lhds = LooseHardDrive.all
-    @fhds = FlashHardDrive.all
-    @tvs = Tv.all
-    @mms = MagneticMedia.all
-    @peripherals = Peripheral.all
-    @miscs = MiscellaneousEquipment.all
-
-    respond_to do |format|
-      format.html 
-      format.xml  { render :xml => @equipment }
-    end
+    @monitors = @container.computer_monitors.all
+    @cpus = @container.cpus.all
+    @lhds = @container.loose_hard_drive.all
+    @fhds = @container.flash_hard_drive.all
+    @tvs = @container.tvs.all
+    @mms = @container.magnetic_medias.all
+    @peripherals = @container.peripherals.all
+    @miscs = @container.miscellaneous_equipments.all     
   end
 
   def show
     @equipment = @container.equipment.find(params[:id])
-
-    respond_to do |format|
-      format.html 
-      format.xml  { render :xml => @equipment }
-    end
   end
 
   def export

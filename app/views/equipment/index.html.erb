@@ -23,6 +23,7 @@
     <th>Size</th>
     <th>Brand</th>
     <th>Serial</th>
+	<th></th>
   </tr>
   <% for monitor in @monitors %>
     <tr class="<%= cycle 'a', 'b' %>">
@@ -30,6 +31,7 @@
       <td><%= monitor.size %></td>
       <td><%= monitor.brand %></td>
       <td><%= monitor.serial %></td>
+	  <td></td>
     </tr>
   <% end %>
 </table>
@@ -44,6 +46,7 @@
     <th>Serial</th>
     <th>Class</th>
     <th>Hard Drive Serial</th>
+	<th></th>
   </tr>
   <% for cpu in @cpus %>
     <tr class="<%= cycle 'a', 'b' %>">
@@ -52,6 +55,7 @@
       <td><%= cpu.serial %></td>
       <td><%= cpu.cpu_class %></td>
       <td><%= cpu.cpu_hard_drive_serials.collect(&:name).join(",") %></td>
+	  <td><%= link_to "Edit", edit_cpu_path(cpu) %></td>
     </tr>
   <% end %>
 </table>
@@ -63,11 +67,13 @@
   <tr>
     <th>Brand</th>
     <th>Serial</th>
+	<th></th>
   </tr>
   <% for lhd in @lhds %>
     <tr class="<%= cycle 'a', 'b' %>">
       <td><%= lhd.brand %></td>
       <td><%= lhd.serial %></td>
+	  <td></td>
     </tr>
   <% end %>
 </table>
@@ -78,11 +84,13 @@
   <tr>
     <th>Brand</th>
     <th>Serial</th>
+	<th></th>
   </tr>
   <% for fhd in @fhds %>
     <tr class="<%= cycle 'a', 'b' %>">
       <td><%= fhd.brand %></td>
       <td><%= fhd.serial %></td>
+	  <td></td>
     </tr>
   <% end %>
 </table>
@@ -94,12 +102,14 @@
     <th>Brand</th>
     <th>Size</th>
     <th>Serial</th>
+	<th></th>
   </tr>
   <% for tv in @tvs %>
     <tr class="<%= cycle 'a', 'b' %>">
       <td><%= tv.brand %></td>
       <td><%= tv.size %></td>
       <td><%= tv.serial %></td>
+	  <td></td>
     </tr>
   <% end %>
 </table>
@@ -110,11 +120,13 @@
   <tr>
     <th>Type</th>
     <th>Weight</th>
+	<th></th>
   </tr>
   <% for mm in @mms %>
     <tr class="<%= cycle 'a', 'b' %>">
       <td><%= mm.mm_type %></td>
       <td><%= mm.weight %></td>
+	  <td></td>
     </tr>
   <% end %>
 </table>
@@ -127,6 +139,7 @@
     <th>Brand</th>
     <th>Serial</th>
     <th>Hard Drive Serial</th>
+	<th></th>
   </tr>
   <% for peripheral in @peripherals %>
     <tr class="<%= cycle 'a', 'b' %>">
@@ -134,6 +147,7 @@
       <td><%= peripheral.brand %></td>
       <td><%= peripheral.serial %></td>
       <td><%= peripheral.peripherals_hard_drive_serials.collect(&:name).join(",") %></td>
+	  <td></td>
     </tr>
   <% end %>
 </table>
@@ -145,12 +159,14 @@
     <th>Type</th>
     <th>Brand</th>
     <th>Serial</th>
+	<th></th>
   </tr>
   <% for misc in @miscs %>
     <tr class="<%= cycle 'a', 'b' %>">
       <td><%= misc.me_type  %></td>
       <td><%= misc.brand %></td>
       <td><%= misc.serial %></td>
+	  <td></td>
     </tr>
   <% end %>
 </table>

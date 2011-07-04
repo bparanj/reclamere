@@ -10,12 +10,12 @@ ActionController::Routing::Routes.draw do |map|
   map.feedback_request "/feedback_request/:id", :controller => 'sessions', :action => 'feedback_request'
   
   # map.with_options :controller => "services" do |page|
-  #   page.new_cpu_hard_drive_serial "new_cpu_hard_drive_serial/:cpu_id", :action => "new_cpu_hard_drive_serial"
-  #   page.create_cpu_hard_drive_serial "create_cpu_hard_drive_serial/:cpu_id", :action => "create_cpu_hard_drive_serial"    
+  #   page.edit_computer_monitor "edit_computer_monitor/:id", :action => "edit_computer_monitor"
   # end
   
   map.resources :monitor_sizes, :monitor_brands, :cpu_types, :cpu_brands, :cpu_classes, :loose_hard_drive_brands
   map.resources :flash_hard_drive_brands, :tv_brands, :tv_sizes, :peripherals_brands, :miscellaneous_equipment_types, :miscellaneous_equipment_brands
+  map.resources :cpus, :only => [:edit, :update] 
   
   # map.import_pickup_equipment "/pickups/:pickup_id/equipment/import/:id/:equipment_type",
   #   :controller => 'equipment', :action => 'import'

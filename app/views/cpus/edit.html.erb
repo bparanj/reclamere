@@ -1,0 +1,49 @@
+<% form_for(@cpu) do |f| %>
+
+<table class="axial">
+
+	<tr>
+		<th></th>
+		<td><h3>Edit CPU</h3></td>
+	</tr>
+    <tr>
+      <th> Type</th>
+	  <td> 
+		<%= f.select(:cpu_type, options_for_select(@cpu_types, @cpu.cpu_type)) %>
+	  </td>
+	</tr>
+    <tr>
+      <th> Brand</th>
+	  <td> 
+		<%= f.select(:brand, options_for_select(@cpu_brands, @cpu.brand)) %> 
+
+	  </td>
+	</tr>
+	<tr>
+    <th>Serial</th>
+    	<td><%= f.text_field(:serial, :size => 35 ) %></td>
+    </tr>
+    <tr>
+      <th> Class</th>
+	  <td> 
+		<%= f.select(:cpu_class, options_for_select(@cpu_classes, @cpu.cpu_class)) %> 
+
+	  </td>
+	</tr>
+
+  <tr>
+    <th>Hard Drive Serial</th>
+    <td>
+		<%= text_field_tag('cpu_hard_drive_serial', @cpu.cpu_hard_drive_serials.collect(&:name).join(","), :size => 35 ) %>
+		<cite>Use comma to separate multiple Serial Numbers</cite>
+	</td>
+  </tr>
+  	
+
+</table>
+
+<div class="functnbar3">
+  <%= submit_tag "Update" %>
+</div>
+
+<% end %>

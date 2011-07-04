@@ -37,7 +37,7 @@ class ServicesController < ApplicationController
     get_pickup
     redirect_to new_pickup_service_path(@pickup)    
   end  
-
+  
   private
   
   def make_monitor

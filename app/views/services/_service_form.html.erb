@@ -141,9 +141,10 @@
 	<tr>
  	   <th> Type</th>
 		<td>
-			<%= select_tag('magnetic_media_type', options_for_select(["Please select","Floppy", "CD", "Media"])) %>					
+			<%= select_tag('magnetic_media_type', options_for_select(MagneticMedia::DROP_DOWN_LIST)) %>					
 		</td>	
     </tr>
+
 	<tr>
  	   <th>Weight</th>
 	    <td><%= text_field_tag('magnetic_media_weight', nil, :size => 35 ) %></td>
@@ -158,7 +159,7 @@
 	  <tr>
 	    <th> Type</th>
 		<td>
-			<%= select_tag('peripheral_type', options_for_select(["Please select","Printer", "Fax", "Scanner"])) %>		
+			<%= select_tag('peripheral_type', options_for_select(Peripheral::DROP_DOWN_LIST)) %>		
 		</td>
 	  </tr>		
 	

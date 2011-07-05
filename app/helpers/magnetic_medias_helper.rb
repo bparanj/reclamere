@@ -1,0 +1,2 @@
+module MagneticMediasHelper
+end

@@ -1,0 +1,35 @@
+<% form_for(@tv) do |f| %>
+
+<table class="axial">
+
+	<tr>
+		<th></th>
+		<td><h3>Edit Tv</h3></td>
+	</tr>	
+    <tr>
+      <th> Brand</th>
+	  <td> 
+		<%= f.select(:brand, options_for_select(@tv_brands, @tv.brand)) %> 
+
+	  </td>
+	</tr>
+	
+	<tr>
+      <th> Size </th>
+	  <td> 
+		<%= f.select(:size, options_for_select(@tv_sizes, @tv.size)) %>
+	  </td>
+	</tr>
+    
+	<tr>
+    <th>Serial</th>
+    	<td><%= f.text_field(:serial, :size => 35 ) %></td>
+    </tr>  	
+
+</table>
+
+<div class="functnbar3">
+  <%= submit_tag "Update" %>
+</div>
+
+<% end %>

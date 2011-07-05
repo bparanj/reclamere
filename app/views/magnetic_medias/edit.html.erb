@@ -1,0 +1,27 @@
+<% form_for(@magnetic_media) do |f| %>
+
+<table class="axial">
+
+	<tr>
+		<th></th>
+		<td><h3>Edit Magnetic Media</h3></td>
+	</tr>
+    <tr>
+      <th> Type</th>
+	  <td> 
+		<%= f.select(:mm_type, options_for_select(@magnetic_media_types, @magnetic_media.mm_type)) %>
+	  </td>
+	</tr>
+	
+	<tr>
+    <th>Weight</th>
+    	<td><%= f.text_field(:weight, :size => 35 ) %></td>
+    </tr>  	
+
+</table>
+
+<div class="functnbar3">
+  <%= submit_tag "Update" %>
+</div>
+
+<% end %>

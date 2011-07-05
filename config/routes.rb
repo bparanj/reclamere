@@ -16,7 +16,14 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :monitor_sizes, :monitor_brands, :cpu_types, :cpu_brands, :cpu_classes, :loose_hard_drive_brands
   map.resources :flash_hard_drive_brands, :tv_brands, :tv_sizes, :peripherals_brands, :miscellaneous_equipment_types, :miscellaneous_equipment_brands
   map.resources :cpus, :only => [:edit, :update] 
-  
+  map.resources :computer_monitors, :only => [:edit, :update] 
+  map.resources :loose_hard_drives, :only => [:edit, :update] 
+  map.resources :flash_hard_drives, :only => [:edit, :update] 
+  map.resources :tvs, :only => [:edit, :update] 
+  map.resources :magnetic_medias, :only => [:edit, :update] 
+  map.resources :peripherals, :only => [:edit, :update] 
+  map.resources :miscellaneous_equipments, :only => [:edit, :update] 
+    
   # map.import_pickup_equipment "/pickups/:pickup_id/equipment/import/:id/:equipment_type",
   #   :controller => 'equipment', :action => 'import'
     

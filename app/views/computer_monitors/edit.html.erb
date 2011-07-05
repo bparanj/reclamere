@@ -1,0 +1,42 @@
+<% form_for(@monitor) do |f| %>
+
+<table class="axial">
+	<tr>
+		<th></th>
+		<td><h3>Edit Monitor</h3></td>
+	</tr>
+  <tr>
+    <th> Type</th>
+	<td>
+		<%= f.select(:cm_type, options_for_select(["Please select","CRT", "LCD"], @monitor.cm_type)) %>		
+	</td>
+  </tr>
+
+  <tr>
+    <th>Size</th>
+    <td>
+		<%= f.select(:size, options_for_select(@monitor_sizes, @monitor.size)) %>
+	</td>
+  </tr>
+
+  <tr>
+    <th>Brand</th>
+    <td>
+		<%= f.select(:brand, options_for_select(@monitor_brands, @monitor.brand)) %>
+	</td>
+  </tr>
+
+  <tr>
+    <th>Serial</th>
+    <td>
+		<%= f.text_field(:serial, :size => 35) %>
+	</td>
+  </tr> 	
+
+</table>
+
+<div class="functnbar3">
+  <%= submit_tag "Update" %>
+</div>
+
+<% end %>

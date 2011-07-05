@@ -1,0 +1,33 @@
+<% form_for(@misc) do |f| %>
+
+<table class="axial">
+
+	<tr>
+		<th></th>
+		<td><h3>Edit Miscellaneous Equipment</h3></td>
+	</tr>
+    <tr>
+      <th> Type</th>
+	  <td> 
+		<%= f.select(:me_type, options_for_select(@misc_types, @misc.me_type)) %>
+	  </td>
+	</tr>
+    <tr>
+      <th> Brand</th>
+	  <td> 
+		<%= f.select(:brand, options_for_select(@misc_brands, @misc.brand)) %> 
+
+	  </td>
+	</tr>
+	<tr>
+    <th>Serial</th>
+    	<td><%= f.text_field(:serial, :size => 35 ) %></td>
+    </tr>  	
+
+</table>
+
+<div class="functnbar3">
+  <%= submit_tag "Update" %>
+</div>
+
+<% end %>

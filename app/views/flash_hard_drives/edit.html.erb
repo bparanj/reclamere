@@ -1,0 +1,29 @@
+<% form_for(@flash_hard_drive) do |f| %>
+<table class="axial">
+
+	<tr>
+		<th></th>
+		<td><h3>Edit Flash Hard Drive</h3></td>
+	</tr>
+	
+	<tr>
+    <th> Brand </th>
+	  <td> 
+		<%= f.select(:brand, options_for_select(@flash_hard_drive_brands, @flash_hard_drive.brand)) %> 
+	  </td>
+	</tr>
+	
+	<tr>
+	  <th>Serial</th>
+	  <td>
+			<%= f.text_field(:serial, :size => 35 ) %>
+	  </td>
+	</tr>		
+
+</table>
+
+<div class="functnbar3">
+  <%= submit_tag "Update" %>
+</div>
+
+<% end %>

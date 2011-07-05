@@ -31,7 +31,7 @@
       <td><%= monitor.size %></td>
       <td><%= monitor.brand %></td>
       <td><%= monitor.serial %></td>
-	  <td></td>
+	  <td> <%= link_to "Edit", edit_computer_monitor_path(monitor) %> </td>
     </tr>
   <% end %>
 </table>
@@ -73,7 +73,7 @@
     <tr class="<%= cycle 'a', 'b' %>">
       <td><%= lhd.brand %></td>
       <td><%= lhd.serial %></td>
-	  <td></td>
+	  <td> <%= link_to "Edit", edit_loose_hard_drife_path(lhd) %> </td>
     </tr>
   <% end %>
 </table>
@@ -90,7 +90,7 @@
     <tr class="<%= cycle 'a', 'b' %>">
       <td><%= fhd.brand %></td>
       <td><%= fhd.serial %></td>
-	  <td></td>
+	  <td> <%= link_to "Edit", edit_flash_hard_drife_path(fhd) %> </td>
     </tr>
   <% end %>
 </table>
@@ -109,7 +109,7 @@
       <td><%= tv.brand %></td>
       <td><%= tv.size %></td>
       <td><%= tv.serial %></td>
-	  <td></td>
+	  <td> <%= link_to "Edit", edit_tv_path(tv) %> </td>
     </tr>
   <% end %>
 </table>
@@ -126,7 +126,7 @@
     <tr class="<%= cycle 'a', 'b' %>">
       <td><%= mm.mm_type %></td>
       <td><%= mm.weight %></td>
-	  <td></td>
+	  <td> <%= link_to "Edit", edit_magnetic_media_path(mm) %> </td>
     </tr>
   <% end %>
 </table>
@@ -147,7 +147,7 @@
       <td><%= peripheral.brand %></td>
       <td><%= peripheral.serial %></td>
       <td><%= peripheral.peripherals_hard_drive_serials.collect(&:name).join(",") %></td>
-	  <td></td>
+	  <td> <%= link_to "Edit", edit_peripheral_path(peripheral) %> </td>
     </tr>
   <% end %>
 </table>
@@ -166,9 +166,9 @@
       <td><%= misc.me_type  %></td>
       <td><%= misc.brand %></td>
       <td><%= misc.serial %></td>
-	  <td></td>
+	  <td> <%= link_to "Edit", edit_miscellaneous_equipment_path(misc) %> </td>
     </tr>
   <% end %>
 </table>
-  <div class="functnbar3">&nbsp;</div>
 
+<div class="functnbar3">&nbsp;</div>

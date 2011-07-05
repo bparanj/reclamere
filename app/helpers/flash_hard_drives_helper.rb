@@ -1,0 +1,2 @@
+module FlashHardDrivesHelper
+end

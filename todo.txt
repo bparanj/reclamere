@@ -1,9 +1,8 @@
 
-1. 
-2. Add edit capability to all items in equipment tab
-3. Consolidate all reply from recent questions and keep the notes here for quick reference
-
-
+1. Add edit capability to all items in equipment tab
+2. Consolidate all reply from recent questions and keep the notes here for quick reference
+3. For services tab all fields except hard drive for Printers are required.
+4. Pending : Deployment Details
 
 
 1. -- create_table(:folders) migration
@@ -26,17 +25,14 @@ Use Cases
 
 2) Feedback Request
 
-3) Import Pickup Equipment - Is this required ?
+3) Audit Logs
 
-4) Audit Logs
+4) System Emails
 
-5) System Emails
+5) Upload/ Download Certificates in Internal Documents with restricted access 
 
-6) Download Certificates
 
-7) Equipment Export - Is this required?
 
-8) Download documents - Is this required?
 
 9) Is edit client required?
 
@@ -48,32 +44,8 @@ Use Cases
 
 13) Notifications tab for setting up Email Templates
 
-14) For New Pickup and Edit Pickup, Type drop down box will be changed to Multi-Select box. 
 
-15) For services tab all fields except hard drive for Printers are required.
-
-
-
-1.For Linux users
-===============
-
-Installing HTMLDOC
-==================
-curl -O http://ftp.easysw.com/pub/htmldoc/snapshots/htmldoc-1.9.x-r1521.tar.gz
-
-tar zxvf htmldoc-1.9.x-r1521.tar.gz
-
-cd htmldoc-1.9.x-r1521
-
-./configure --prefix=/usr/local
-
-make
-
-sudo make install
-
-
-
-Certificates
+14) Certificates
 
 Certificate of Data Destruction       Excel and PDF
 Inventory Report					  Excel and PDF
@@ -81,52 +53,6 @@ General Environmental Lot Certificate PDF
 Magnetic Media Incineration			  PDF
 Hard Drive Screening				  PDF (Use given XLS as sample)
 Asset Tag Removal					  PDF
-
-
-Pending
-
-Deployment Details
-
-
-
-Pallet Check-In Tab
-
-EquipmentCategories
-MONITORS
-PCs 
-LAPTOPS
-PRINTERS
-MISC
-TVS
-
-
-CPUs
-
-CAN
-P4
-PD
-XEON
-G5
-PM
-MAC
-G4
-CD
-C2D
-
-Services Tab
-
-Brand list for each equipment :
-
-Brand Names sheet sent by Chris
-
-
-Tasks
-
-
-
-
-
-
 
 
 _banner.html.erb

@@ -1,3 +1,23 @@
+1.For Linux users
+===============
+
+Installing HTMLDOC
+==================
+curl -O http://ftp.easysw.com/pub/htmldoc/snapshots/htmldoc-1.9.x-r1521.tar.gz
+
+tar zxvf htmldoc-1.9.x-r1521.tar.gz
+
+cd htmldoc-1.9.x-r1521
+
+./configure --prefix=/usr/local
+
+make
+
+sudo make install
+
+
+----------------------------------------------------------------------------------
+
 Actors
 
 Logistics Manager
@@ -17,35 +37,19 @@ Fillout online pickup request
 
 Glossary
 
-Audit x
-Bug x
-Client .
-Document .
-Equipment .
-Feedback . (Refer the email, send feedback request form to customer and cc it
+Audit 
+Client 
+Document 
+Equipment 
+Feedback  (Refer the email, send feedback request form to customer and cc it
 to sales person in charge of the account)
-Folder   .
-Password Ticket .
-Pickup .
-Pickup Location .
-Solution Owner x
-System Email .
+Folder   
+Password Ticket 
+Pickup 
+Pickup Location 
+Solution Owner 
+System Email 
 Task 
-User .
+User 
 
-Pickup Equipment
-Bob x
-Bob Cable x
-CPU .
-DWS Cart x
-EE3000 x
-ES Monitor ?
-Laptop .
-Misc .
-Monitor .
-PC x (instead CPU)
 PIU x
-Printer .
-Server .
-LCD Monitor
-CRT Monitor

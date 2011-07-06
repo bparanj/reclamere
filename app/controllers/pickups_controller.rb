@@ -184,6 +184,9 @@ class PickupsController < ApplicationController
     end
   end
   
+  def search  
+  end
+  
   private
 
   def get_pickup

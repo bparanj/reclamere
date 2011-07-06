@@ -33,7 +33,8 @@ ActionController::Routing::Routes.draw do |map|
     :acknowledge => :post,
     :notify => :post,
     :close_feedback => :post,
-    :print_work_order => :get
+    :print_work_order => :get,
+    :search => :get
     },
     :collection => { :update_users_list => :post } do |pickup|
     

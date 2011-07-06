@@ -1,0 +1,26 @@
+<% form_tag({}, { :method => :get }) do %>
+
+<table class="axial">
+
+	
+    <tr>
+      <th> Lot Number</th>
+	  <td> 
+		<%= text_field_tag('lot_number', nil, :size => 35 ) %>
+	  </td>
+	</tr>
+	
+	<tr>
+      <th> Client Reference Number </th>
+	  <td> 
+		<%= text_field_tag('client_reference_number', nil, :size => 35 ) %>
+	  </td>
+	</tr>
+    
+</table>
+
+<div class="functnbar3">
+  <%= submit_tag "Search" %>
+</div>
+
+<% end %>

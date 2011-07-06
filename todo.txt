@@ -1,4 +1,6 @@
 
+Search feature: Is it only available for internal users. Edit _toptabs.html.erb
+
 1. For services tab all fields except hard drive for Printers are required.
 2. Consolidate all reply from recent questions and keep the notes here for quick reference
 3. Pending : Deployment Details

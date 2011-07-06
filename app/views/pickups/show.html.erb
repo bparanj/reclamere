@@ -25,6 +25,10 @@
 <%= render :partial => 'pickup_header', :locals => { :pickup => @pickup } %>
 <table class="axial">
   <tr>
+    <th>Lot Number</th>
+    <td><%= @pickup.lot_number %></td>
+  </tr>
+  <tr>
     <th>Client Lead</th>
     <td><%= @pickup.client_user ? h(@pickup.client_user.name) : '&nbsp;' %></td>
   </tr>

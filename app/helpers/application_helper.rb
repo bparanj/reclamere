@@ -129,7 +129,9 @@ module ApplicationHelper
     elsif params[:controller] ==  'clients'
       'clients'
     elsif params[:controller] == 'pickup_locations'
-    'pickup_locations'
+      'pickup_locations'
+    elsif params[:controller] == 'search'
+      'search'
     elsif @folderable
       if @folderable.is_a?(Pickup)
         'pickups'

@@ -1,0 +1,29 @@
+<% @page_title = 'Search Results' -%>
+
+  <h3>Pickups</h3>
+
+  <table width="100%">
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <% if solution_owner_user? -%>
+        <th>Client</th>
+      <% end -%>
+      <th>Status</th>
+      <th>Type</th>
+      <th>Date</th>
+    </tr>
+    <% for pickup in @pickups %>
+      <tr class="<%= cycle 'a', 'b' %>">
+        <td><%= link_to_pickup(pickup) %></td>
+        <td><%= link_to(h(pickup.pickup_location.name), pickup.pickup_location) %></td>
+        <% if solution_owner_user? -%>
+          <td><%= link_to(h(pickup.client.name), pickup.client) %></td>
+        <% end -%>
+        <td><%=h pickup.status %></td>
+        <td><%=h pickup.pickup_type %></td>
+        <td><%= print_date(pickup.pickup_date) %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="functnbar3">&nbsp;</div>

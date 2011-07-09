@@ -9,9 +9,10 @@ ActionController::Routing::Routes.draw do |map|
   map.password_ticket "/password_ticket/:id", :controller => 'sessions', :action => 'password_ticket'
   map.feedback_request "/feedback_request/:id", :controller => 'sessions', :action => 'feedback_request'
   
-  # map.with_options :controller => "services" do |page|
-  #   page.edit_computer_monitor "edit_computer_monitor/:id", :action => "edit_computer_monitor"
-  # end
+  map.with_options :controller => "search" do |page|
+    page.search "search", :action => "new"
+    page.search_results "search_results", :action => "index"
+  end
   
   map.resources :monitor_sizes, :monitor_brands, :cpu_types, :cpu_brands, :cpu_classes, :loose_hard_drive_brands
   map.resources :flash_hard_drive_brands, :tv_brands, :tv_sizes, :peripherals_brands, :miscellaneous_equipment_types, :miscellaneous_equipment_brands
@@ -33,8 +34,7 @@ ActionController::Routing::Routes.draw do |map|
     :acknowledge => :post,
     :notify => :post,
     :close_feedback => :post,
-    :print_work_order => :get,
-    :search => :get
+    :print_work_order => :get
     },
     :collection => { :update_users_list => :post } do |pickup|
     

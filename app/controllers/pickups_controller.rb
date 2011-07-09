@@ -24,21 +24,11 @@ class PickupsController < ApplicationController
       :limit      => @list_nav.limit,
       :offset     => @list_nav.offset)
     self.list_nav = @list_nav.to_hash
-
-    respond_to do |format|
-      format.html 
-      format.xml  { render :xml => @pickups }
-    end
   end
 
   def show
     get_pickup
-    current_user.add_breadcrumb(@pickup.name, pickup_path(@pickup))
-    
-    respond_to do |format|
-      format.html 
-      format.xml  { render :xml => @pickup }
-    end
+    current_user.add_breadcrumb(@pickup.name, pickup_path(@pickup))    
   end
 
   def address
@@ -47,11 +37,6 @@ class PickupsController < ApplicationController
 
   def new
     @pickup = Pickup.new
-
-    respond_to do |format|
-      format.html 
-      format.xml  { render :xml => @pickup }
-    end
   end
 
   # Ajax method for new action
@@ -130,34 +115,26 @@ class PickupsController < ApplicationController
     @pickup.status = 'Picked Up'
     @pickup.created_by = current_user
     @pickup.pickup_type = @pickup.pickup_type.join(",")
-    respond_to do |format|
-      if @pickup.save
-        donemark 'Pickup was successfully created.'
-        audit "Created pickup \"#{@pickup.name}\"", :auditable => @pickup
-        format.html { redirect_to(@pickup) }
-        format.xml  { render :xml => @pickup, :status => :created, :location => @pickup }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @pickup.errors, :status => :unprocessable_entity }
-      end
+    
+    if @pickup.save
+      donemark 'Pickup was successfully created.'
+      audit "Created pickup \"#{@pickup.name}\"", :auditable => @pickup
+      redirect_to(@pickup) 
+    else
+      render :action => "new"
     end
   end
 
   def update
     @pickup = Pickup.find(params[:id])
-
-    respond_to do |format|
-      if @pickup.update_attributes(params[:pickup])
-        @pickup.pickup_type = @pickup.pickup_type.join(",")
-        @pickup.save
-        donemark 'Pickup was successfully updated.'
-        audit "Updated pickup \"#{@pickup.name}\"", :auditable => @pickup
-        format.html { redirect_to(@pickup) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @pickup.errors, :status => :unprocessable_entity }
-      end
+    if @pickup.update_attributes(params[:pickup])
+      @pickup.pickup_type = @pickup.pickup_type.join(",")
+      @pickup.save
+      donemark 'Pickup was successfully updated.'
+      audit "Updated pickup \"#{@pickup.name}\"", :auditable => @pickup
+      redirect_to(@pickup)
+    else
+      render :action => "edit" 
     end
   end
 
@@ -182,9 +159,6 @@ class PickupsController < ApplicationController
         send_data render_to_pdf({ :action => 'print_work_order.rpdf', :layout => 'pdf_report' }), :filename => "work_order.pdf"
        } 
     end
-  end
-  
-  def search  
   end
   
   private

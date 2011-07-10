@@ -1,5 +1,5 @@
 
-Search feature: Is it only available for internal users. Edit _toptabs.html.erb
+Edit _toptabs.html.erb
 
 1. For services tab all fields except hard drive for Printers are required.
 2. Consolidate all reply from recent questions and keep the notes here for quick reference
@@ -15,7 +15,6 @@ undefined method `length' for :index_folderable:Symbol
 
 SOLUTION_OWNER_PHONE = '234-555-1234'
 SOLUTION_OWNER_EMAIL = 'text@example.com'
-
 
 
 

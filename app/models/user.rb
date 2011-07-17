@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 
   belongs_to :client
   has_one :password_ticket
+  has_many :internal_documents
+  
   serialize :breadcrumbs
   attr_accessor :send_password_ticket_flag
 

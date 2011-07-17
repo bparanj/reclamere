@@ -1,0 +1,23 @@
+<%= render :partial => 'pickups/pickup_header', :locals => { :pickup => @pickup } %>
+
+
+<h3>Upload Internal Document</h3>
+<% form_tag(pickup_internal_documents_path(@pickup), :multipart => true) do %>
+
+<table class="axial">
+  <tr>
+    <th>Name</th>
+    <td><%= text_field_tag :name %></td>
+  </tr>
+  <tr>
+    <th>File</th>
+    <td><%= file_field 'upload', 'datafile' %> </td>
+  </tr>
+
+</table>
+
+<div class="functnbar3">
+  <%= submit_tag 'Upload' %>
+</div>
+
+<% end %>

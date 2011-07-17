@@ -33,15 +33,22 @@
         ['History', polymorphic_path([pickup, :audit_logs]), { :if => params[:controller] == 'audit_logs' }],
 		['Pallet Checkin', new_pickup_pallet_path(pickup)],
 		['Services', new_pickup_service_path(pickup)]
-		
       ]
+
       if ['Feedback', 'Closed'].include?(pickup.status)
         fp = pickup.status == 'Feedback' && client_user? ? edit_pickup_feedback_path(pickup) : pickup_feedback_path(pickup)
         tabs += [['Feedback', fp, { :if => params[:controller] ==  'feedbacks' }]]
       end
+
+	  if solution_owner_user? 
+		tabs += [['Internal Documents', new_pickup_internal_document_path(pickup) ]]
+	  end 
+
       tabs.each do |tab| -%>
         <%= link_to_tab(*tab) %>
       <% end -%>
+
+
     </tr>
   </table>
 </div>

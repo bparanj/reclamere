@@ -1,3 +1,7 @@
+  <% if solution_owner_user? -%>
+  	<%= render :partial => 'pickups/pickup_header', :locals => {:pickup => @pickup } %>
+  <% end -%>
+
 <table class="axial">
   <tr>
     <th>Name</th>

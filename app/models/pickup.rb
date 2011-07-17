@@ -28,6 +28,7 @@ class Pickup < ActiveRecord::Base
   has_many :magnetic_medias
   has_many :peripherals
   has_many :miscellaneous_equipments
+  has_many :internal_documents
   
   belongs_to :pickup_location
   belongs_to :client

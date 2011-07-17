@@ -33,28 +33,19 @@ class UsersController < ApplicationController
 
   def recent
     @users = User.recent
-    respond_to do |format|
-      format.html # recent.html.erb
-      format.xml  { render :xml => @users }
-    end
   end
 
   def show
     @user = User.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html 
       format.xml  { render :text => @user.to_xml(:except => [:breadcrumbs, :crypted_password, :remember_token, :remember_token_expires_at, :salt]) }
     end
   end
 
   def new
     @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @user }
-    end
   end
 
   def edit

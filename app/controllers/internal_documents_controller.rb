@@ -11,7 +11,7 @@ class InternalDocumentsController < ApplicationController
     pickup = _find_pickup
     post = InternalDocument.save(params[:name], params[:upload], current_user.id, pickup.id)
     donemark "File uploaded successfully"
-    audit "#{current_user.login} uploaded new internal document : #{params[:upload][:filename]}"
+    audit "#{current_user.login} uploaded new internal document : #{params[:upload][:filename]} at #{Time.now}"
     
     redirect_to new_pickup_internal_document_path(pickup) 
   end
@@ -24,11 +24,11 @@ class InternalDocumentsController < ApplicationController
     
     if file_exists
       send_file(absolute_filename, 
-               :filename => doc.filename,
-               :type => doc.content_type, 
-               :disposition => 'attachment', 
-               :streaming => true)
-      audit "Downloaded document \"#{@doc.filename}\"", :auditable => @pickup
+                :filename    => doc.filename,
+                :type        => doc.content_type, 
+                :disposition => 'attachment', 
+                :streaming   => true)
+      audit "#{current_user.name} downloaded document \"#{@doc.filename}\" at #{Time.now}", :auditable => @pickup
     else
       errormark "Sorry, unable to retrieve this file at this time. Please try again later."
     end
@@ -42,7 +42,7 @@ class InternalDocumentsController < ApplicationController
     @internal_doc.destroy
 
     donemark "Document \"#{@internal_doc.filename}\" was deleted successfully."
-    audit "Deleted document \"#{@internal_doc.filename}\"", :auditable => @pickup
+    audit "#{current_user.name} deleted document \"#{@internal_doc.filename}\" at #{Time.now}", :auditable => @pickup
 
     redirect_to new_pickup_internal_document_path(@pickup)     
   end

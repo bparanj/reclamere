@@ -43,12 +43,11 @@ class ApplicationController < ActionController::Base
   end
 
   def audit(description, options = {})
-    al = AuditLog.new({
-        :request_uri  => request.request_uri,
-        :remote_addr  => request.remote_addr,
-        :user         => options[:user] || current_user,
-        :description  => description,
-        :auditable    => options[:auditable] })
+    al = AuditLog.new({:request_uri  => request.request_uri,
+                       :remote_addr  => request.remote_addr,
+                       :user         => options[:user] || current_user,
+                       :description  => description,
+                       :auditable    => options[:auditable] })
     return al if al.save
     warn "Unable to save audit information: #{al.errors.inspect}"
   end

@@ -15,10 +15,7 @@ class DashboardController < ApplicationController
     else
       rpc = ['status = ?', 'Requested']
     end
-    @requested_pickups = Pickup.all(
-      :include => pickup_includes,
-      :conditions => rpc,
-      :order => 'pickup_date ASC')
+    @requested_pickups = Pickup.all(:include => pickup_includes,:conditions => rpc, :order => 'pickup_date ASC')
 
     # Upcoming pickups
     if client_user?
@@ -26,10 +23,7 @@ class DashboardController < ApplicationController
     else
       upc = ['status = ? OR status = ?', 'Acknowledged', 'Notified']
     end
-    @upcoming_pickups = Pickup.all(
-      :include => pickup_includes,
-      :conditions => upc,
-      :order => 'pickup_date ASC')
+    @upcoming_pickups = Pickup.all(:include => pickup_includes, :conditions => upc, :order => 'pickup_date ASC')
 
     # In-process pickups
     statuses = ['Picked Up', 'Arrived', 'Sanitized', 'Audited', 'Invoiced']
@@ -38,10 +32,7 @@ class DashboardController < ApplicationController
     else
       ipc = ['status IN (?)', statuses]
     end
-    @in_process_pickups = Pickup.all(
-      :include => pickup_includes,
-      :conditions => ipc,
-      :order => 'pickup_date ASC')
+    @in_process_pickups = Pickup.all(:include => pickup_includes, :conditions => ipc, :order => 'pickup_date ASC')
   end
 
   def profile

@@ -1,5 +1,6 @@
 class PalletsController < ApplicationController
   before_filter :get_pickup
+  before_filter :solution_owner_user_required
   
   def index
     get_pallets
@@ -14,7 +15,7 @@ class PalletsController < ApplicationController
     @pallet = @pickup.pallets.create(params[:pallet])
     
     donemark 'Pallet was successfully created.'
-    audit "Created new Pallet: #{params[:pallet][:number]}"
+    audit "#{current_user.name} created new Pallet: #{params[:pallet][:number]} at #{Time.now}"
       
     redirect_to new_pickup_pallet_path(@pickup)
   end

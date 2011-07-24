@@ -1,5 +1,7 @@
 <% @page_title = 'Search Results' -%>
 
+<% if @pickups.size > 0 %>
+
   <h3>Pickups</h3>
 
   <table width="100%">
@@ -27,3 +29,9 @@
     <% end %>
   </table>
   <div class="functnbar3">&nbsp;</div>
+
+<% else %>
+
+	<h1>No results found</h1>
+	
+<% end %>

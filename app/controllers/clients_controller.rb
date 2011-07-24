@@ -9,11 +9,10 @@ class ClientsController < ApplicationController
         :default_sort_direction => 'ASC',
         :limit => PER_PAGE })
     @list_nav.count = Client.count(:conditions => @list_nav.conditions)
-    @clients = Client.all(
-      :conditions => @list_nav.conditions,
-      :order      => @list_nav.order,
-      :limit      => @list_nav.limit,
-      :offset     => @list_nav.offset)
+    @clients = Client.all(:conditions => @list_nav.conditions,
+                          :order      => @list_nav.order,
+                          :limit      => @list_nav.limit,
+                          :offset     => @list_nav.offset)
     self.list_nav = @list_nav.to_hash
   end
 
@@ -35,6 +34,7 @@ class ClientsController < ApplicationController
     if @client.save
       donemark 'Client was successfully created.'
       audit "Created new client: #{@client.name}"
+      
       redirect_to(admin_controller? ? admin_client_path(@client) : client_path(@client))
     else
       render :action => "new"
@@ -47,6 +47,7 @@ class ClientsController < ApplicationController
     if @client.update_attributes(params[:client])
       donemark 'Client was successfully updated.'
       audit "Updated client: #{@client.name}"
+      
       redirect_to(admin_controller? ? admin_client_path(@client) : client_path(@client))
     else
       render :action => "edit" 

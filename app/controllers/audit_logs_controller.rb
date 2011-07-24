@@ -13,18 +13,12 @@ class AuditLogsController < ApplicationController
         :limit => PER_PAGE,
         :conditions => conditions })
     @list_nav.count = AuditLog.count(:conditions => @list_nav.conditions, :include => :user)
-    @audit_logs = AuditLog.all(
-      :include    => :user,
-      :conditions => @list_nav.conditions,
-      :order      => @list_nav.order,
-      :limit      => @list_nav.limit,
-      :offset     => @list_nav.offset)
+    @audit_logs = AuditLog.all(:include    => :user,
+                               :conditions => @list_nav.conditions,
+                               :order      => @list_nav.order,
+                               :limit      => @list_nav.limit,
+                               :offset     => @list_nav.offset)
     self.list_nav = @list_nav.to_hash
-
-    respond_to do |format|
-      format.html 
-      format.xml  { render :xml => @audit_logs }
-    end
   end
 
   private

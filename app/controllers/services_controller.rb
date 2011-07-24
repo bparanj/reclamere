@@ -1,4 +1,6 @@
 class ServicesController < ApplicationController
+  before_filter :solution_owner_user_required
+  
   NOT_SELECTED = "Please select"
   
   def index
@@ -32,7 +34,7 @@ class ServicesController < ApplicationController
     make_miscellaneous_equipment
     
     donemark 'Services Data was successfully saved.' 
-    audit "Created new Services at #{Time.now}"
+    audit "Created new Services at #{Time.now} by #{current_user.name}"
     
     get_pickup
     redirect_to new_pickup_service_path(@pickup)    

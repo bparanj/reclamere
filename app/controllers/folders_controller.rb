@@ -35,11 +35,13 @@ class FoldersController < ApplicationController
     if @new_folder.save
       donemark "Folder \"#{@new_folder.name}\" was successfully created."
       audit 'Created folder: ' + @new_folder.name, :auditable => @folderable
+    
       redirect_to polymorphic_path([@folderable, @new_folder]) 
     else
       @show_new_folder = true
       @document = @folder.documents.new
       get_documents_list
+    
       render :action => "index", :id => @folder.id
     end
   end
@@ -51,10 +53,12 @@ class FoldersController < ApplicationController
       if @folder.update_attributes(params[:folder])
         donemark "Folder \"#{@folder.name}\" was successfully updated."
         audit 'Updated folder: ' + @folder.name, :auditable => @folderable
+    
         redirect_to polymorphic_path([@folderable, @folder])
       else
         @show_edit_folder = true
         get_documents_list
+    
         render :action => "index", :id => @folder.id
       end
     end
@@ -64,11 +68,13 @@ class FoldersController < ApplicationController
     if @folder.root?
       errormark "You cannot delete the root folder."
       @show_edit_folder = true
+    
       redirect_to polymorphic_path([@folderable, @folder])
     else
       @folder.destroy
       donemark "Successfully deleted folder: \"#{@folder.name}\"."
       audit "Deleted folder: \"#{@folder.name}\"", :auditable => @folderable
+    
       redirect_to polymorphic_path([@folderable, @folder.parent]) 
     end
   end
@@ -98,12 +104,11 @@ class FoldersController < ApplicationController
         :default_sort_direction => 'ASC',
         :limit => PER_PAGE })
     @list_nav.count = @folder.documents.count(:conditions => @list_nav.conditions, :include => :created_by)
-    @documents = @folder.documents.all(
-      :include    => :created_by,
-      :conditions => @list_nav.conditions,
-      :order      => @list_nav.order,
-      :limit      => @list_nav.limit,
-      :offset     => @list_nav.offset)
+    @documents = @folder.documents.all(:include    => :created_by,
+                                       :conditions => @list_nav.conditions,
+                                       :order      => @list_nav.order,
+                                       :limit      => @list_nav.limit,
+                                       :offset     => @list_nav.offset)
     self.list_nav = @list_nav.to_hash.merge({ :name => name })
   end
 end

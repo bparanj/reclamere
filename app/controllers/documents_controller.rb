@@ -21,6 +21,7 @@ class DocumentsController < ApplicationController
     if @document.save
       donemessage 'Success!', "Document \"#{@document.name}\" was successfully created."
       audit "Created document \"#{@document.name}\"", :auditable => @folderable
+      
       redirect_to polymorphic_path([@folderable, @document.folder])
     else
       render :action => "new"
@@ -36,6 +37,7 @@ class DocumentsController < ApplicationController
     if @document.save
       donemark "Document \"#{@document.name}\" was successfully updated."
       audit "Updated document \"#{@document.name}\"", :auditable => @folderable
+      
       redirect_to polymorphic_path([@folderable, @document.folder, @document])
     else
       render :action => "edit"
@@ -58,10 +60,10 @@ class DocumentsController < ApplicationController
     end
     if document.file_exist?
       send_file(document.absolute_filename,
-        :filename => document.filename,
-        :type => document.content_type,
-        :disposition => 'attachment',
-        :streaming => true)
+                :filename => document.filename,
+                :type => document.content_type,
+                :disposition => 'attachment',
+                :streaming => true)
     else
       errormark "Sorry, unable to retrieve this file at this time. Please try again later."
       redirect_to polymorphic_path([@folderable, @document.folder, @document])

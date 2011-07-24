@@ -8,25 +8,18 @@ class PickupLocationsController < ApplicationController
     else
       conditions = ['pickup_locations.client_id = ?', @client.id] if @client
     end
-    @list_nav = ListNav.new(params, list_nav,
-      { :default_sort_field => 'pickup_locations.name',
-        :default_sort_direction => 'ASC',
-        :limit => PER_PAGE,
-        :conditions => conditions })
+    @list_nav = ListNav.new(params, list_nav, { :default_sort_field => 'pickup_locations.name',
+                                                :default_sort_direction => 'ASC',
+                                                :limit => PER_PAGE,
+                                                :conditions => conditions })
     @list_nav.count = PickupLocation.count(:conditions => @list_nav.conditions,
-      :include => [:client, :client_user])
-    @pickup_locations = PickupLocation.all(
-      :include    => [:client, :client_user],
-      :conditions => @list_nav.conditions,
-      :order      => @list_nav.order,
-      :limit      => @list_nav.limit,
-      :offset     => @list_nav.offset)
+                                           :include => [:client, :client_user])
+    @pickup_locations = PickupLocation.all(:include    => [:client, :client_user],
+                                           :conditions => @list_nav.conditions,
+                                           :order      => @list_nav.order,
+                                           :limit      => @list_nav.limit,
+                                           :offset     => @list_nav.offset)
     self.list_nav = @list_nav.to_hash
-
-    respond_to do |format|
-      format.html 
-      format.xml  { render :xml => @pickup_locations }
-    end
   end
 
   def show
@@ -35,20 +28,11 @@ class PickupLocationsController < ApplicationController
       access_denied
     else
       current_user.add_breadcrumb(@pickup_location.name, (admin_controller? ? admin_pickup_location_path(@pickup_location) : pickup_location_path(@pickup_location)))
-      respond_to do |format|
-        format.html 
-        format.xml  { render :xml => @pickup_location }
-      end
     end
   end
 
   def new
     @pickup_location = PickupLocation.new
-
-    respond_to do |format|
-      format.html 
-      format.xml  { render :xml => @pickup_location }
-    end
   end
 
   # Ajax method for new action
@@ -66,33 +50,27 @@ class PickupLocationsController < ApplicationController
   def create
     @pickup_location = PickupLocation.new(params[:pickup_location])
 
-    respond_to do |format|
-      if @pickup_location.save
-        donemark 'Pickup Location was successfully created.'
-        audit "Created pickup location #{@pickup_location.name}"
-        format.html { redirect_to(admin_controller? ? admin_pickup_location_path(@pickup_location) : pickup_location_path(@pickup_location)) }
-        format.xml  { render :xml => @pickup_location, :status => :created, :location => @pickup_location }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @pickup_location.errors, :status => :unprocessable_entity }
-      end
+    if @pickup_location.save
+      donemark 'Pickup Location was successfully created.'
+      audit "Created pickup location #{@pickup_location.name}"
+      redirect_to(admin_controller? ? admin_pickup_location_path(@pickup_location) : pickup_location_path(@pickup_location))
+    else
+      render :action => "new"
     end
   end
 
   def update
     @pickup_location = PickupLocation.find(params[:id])
     params[:pickup_location].delete(:client_id)
-    respond_to do |format|
-      if @pickup_location.update_attributes(params[:pickup_location])
-        donemark 'Pickup Location was successfully updated.'
-        audit "Updated pickup location #{@pickup_location.name}"
-        format.html { redirect_to(admin_controller? ? admin_pickup_location_path(@pickup_location) : pickup_location_path(@pickup_location)) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @pickup_location.errors, :status => :unprocessable_entity }
-      end
+
+    if @pickup_location.update_attributes(params[:pickup_location])
+      donemark 'Pickup Location was successfully updated.'
+      audit "Updated pickup location #{@pickup_location.name}"
+      redirect_to(admin_controller? ? admin_pickup_location_path(@pickup_location) : pickup_location_path(@pickup_location)) 
+    else
+      render :action => "edit"
     end
+
   end
 
 end

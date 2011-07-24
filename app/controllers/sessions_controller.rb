@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
   layout 'tigris_nonav'
 
-  # render new.rhtml
   def new
   end
 

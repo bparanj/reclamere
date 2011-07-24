@@ -39,23 +39,6 @@ class EquipmentController < ApplicationController
     end
   end
 
-  def upload
-    if @container.is_a?(Pickup)
-      if request.get?
-        @document = Document.new
-      else
-        @document = EquipmentImport.upload_import_document(params[:equipment_type], params[:document], @container, current_user)
-        if !@document.new_record? && @document.valid?
-          donemark "Successfully uploaded equipment list."
-          audit "Uploaded equipment list for pickup \"#{@container.name}\"", :auditable => @container
-          redirect_to import_pickup_equipment_path(@container, @document, params[:equipment_type])
-        end
-      end
-    else
-      access_denied "You can only upload an equipment list in the context of a pickup!"
-    end
-  end
-
   def import
     if @container.is_a?(Pickup)
       document = @container.equipment_import_folder.documents.find(params[:id])
@@ -80,10 +63,7 @@ class EquipmentController < ApplicationController
     donemark "Successfully deleted equipment."
     audit "Deleted equipment #{@equipment.type_name.downcase} #{@equipment.serial}", :auditable => @container
 
-    respond_to do |format|
-      format.html { redirect_to(polymorphic_path([@container, :equipment])) }
-      format.xml  { head :ok }
-    end
+    redirect_to(polymorphic_path([@container, :equipment]))
   end
 
   private

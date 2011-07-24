@@ -1,4 +1,6 @@
 class TvBrandsController < ApplicationController
+  before_filter :solution_owner_user_required
+  
   def index
   end
 
@@ -9,7 +11,7 @@ class TvBrandsController < ApplicationController
   def create
     TvBrand.create(params[:tv_brand])
     donemark 'New Tv brand successfully created'
-    audit "Created new TV Brand: #{params[:tv_brand][:name]}"
+    audit "#{current_user.name} created new TV Brand: #{params[:tv_brand][:name]} at #{Time.now}"
     
     redirect_to new_service_path    
   end

@@ -3,18 +3,12 @@ class FeedbacksController < ApplicationController
   before_filter :feedback_editor_required, :only => [ :edit, :update ]
   before_filter :feedback_viewer_required, :only => [ :show ]
 
-  # GET /pickups/:pickup_id/feedback.xml
   def show
-    respond_to do |format|
-      format.html 
-      format.xml  { render :xml => @feedback }
-    end
   end
 
   def edit
   end
 
-  # PUT /pickups/:pickup_id/feedback
   def update
     if @pickup.status == 'Feedback'
       @feedback.attributes = params[:feedback]
@@ -50,8 +44,7 @@ class FeedbacksController < ApplicationController
     if solution_owner_user?
       ['Feedback', 'Closed'].include?(@pickup.status)
     else
-      ['Feedback', 'Closed'].include?(@pickup.status) &&
-        @pickup.client == @client
+      ['Feedback', 'Closed'].include?(@pickup.status) && @pickup.client == @client
     end
   end
 

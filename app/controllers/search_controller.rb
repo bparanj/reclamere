@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+  before_filter :solution_owner_user_required
   
   def new
   end

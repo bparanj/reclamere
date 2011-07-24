@@ -1,11 +1,6 @@
 class InternalDocument < ActiveRecord::Base
   belongs_to :pickup
   belongs_to :user
-    
-  # TODO : Check allowed file extensions
-  # Delete functionality
-  # List file names in index action
-  # Allow download and deleting files
 
   def self.save(name, upload, user_id, pickup_id)
     original_file_name =  upload['datafile'].original_filename

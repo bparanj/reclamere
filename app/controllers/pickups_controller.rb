@@ -11,18 +11,16 @@ class PickupsController < ApplicationController
       conditions = ['pickups.client_id = ?', @client.id]  if @client
     end
 
-    @list_nav = ListNav.new(params, list_nav,
-      { :default_sort_field => 'pickup_date',
-        :default_sort_direction => 'DESC',
-        :limit => PER_PAGE,
-        :conditions => conditions })
+    @list_nav = ListNav.new(params, list_nav, { :default_sort_field => 'pickup_date',
+                                                :default_sort_direction => 'DESC',
+                                                :limit => PER_PAGE,
+                                                :conditions => conditions })
     @list_nav.count = Pickup.count(:conditions => @list_nav.conditions, :include => pickup_includes)
-    @pickups = Pickup.all(
-      :include    => pickup_includes,
-      :conditions => @list_nav.conditions,
-      :order      => @list_nav.order,
-      :limit      => @list_nav.limit,
-      :offset     => @list_nav.offset)
+    @pickups = Pickup.all(:include    => pickup_includes,
+                          :conditions => @list_nav.conditions,
+                          :order      => @list_nav.order,
+                          :limit      => @list_nav.limit,
+                          :offset     => @list_nav.offset)
     self.list_nav = @list_nav.to_hash
   end
 

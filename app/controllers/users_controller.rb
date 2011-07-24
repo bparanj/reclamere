@@ -12,23 +12,16 @@ class UsersController < ApplicationController
         end
       end
     end
-    @list_nav = ListNav.new(params, list_nav,
-      { :default_sort_field => 'login',
-        :default_sort_direction => 'ASC',
-        :limit => PER_PAGE })
+    @list_nav = ListNav.new(params, list_nav, { :default_sort_field => 'login',
+                                                :default_sort_direction => 'ASC',
+                                                :limit => PER_PAGE })
     @list_nav.count = User.count(:conditions => @list_nav.conditions, :include => :client)
-    @users = User.all(
-      :include => :client,
-      :conditions => @list_nav.conditions,
-      :order      => @list_nav.order,
-      :limit      => @list_nav.limit,
-      :offset     => @list_nav.offset)
+    @users = User.all(:include => :client,
+                      :conditions => @list_nav.conditions,
+                      :order      => @list_nav.order,
+                      :limit      => @list_nav.limit,
+                      :offset     => @list_nav.offset)
     self.list_nav = @list_nav.to_hash
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @users }
-    end
   end
 
   def recent
@@ -37,11 +30,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html 
-      format.xml  { render :text => @user.to_xml(:except => [:breadcrumbs, :crypted_password, :remember_token, :remember_token_expires_at, :salt]) }
-    end
   end
 
   def new
@@ -58,37 +46,28 @@ class UsersController < ApplicationController
     else
       ClientUser.new(params[:user])
     end
-
     @user.admin = 1 if params[:user][:admin] == '1'
-
-    respond_to do |format|
-      if @user.save
-        donemark 'User was successfully created.'
-        audit "Created user: \"#{@user.login}\""
-        format.html { redirect_to admin_user_path(@user) }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
+    
+    if @user.save
+      donemark 'User was successfully created.'
+      audit "Created user: \"#{@user.login}\""
+      redirect_to admin_user_path(@user)
+    else
+      render :action => "new"
     end
   end
 
   def update
     @user = User.find(params[:id])
-
     @user.admin = params[:user][:admin] == '1' ? 1 : 0
-
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        audit "Updated user: \"#{@user.login}\""
-        donemark 'User was successfully updated.'
-        format.html { redirect_to admin_user_path(@user) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
+    
+    if @user.update_attributes(params[:user])
+      audit "Updated user: \"#{@user.login}\""
+      donemark 'User was successfully updated.'
+      redirect_to admin_user_path(@user)
+    else
+      render :action => "edit"
     end
+
   end
 end

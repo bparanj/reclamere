@@ -198,9 +198,12 @@ ActiveRecord::Schema.define(:version => 20110710034029) do
   end
 
   create_table "internal_documents", :force => true do |t|
-    t.integer  "pickup_id",  :null => false
-    t.string   "name",       :null => false
-    t.integer  "user_id",    :null => false
+    t.integer  "pickup_id",    :null => false
+    t.string   "name",         :null => false
+    t.integer  "user_id",      :null => false
+    t.string   "filename",     :null => false
+    t.string   "content_type", :null => false
+    t.integer  "size",         :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

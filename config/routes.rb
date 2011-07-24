@@ -25,9 +25,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :peripherals, :only => [:edit, :update] 
   map.resources :miscellaneous_equipments, :only => [:edit, :update] 
 
-  # map.import_pickup_equipment "/pickups/:pickup_id/equipment/import/:id/:equipment_type",
-  #   :controller => 'equipment', :action => 'import'
-    
   map.resources :pickups,
     :member => { 
     :address => :get,
@@ -51,7 +48,7 @@ ActionController::Routing::Routes.draw do |map|
       pickup.resources :audit_logs, :only => :index
       pickup.resources :pallets
       pickup.resources :services
-      pickup.resources :internal_documents, :only => [:new, :create]   
+      pickup.resources :internal_documents, :only => [:new, :create, :destroy], :member => { :download => :get }   
   end
   
   map.download_pickup_folder_document_document_version "/pickups/:pickup_id/folders/:folder_id/documents/:id/download/:version",

@@ -1,5 +1,32 @@
 <%= render :partial => 'pickups/pickup_header', :locals => { :pickup => @pickup } %>
 
+<% if @internal_docs.size > 0 %>
+
+<h3>&nbsp;</h3>
+
+<table width="100%">
+  <tr>
+    <th> Name </th>
+    <th> File Name </th>
+    <th> Created On </th>
+    <th> Created By </th>
+	<th></th>
+  </tr>
+  <% for document in @internal_docs -%>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td> <%= link_to document.name, download_pickup_internal_document_path(@pickup, document) %> </td>
+      <td> <%= document.filename %> </td>
+      <td> <%= print_date(document.created_at) %></td>
+      <td><%= document.user.name %></td>
+	  <td> <%= link_to "Delete",  pickup_internal_document_path(@pickup, document), :confirm => "Do you really want to delete this internal document?", :method => :delete %> </td>
+    </tr>
+  <% end -%>
+</table>
+<div class="functnbar3">&nbsp;</div>
+
+<% end %>
+
+
 
 <h3>Upload Internal Document</h3>
 <% form_tag(pickup_internal_documents_path(@pickup), :multipart => true) do %>

@@ -2,9 +2,7 @@ class Document < ActiveRecord::Base
   attr_protected :version, :filename, :content_type, :size, :root_folder_id, :sha1
 
   version_fu do
-    belongs_to :created_by,
-      :class_name => '::User',
-      :foreign_key => :created_by_id
+    belongs_to :created_by, :class_name => '::User', :foreign_key => :created_by_id
 
     after_destroy :destroy_file
 
@@ -25,15 +23,10 @@ class Document < ActiveRecord::Base
   end
 
   belongs_to :folder
-  belongs_to :root_folder,
-    :class_name => 'Folder',
-    :foreign_key => 'root_folder_id'
-  belongs_to :created_by,
-    :class_name => 'User',
-    :foreign_key => 'created_by_id'
+  belongs_to :root_folder, :class_name => 'Folder', :foreign_key => 'root_folder_id'
+  belongs_to :created_by, :class_name => 'User', :foreign_key => 'created_by_id'
 
-  validates_presence_of :folder_id, :root_folder_id, :name, :filename, :version,
-    :content_type, :size, :sha1, :created_by_id
+  validates_presence_of :folder_id, :root_folder_id, :name, :filename, :version, :content_type, :size, :sha1, :created_by_id
   validates_length_of :name, :within => 1..255
   validates_length_of :filename, :within => 1..255
   validates_length_of :size, :minimum => 1

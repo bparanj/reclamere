@@ -116,11 +116,9 @@ class Pickup < ActiveRecord::Base
       nil
     end
     if mail
-      se = system_emails.new({
-          :user => User.find_by_email(mail.to[0]),
-          :subject => mail.subject,
-          :body => mail.body
-        })
+      se = system_emails.new({:user => User.find_by_email(mail.to[0]),
+                              :subject => mail.subject,
+                              :body => mail.body})
       if se.save
         SystemMailer.deliver(mail)
       else

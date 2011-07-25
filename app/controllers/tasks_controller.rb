@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   def index
     @tasks = @pickup.tasks.all(:order => 'num ASC')
   end
-
+  # TODO : Trigger notification emails when the status changes
   # PUT /pickup/:pickup_id/tasks/1
   def update
     @task = @pickup.tasks.find(params[:id])

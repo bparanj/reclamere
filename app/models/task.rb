@@ -1,6 +1,8 @@
 class Task < ActiveRecord::Base
-  TASK_NAMES = ['Picked Up', 'Arrived', 'Sanitized', 'Audited', 'Invoiced', 'Feedback']
+  # old TASK_NAMES = ['Picked Up', 'Arrived', 'Sanitized', 'Audited', 'Invoiced', 'Feedback']
+  TASK_NAMES = ['Picked Up', 'Arrived', 'IR', 'DDD', 'Invoiced']
   TASK_STATUSES = ['Open', 'Not Required', 'Complete']
+
 
   belongs_to :pickup
   belongs_to :solution_owner_user
@@ -22,10 +24,10 @@ class Task < ActiveRecord::Base
         pickup.status = 'Picked Up'
       when 'Arrived'
         pickup.status = 'Arrived'
-      when 'Sanitized'
-        pickup.status = 'Sanitized'
-      when 'Audited'
-        pickup.status = 'Audited'
+      when 'IR'
+        pickup.status = 'IR'
+      when 'DDD'
+        pickup.status = 'DDD'
       when 'Invoiced'
         pickup.status = 'Invoiced'
       when 'Feedback'

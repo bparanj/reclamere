@@ -13,9 +13,27 @@ ActionController::Routing::Routes.draw do |map|
     page.search "search", :action => "new"
     page.search_results "search_results", :action => "index"
   end
-    
+
+  map.with_options :controller => "equipment_manager" do |page|
+    page.manage_equipment_index "manage_equipment_index", :action => "index"
+    page.delete_monitor_size_admin "delete_monitor_size_admin/:id", :action => "destroy_monitor_size"
+    page.delete_monitor_brand_admin "delete_monitor_brand_admin/:id", :action => "delete_monitor_brand"
+    page.delete_cpu_type_admin "delete_cpu_type_admin/:id", :action => "delete_cpu_type"
+    page.delete_cpu_brand_admin "delete_cpu_brand_admin/:id", :action => "delete_cpu_brand"
+    page.delete_cpu_class_admin "delete_cpu_class_admin/:id", :action => "delete_cpu_class"
+    page.delete_loose_hard_drive_brand_admin "delete_loose_hard_drive_brand_admin/:id", :action => "delete_loose_hard_drive_brand"
+    page.delete_flash_hard_drive_brand_admin "delete_flash_hard_drive_brand_admin/:id", :action => "delete_flash_hard_drive_brand"
+    page.delete_tv_brand_admin "delete_tv_brand_admin/:id", :action => "delete_tv_brand"
+    page.delete_tv_size_admin "delete_tv_size_admin/:id", :action => "delete_tv_size"
+    page.delete_magnetic_media_type_admin "delete_magnetic_media_type_admin/:id", :action => "delete_magnetic_media_type"
+    page.delete_peripheral_brand_admin "delete_peripheral_brand_admin/:id", :action => "delete_peripheral_brand"
+    page.delete_misc_equipment_type_admin "delete_misc_equipment_type_admin/:id", :action => "delete_misc_equipment_type"
+    page.delete_misc_equipment_brand_admin "delete_misc_equipment_brand_admin/:id", :action => "delete_misc_equipment_brand"
+  end
+
   map.resources :monitor_sizes, :monitor_brands, :cpu_types, :cpu_brands, :cpu_classes, :loose_hard_drive_brands
-  map.resources :flash_hard_drive_brands, :tv_brands, :tv_sizes, :peripherals_brands, :miscellaneous_equipment_types, :miscellaneous_equipment_brands
+  map.resources :flash_hard_drive_brands, :tv_brands, :tv_sizes, :peripherals_brands, :miscellaneous_equipment_types
+  map.resources :miscellaneous_equipment_brands
   map.resources :cpus, :only => [:edit, :update] 
   map.resources :computer_monitors, :only => [:edit, :update] 
   map.resources :loose_hard_drives, :only => [:edit, :update] 
@@ -26,14 +44,14 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :miscellaneous_equipments, :only => [:edit, :update] 
 
   map.resources :pickups,
-    :member => { 
-    :address => :get,
-    :acknowledge => :post,
-    :notify => :post,
-    :close_feedback => :post,
-    :print_work_order => :get
-    },
-    :collection => { :update_users_list => :post } do |pickup|
+                :member => { 
+                  :address => :get,
+                  :acknowledge => :post,
+                  :notify => :post,
+                  :close_feedback => :post,
+                  :print_work_order => :get
+                },
+                :collection => { :update_users_list => :post } do |pickup|
     
       pickup.resources :folders, :member => { :folder_contents => [:get,:post], :create => :post } do |folder|
         folder.resources :documents, :member => { :download => :get, :versions => :get }

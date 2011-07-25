@@ -1,0 +1,198 @@
+
+
+<h3>Monitor Sizes</h3>
+
+<table width="100%">
+  <tr>
+    <th> Size </th>
+    <th></th>
+  </tr>
+  <% for monitor_size in @monitor_sizes %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= monitor_size.name %></td>
+      <td><%= link_to "Delete", delete_monitor_size_admin_path(monitor_size), :confirm => "Are you sure?" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Monitor Brands</h3>
+
+<table width="100%">
+  <tr>
+    <th> Size </th>
+    <th></th>
+  </tr>
+  <% for monitor_brand in @monitor_brands %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= monitor_brand.name %></td>
+      <td><%= link_to "Delete", delete_monitor_brand_admin_path(monitor_brand), :confirm => "Are you sure?" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3> Cpu Types </h3>
+
+<table width="100%">
+  <tr>
+    <th> Size </th>
+    <th></th>
+  </tr>
+  <% for cpu_type in @cpu_types %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= cpu_type.name %></td>
+      <td><%= link_to "Delete", delete_cpu_type_admin_path(cpu_type), :confirm => "Are you sure?" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Cpu Brands</h3>
+
+<table width="100%">
+  <tr>
+    <th> Size </th>
+    <th></th>
+  </tr>
+  <% for cpu_brand in @cpu_brands %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= cpu_brand.name %></td>
+      <td><%= link_to "Delete", delete_cpu_brand_admin_path(cpu_brand), :confirm => "Are you sure?" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Cpu Classes</h3>
+
+<table width="100%">
+  <tr>
+    <th> Size </th>
+    <th></th>
+  </tr>
+  <% for cpu_class in @cpu_classes %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= cpu_class.name %></td>
+      <td><%= link_to "Delete", delete_cpu_class_admin_path(cpu_class), :confirm => "Are you sure?" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Loose Hard Drive Brands</h3>
+
+<table width="100%">
+  <tr>
+    <th> Size </th>
+    <th></th>
+  </tr>
+  <% for loose_hard_drive_brand in @loose_hard_drive_brands %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= loose_hard_drive_brand.name %></td>
+      <td><%= link_to "Delete", delete_loose_hard_drive_brand_admin_path(loose_hard_drive_brand), :confirm => "Are you sure?" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Flash Hard Drive Brands</h3>
+
+<table width="100%">
+  <tr>
+    <th> Name </th>
+    <th></th>
+  </tr>
+  <% for flash_hard_drive_brand in @flash_hard_drive_brands %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= flash_hard_drive_brand.name %></td>
+      <td><%= link_to "Delete", delete_flash_hard_drive_brand_admin_path(flash_hard_drive_brand), :confirm => "Are you sure?" %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+<h3>Television Brands</h3>
+
+<table width="100%">
+  <tr>
+    <th> Size </th>
+    <th></th>
+  </tr>
+  <% for tv_brand in @tv_brands %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= tv_brand.name %></td>
+      <td><%= link_to "Delete", delete_tv_brand_admin_path(tv_brand), :confirm => "Are you sure?" %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+<h3>Television Sizes</h3>
+
+<table width="100%">
+  <tr>
+    <th> Size </th>
+    <th></th>
+  </tr>
+  <% for tv_size in @tv_sizes %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= tv_size.name %></td>
+      <td><%= link_to "Delete", delete_tv_size_admin_path(tv_size), :confirm => "Are you sure?" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Magnetic Media</h3>
+
+<table width="100%">
+  <tr>
+    <th> Size </th>
+    <th></th>
+  </tr>
+  <% for magnetic_media_type in @magnetic_media_types %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= magnetic_media_type.name %></td>
+      <td><%= link_to "Delete", delete_magnetic_media_type_admin_path(magnetic_media_type), :confirm => "Are you sure?" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Printers / Fax / Scanners</h3>
+
+<table width="100%">
+  <tr>
+    <th> Size </th>
+    <th></th>
+  </tr>
+  <% for peripheral_brand in @peripheral_brands %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= peripheral_brand.name %></td>
+      <td><%= link_to "Delete", delete_peripheral_brand_admin_path(peripheral_brand), :confirm => "Are you sure?" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Miscellaneous Equipment Types</h3>
+
+<table width="100%">
+  <tr>
+    <th> Name </th>
+    <th></th>
+  </tr>
+  <% for misc_equipment_type in @misc_equipment_types %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= misc_equipment_type.name %></td>
+      <td><%= link_to "Delete", delete_misc_equipment_type_admin_path(misc_equipment_type), :confirm => "Are you sure?" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Miscellaneous Equipment Brand</h3>
+
+<table width="100%">
+  <tr>
+    <th> Size </th>
+    <th></th>
+  </tr>
+  <% for misc_equipment_brand in @misc_equipment_brands %>
+    <tr class="<%= cycle 'a', 'b' %>">
+      <td><%= misc_equipment_brand.name %></td>
+      <td><%= link_to "Delete", delete_misc_equipment_brand_admin_path(misc_equipment_brand), :confirm => "Are you sure?" %></td>
+    </tr>
+  <% end %>
+</table>
